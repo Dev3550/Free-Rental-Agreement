@@ -1,0 +1,17 @@
+# Cloudflare Pages Headers File
+# Prevent search engine indexing on preview and staging subdomains (.pages.dev and .workers.dev)
+
+https://*.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+https://freerentalagreement.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+https://free-rental-agreement.devendradubey61.workers.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# Global Security and Caching Headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
