@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="404 - Page Not Found | FreeRentalAgreement.com"
+  description="The legal agreement page or document template you are looking for could not be found. Return to home or generate a free agreement."
+>
+  <Header />
+
+  <main class="flex-grow flex items-center justify-center py-16 md:py-24 bg-[#f8fafc]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Graphic SVG Emblem -->
+      <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 bg-[#eff6ff] border-2 border-[#bfdbfe] rounded-3xl p-6 flex items-center justify-center shadow-md relative group">
+        <svg class="w-12 h-12 sm:w-16 sm:h-16 text-[#1e40af]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <span class="absolute -bottom-2 -right-2 bg-[#1e40af] text-white font-mono text-xs font-extrabold px-2.5 py-1 rounded-full border-2 border-white shadow-sm">
+          404
+        </span>
+      </div>
+
+      <!-- Error Heading -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] border border-[#bfdbfe] text-xs font-mono text-[#1e40af] mb-3 font-semibold">
+        <span>ERROR 404 • PAGE NOT FOUND</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0f172a] mb-4">
+        Document Page Not Found
+      </h1>
+
+      <p class="text-sm sm:text-base text-[#475569] max-w-xl mx-auto leading-relaxed mb-8">
+        The legal agreement form or page URL you requested might have been moved, renamed, or does not exist. Select one of our popular contract generators below.
+      </p>
+
+      <!-- Primary Actions -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <a 
+          href="/" 
+          class="px-6 py-3 rounded-xl bg-[#1e40af] hover:bg-[#1d4ed8] text-white font-bold text-xs sm:text-sm transition-all shadow-md flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span>Return to Homepage</span>
+        </a>
+
+        <a 
+          href="/builder" 
+          class="px-6 py-3 rounded-xl bg-white hover:bg-[#f1f5f9] text-[#0f172a] border border-[#cbd5e1] font-semibold text-xs sm:text-sm transition-colors shadow-sm flex items-center gap-2"
+        >
+          <svg class="w-4 h-4 text-[#1e40af]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          <span>Open Contract Builder</span>
+        </a>
+      </div>
+
+      <!-- Quick Document Links Matrix -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 shadow-sm text-left max-w-2xl mx-auto">
+        <h2 class="text-xs font-mono font-bold text-[#64748b] uppercase tracking-wider mb-4 border-b border-[#f1f5f9] pb-2">
+          Popular Legal Contract Generators
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <a href="/residential-rental-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>🏠</span> Residential Rental Agreement
+          </a>
+          <a href="/commercial-lease-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>🏢</span> Commercial Lease Deed
+          </a>
+          <a href="/freelancer-service-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>💻</span> Freelancer & Service Contract
+          </a>
+          <a href="/civil-contractor-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>🏗️</span> Civil Contractor Agreement
+          </a>
+          <a href="/roofing-contractor-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>🛠️</span> Roofing Repair Contract
+          </a>
+          <a href="/custom-legal-agreement" class="p-2.5 rounded-xl bg-[#f8fafc] hover:bg-[#eff6ff] border border-[#e2e8f0] hover:border-[#bfdbfe] text-[#0f172a] font-semibold flex items-center gap-2 transition-colors">
+            <span>📜</span> Custom Legal Deed Form
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

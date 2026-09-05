@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="500 - Internal Server Error | FreeRentalAgreement.com"
+  description="An internal server error occurred while processing your legal document request. Please refresh or try again shortly."
+>
+  <Header />
+
+  <main class="flex-grow flex items-center justify-center py-16 md:py-24 bg-[#f8fafc]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Graphic SVG Emblem -->
+      <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 bg-[#fff1f2] border-2 border-[#fecdd3] rounded-3xl p-6 flex items-center justify-center shadow-md relative group">
+        <svg class="w-12 h-12 sm:w-16 sm:h-16 text-[#e11d48]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <span class="absolute -bottom-2 -right-2 bg-[#e11d48] text-white font-mono text-xs font-extrabold px-2.5 py-1 rounded-full border-2 border-white shadow-sm">
+          500
+        </span>
+      </div>
+
+      <!-- Error Heading -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff1f2] border border-[#fecdd3] text-xs font-mono text-[#e11d48] mb-3 font-semibold">
+        <span>ERROR 500 • INTERNAL SERVER ERROR</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0f172a] mb-4">
+        Unexpected Server Error
+      </h1>
+
+      <p class="text-sm sm:text-base text-[#475569] max-w-xl mx-auto leading-relaxed mb-8">
+        We experienced an unexpected server issue while generating your agreement draft. Your document data is safe. Please refresh the page or return home.
+      </p>
+
+      <!-- Primary Actions -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button 
+          onclick="window.location.reload();" 
+          class="px-6 py-3 rounded-xl bg-[#1e40af] hover:bg-[#1d4ed8] text-white font-bold text-xs sm:text-sm transition-all shadow-md flex items-center gap-2 cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          <span>Reload & Retry Page</span>
+        </button>
+
+        <a 
+          href="/" 
+          class="px-6 py-3 rounded-xl bg-white hover:bg-[#f1f5f9] text-[#0f172a] border border-[#cbd5e1] font-semibold text-xs sm:text-sm transition-colors shadow-sm flex items-center gap-2"
+        >
+          <svg class="w-4 h-4 text-[#1e40af]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span>Return to Homepage</span>
+        </a>
+      </div>
+
+      <!-- Support Box -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 shadow-sm text-left max-w-xl mx-auto flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#eff6ff] text-[#1e40af] flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </div>
+        <div>
+          <h2 class="text-sm font-bold text-[#0f172a] mb-0.5">Need Immediate Assistance?</h2>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            If the problem persists, contact our support team at <a href="/contact" class="text-[#1e40af] font-semibold underline">Contact Support Page</a>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
