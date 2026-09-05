@@ -1,0 +1,8 @@
+# Robots.txt for FreeRentalAgreement.com
+# Allow full crawling and indexing for Googlebot, Bingbot, and all web crawlers
+
+User-agent: *
+Allow: /
+
+# XML Sitemap Location
+Sitemap: https://freerentalagreement.com/sitemap.xml

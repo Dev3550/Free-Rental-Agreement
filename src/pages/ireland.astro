@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import SignatureModal from '../components/SignatureModal.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="Ireland Residential Tenancy Agreement | RTB Registered Lease Deed"
+	description="Create Irish Residential Tenancy Agreements compliant with Irish Residential Tenancies Act 2004. Includes RTB registration terms and Rent Pressure Zone (RPZ) limits."
+>
+	<Header />
+
+	<main id="main-content" class="flex-grow">
+		<section class="py-12 md:py-16 bg-gradient-to-b from-[#0e0e0e] to-[#0a0a0a] border-b border-[#262626] text-center">
+			<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161616] border border-[#262626] text-xs font-mono text-[#f5a623] mb-4">
+					<span>🇮🇪 IRELAND LEGAL PORTAL • RTB COMPLIANT</span>
+				</div>
+				<h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+					Ireland Residential Tenancy Agreement (RTB Registered)
+				</h1>
+				<p class="text-base sm:text-lg text-[#a1a1a1] max-w-3xl mx-auto leading-relaxed mb-6">
+					Generate tenancy deeds for Dublin, Cork, Galway, and Ireland. Compliant with Residential Tenancies Board (RTB) registration rules and RPZ rent cap guidelines.
+				</p>
+			</div>
+		</section>
+
+		<CategorySelector />
+		<AgreementBuilder />
+		<StampDutyCalculator />
+		<FAQ />
+	</main>
+
+	<SignatureModal />
+	<Footer />
+
+	<script src="../scripts/app.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const select = document.getElementById('global-country-select') as HTMLSelectElement;
+			if (select) {
+				select.value = 'IE';
+				select.dispatchEvent(new Event('change'));
+			}
+		});
+	</script>
+</Layout>

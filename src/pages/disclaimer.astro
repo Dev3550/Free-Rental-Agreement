@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Legal Disclaimer & Attorney-Client Notice | FreeRentalAgreement.com";
+const pageDesc = "Official Legal Disclaimer: FreeRentalAgreement.com is an automated self-help legal document software, not a law firm or legal referral service.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <Header />
+
+  <main class="flex-grow bg-[#f8fafc] text-[#0f172a] py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex text-xs text-[#64748b] mb-6 font-mono" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1e40af]">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-[#0f172a] font-semibold">Legal Disclaimer</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fef3c7] text-[#92400e] text-xs font-mono font-semibold mb-4 border border-[#fde68a]">
+          ⚠️ MANDATORY STATUTORY NOTICE & LEGAL DISCLAIMER
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a] mb-4">
+          Official Legal Disclaimer
+        </h1>
+        <p class="text-base text-[#475569] leading-relaxed">
+          Please read this legal notice carefully. FreeRentalAgreement.com provides self-help legal document generation software. We are not a law firm.
+        </p>
+      </div>
+
+      <!-- Main Disclaimer Content -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm space-y-8 text-sm text-[#334155] leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            1. No Attorney-Client Relationship
+          </h2>
+          <div class="p-4 rounded-xl bg-[#fffbe5] border border-[#fde68a] text-[#92400e] text-xs leading-relaxed font-mono">
+            <strong>NOTICE:</strong> Communication between you and FreeRentalAgreement.com is protected by our Privacy Policy, but is NOT protected by attorney-client privilege or as work product. Your use of our document builder does not create an attorney-client relationship.
+          </div>
+          <p>
+            FreeRentalAgreement.com is an online self-help software platform designed to assist users in preparing standard statutory legal documents. We do not provide legal advice, legal opinions, case recommendations, or attorney representation.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            2. State Statutory & Rent Control Variations
+          </h2>
+          <p>
+            Landlord-tenant laws, rent control caps, notice periods, and security deposit regulations vary significantly across jurisdictions (e.g., California AB 12, NY RPL 238-a, Maharashtra Rent Control Act 1999, UK Tenant Fees Act 2019). While our system includes preambles for major state statutes, users with complex property disputes or commercial transactions are strongly advised to consult a licensed attorney in their local jurisdiction.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            3. Self-Help Form Software Guarantee
+          </h2>
+          <p>
+            Our document engine creates standard contract templates based on inputs provided directly by you. FreeRentalAgreement.com makes no warranties, express or implied, regarding the legal outcome of your document, its enforceability in specific courts of law, or its suitability for your specific legal scenario.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

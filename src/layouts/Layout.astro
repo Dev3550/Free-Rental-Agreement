@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonicalUrl?: string;
+}
+
+const {
+	title = "Free Rental Agreement Form & Printable Lease Agreement Template (USA, UK, India, UAE, Canada, Australia)",
+	description = "Generate free rental agreement forms, standard residential lease templates, California month-to-month contracts, Texas PDF leases, UK AST agreements, Ontario standard leases & Australia 18a tenancy forms online.",
+	canonicalUrl = "https://freerentalagreement.com"
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Free Rental Agreement Generator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "description": description
+    },
+    {
+      "@type": "LegalService",
+      "name": "FreeRentalAgreement.com Legal Document Generator",
+      "url": canonicalUrl,
+      "logo": "https://freerentalagreement.com/favicon.svg",
+      "sameAs": [
+        "https://freerentalagreement.com"
+      ],
+      "areaServed": ["US", "IN", "GB", "AE", "CA", "AU"],
+      "priceRange": "Free"
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="free rental agreement, free rental agreement form, free rental agreement template, free rental agreement forms, Standard residential lease agreement, Blank rental agreement form, House rental agreement template, Basic lease agreement PDF, Landlord tenant agreement form, Property rental agreement, free rental agreement California, Free residential lease agreement template, Printable rental lease agreement form PDF, Simple 1 page lease agreement doc, Commercial lease agreement form word, Texas residential lease agreement pdf, California month to month rental agreement template, Florida landlord tenant agreement form, New York standard residential lease draft, Assured Shorthold Tenancy AST agreement template, Tenancy agreement form UK free, Ontario standard lease form PDF, Residential tenancy agreement Canada, General tenancy agreement form 18a, Residential tenancy agreement template Australia" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+		<link rel="canonical" href={canonicalUrl} />
+		
+		<!-- OpenGraph / Social -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Free Rental Agreement" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+
+		<!-- Google AdSense Auto-Ads Compatibility Tags (Banner, Video, In-Article, Vignette & Multiplex Ads) -->
+		<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXX" />
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+		<!-- Schema.org JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+		<!-- Fonts: Inter & JetBrains Mono for Vercel Geist aesthetic -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+	</head>
+	<body class="bg-[#f8fafc] text-[#0f172a] min-h-screen antialiased flex flex-col selection:bg-[#1e40af] selection:text-white font-sans">
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#1e40af] focus:text-white focus:rounded-md focus:font-medium">
+			Skip to main content
+		</a>
+		<slot />
+	</body>
+</html>

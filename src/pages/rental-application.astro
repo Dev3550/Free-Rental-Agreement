@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Free Rental Application Form Generator & Tenant Screening Template (State-Compliant)"
+  description="Generate state-compliant rental application forms online. Includes FCRA background check consent, 3x income verification, rental history, and statutory state application fee limit rules."
+>
+  <Header />
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="py-12 md:py-16 bg-[#0a0a0a] border-b border-[#262626] relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] text-xs font-mono text-[#50e3c2] mb-4">
+          <span>FCRA & STATE LAW COMPLIANT • TENANT SCREENING</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 max-w-4xl mx-auto">
+          State-Compliant Rental Application Form Generator
+        </h1>
+        <p class="text-base sm:text-lg text-[#a1a1a1] max-w-3xl mx-auto leading-relaxed mb-8">
+          Collect prospective tenant information, verify 3x income proof, request rental history, and get signed authorization for FCRA credit & criminal background checks. Built with state-specific screening regulations.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#builder-section" class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-[#e0e0e0] transition-colors shadow-lg flex items-center gap-2">
+            Create Rental Application Now →
+          </a>
+          <a href="/calculator" class="px-6 py-3 rounded-xl bg-[#181818] text-white font-medium text-sm border border-[#262626] hover:bg-[#222222] transition-colors flex items-center gap-2">
+            Check State Application Fee Caps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Benefits & Components Section -->
+    <section class="py-12 bg-[#0c0c0c] border-b border-[#262626]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Essential Components of a Rental Application Form</h2>
+          <p class="text-sm text-[#a1a1a1]">A thorough rental application collects key information to verify identity, financial stability, and rental history.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-[#262626] mb-12">
+          <table class="w-full text-left text-xs text-[#a1a1a1]">
+            <thead class="bg-[#141414] text-white font-mono uppercase text-[11px] border-b border-[#262626]">
+              <tr>
+                <th class="p-4">Component</th>
+                <th class="p-4">What to Collect</th>
+                <th class="p-4">Why It Matters</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#262626]">
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">Personal Information</td>
+                <td class="p-4">Full name, DOB, phone, email, government-issued ID / Driver License</td>
+                <td class="p-4">Confirms identity and provides contact methods throughout screening.</td>
+              </tr>
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">Rental History</td>
+                <td class="p-4">Current & past addresses (past 2–5 years), landlord contact details, reason for leaving</td>
+                <td class="p-4">Verifies payment timeliness, property care, and landlord relations.</td>
+              </tr>
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">Employment & Proof of Income</td>
+                <td class="p-4">Employer, position, supervisor contact, pay stubs, W-2/1099, bank statements</td>
+                <td class="p-4">Verifies ability to pay rent. Standard benchmark requires monthly income at least 3x rent.</td>
+              </tr>
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">Occupants & Vehicles</td>
+                <td class="p-4">Names & ages of all occupants, pet type/breed/weight, vehicles & parking needs</td>
+                <td class="p-4">Ensures property capacity rules and pet/parking policy compliance.</td>
+              </tr>
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">SSN / ITIN & FCRA Authorization</td>
+                <td class="p-4">SSN or ITIN (secure handling) + signed FCRA credit & background check authorization</td>
+                <td class="p-4">Mandatory under FCRA before running credit or criminal background checks.</td>
+              </tr>
+              <tr class="hover:bg-[#111]">
+                <td class="p-4 font-semibold text-white">Bankruptcy & Eviction History</td>
+                <td class="p-4">Declaration of bankruptcy or prior evictions in past 7 years</td>
+                <td class="p-4">Provides context regarding past financial distress or court filings.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- State Application Fee Limits Table -->
+        <div class="text-center max-w-3xl mx-auto mb-6">
+          <h2 class="text-2xl font-bold text-white mb-2">Statutory State Rental Application Fee Limits</h2>
+          <p class="text-xs text-[#a1a1a1]">Landlord screening fees are restricted or capped by law in many states.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-[#262626]">
+          <table class="w-full text-left text-xs text-[#a1a1a1]">
+            <thead class="bg-[#141414] text-white font-mono uppercase text-[11px] border-b border-[#262626]">
+              <tr>
+                <th class="p-3">State</th>
+                <th class="p-3">Statutory Fee Limit</th>
+                <th class="p-3">Legal Citation & Specific Rules</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#262626]">
+              <tr>
+                <td class="p-3 font-bold text-white">California</td>
+                <td class="p-3 text-[#50e3c2]">Actual screening cost or CPI max</td>
+                <td class="p-3">Cal. Civ. Code § 1950.6(b) & AB 2493. Must refund unused portions.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">New York</td>
+                <td class="p-3 text-[#f5a623] font-bold">$20 Cap</td>
+                <td class="p-3">Real Property Law § 238-a. Capped at $20 or actual cost. Waived if report <30 days old.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Massachusetts</td>
+                <td class="p-3 text-red-400 font-bold">Prohibited ($0 Fee)</td>
+                <td class="p-3">M.G.L. c. 186 § 15B. Landlords prohibited from charging application fees.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Vermont</td>
+                <td class="p-3 text-red-400 font-bold">Prohibited ($0 Fee)</td>
+                <td class="p-3">9 V.S.A. § 4456a. Application fees strictly prohibited.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Washington D.C.</td>
+                <td class="p-3 text-[#f5a623] font-bold">$50 Cap</td>
+                <td class="p-3">D.C. Code § 42-3505.10. Application fee capped at $50 per applicant.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Wisconsin</td>
+                <td class="p-3 text-[#f5a623] font-bold">$25 Cap</td>
+                <td class="p-3">Wis. Stat. § 704.085(1)(a). Must provide copy of background report to applicant.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">New Jersey</td>
+                <td class="p-3 text-[#f5a623] font-bold">$50 Cap</td>
+                <td class="p-3">A4899 (Eff. May 2026). Inflation adjusted. 1-2 family dwellings exempt.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Minnesota</td>
+                <td class="p-3 text-[#50e3c2]">Actual screening cost only</td>
+                <td class="p-3">Minn. Stat. § 504B.173. Must disclose criteria in writing before collecting fee.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Maine</td>
+                <td class="p-3 text-[#50e3c2]">Actual single check cost</td>
+                <td class="p-3">14 M.R.S. § 6030-H. May only charge actual cost of a single screening check.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Washington</td>
+                <td class="p-3 text-[#50e3c2]">Actual screening cost only</td>
+                <td class="p-3">RCW § 59.18.257. Fee must equal exact cost of screening service.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Illinois</td>
+                <td class="p-3">No statewide cap</td>
+                <td class="p-3">Public Act 103-0840. Fee prohibited if applicant provides reusable report.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Texas</td>
+                <td class="p-3">No statewide cap</td>
+                <td class="p-3">Texas Property Code § 92.3515. Must disclose screening criteria before collecting fee.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">Florida</td>
+                <td class="p-3">No statewide cap</td>
+                <td class="p-3">Florida Statutes Ch. 83. Best practice: Reasonable cost, non-refundable.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <CategorySelector />
+
+    <div id="category-builder-wrapper" data-default-category="rental-application">
+      <AgreementBuilder />
+    </div>
+
+    <StampDutyCalculator />
+    <FAQ />
+  </main>
+
+  <Footer />
+  <script src="../scripts/app.js"></script>
+</Layout>

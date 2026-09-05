@@ -1,0 +1,305 @@
+---
+---
+
+<section id="categories-section" class="py-12 md:py-16 bg-white border-b border-[#e2e8f0] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] border border-[#bfdbfe] text-xs font-mono text-[#1e40af] mb-3 font-semibold">
+        <span>SELECT CONTRACT TYPE</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a]">Choose Your Agreement Category</h2>
+      <p class="text-sm text-[#475569] mt-2">
+        Answer a few simple questions. Print and download legally binding documents instantly in just 5 minutes.
+      </p>
+    </div>
+
+    <!-- Category Cards Grid (12 Cards Matrix) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="category-cards-grid">
+      
+      <!-- Card 1: Residential Rental Agreement -->
+      <a 
+        href="/residential-rental-agreement" 
+        data-category="residential" 
+        class="category-card border-2 border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-md hover:shadow-xl group relative flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/residential.png" alt="Residential Rental Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 right-2 text-[#1e40af] font-mono text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#bfdbfe] shadow-sm">
+              Popular
+            </span>
+          </div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <h3 class="text-base font-bold text-[#0f172a] group-hover:text-[#1e40af] transition-colors">Residential Rental</h3>
+          </div>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Apartments, Flats, Independent Houses, PG Rooms & Roommates.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-bold py-2.5 px-3 rounded-xl bg-[#1e40af] text-white group-hover:bg-[#1d4ed8] transition-colors shadow-sm">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Commercial Lease Agreement -->
+      <a 
+        href="/commercial-lease-agreement" 
+        data-category="commercial" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/commercial.png" alt="Commercial Lease Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Commercial Lease</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Retail Shops, Corporate Office Space, Warehouses & Showrooms.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 3: Sublease Agreement -->
+      <a 
+        href="/residential-rental-agreement" 
+        data-category="sublease" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/sublease.png" alt="Sublease Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 right-2 text-[#0284c7] font-mono text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#bae6fd] shadow-sm">
+              Sublet
+            </span>
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Sublease Agreement</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Primary Tenant to Subtenant Lease, Room Share & Master Consent.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Sublease →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 4: Freelancer & Service Agreement -->
+      <a 
+        href="/freelancer-service-agreement" 
+        data-category="freelancer" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/freelancer.png" alt="Freelancer & Service Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Freelancer / Consultant</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Software Dev, Design, Marketing & Independent Client Services.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 5: Civil Construction Contractor -->
+      <a 
+        href="/civil-contractor-agreement" 
+        data-category="civil" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/civil.png" alt="Civil Construction Contractor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Civil Contractor</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Building Construction, Structural Works & Masonry Contracts.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 6: Interior Contractor Agreement -->
+      <a 
+        href="/interior-contractor-agreement" 
+        data-category="interior" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/interior.png" alt="Interior Contractor Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Interior Contractor</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Interior Fitouts, Woodwork, Renovation & Decor Contracts.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 7: Roofing Contractor Agreement -->
+      <a 
+        href="/roofing-contractor-agreement" 
+        data-category="roofing" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/roofing.png" alt="Roofing Contractor Agreement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Roofing Contractor</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Roof Repair, Waterproofing & Maintenance Services.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Document →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 8: Power of Attorney (POA) -->
+      <a 
+        href="/custom-legal-agreement" 
+        data-category="poa" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/poa.png" alt="Power of Attorney" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Power of Attorney</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            General & Special Legal Representation Authorization Deed.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Power of Attorney →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 9: Non-Disclosure Agreement (NDA) -->
+      <a 
+        href="/freelancer-service-agreement" 
+        data-category="nda" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/nda.png" alt="Non-Disclosure Agreement NDA" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">NDA (Confidentiality)</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Mutual & One-Way Business Secret Protection Contract.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create NDA Deed →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 10: Vehicle Sale & Lease Deed -->
+      <a 
+        href="/custom-legal-agreement" 
+        data-category="vehicle" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/vehicle.png" alt="Vehicle Sale and Lease Deed" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Vehicle Sale & Lease</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Car, Bike & Equipment Bill of Sale & Rental Transfer Deed.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Vehicle Deed →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 11: Tenant Rental Application Form -->
+      <a 
+        href="/rental-application" 
+        data-category="rental-application" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/rental_app.png" alt="Tenant Rental Application Form" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Rental Application</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Tenant Screening Form, Income Proof (3x Rent) & FCRA Consent.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Application →
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 12: Custom Legal Agreement -->
+      <a 
+        href="/custom-legal-agreement" 
+        data-category="custom" 
+        class="category-card border border-[#e2e8f0] hover:border-[#1e40af] bg-white hover:bg-[#f8fafc] p-5 rounded-2xl cursor-pointer transition-all duration-200 shadow-sm hover:shadow-xl group flex flex-col justify-between overflow-hidden no-underline"
+      >
+        <div>
+          <div class="w-full h-36 overflow-hidden rounded-xl mb-4 relative bg-[#f1f5f9]">
+            <img src="/images/categories/custom_deed.png" alt="Custom Legal Deed" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h3 class="text-base font-bold text-[#0f172a] mb-1.5 group-hover:text-[#1e40af] transition-colors">Custom Legal Deed</h3>
+          <p class="text-xs text-[#64748b] leading-relaxed">
+            Fully customizable legal contract with unlimited custom terms.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <span class="w-full inline-block text-center text-xs font-semibold py-2.5 px-3 rounded-xl bg-[#f1f5f9] text-[#0f172a] group-hover:bg-[#1e40af] group-hover:text-white transition-colors">
+            Create Custom Document →
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>

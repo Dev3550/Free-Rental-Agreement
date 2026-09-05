@@ -1,0 +1,131 @@
+---
+---
+
+<!-- Interactive Onboarding Question Modal -->
+<div id="onboarding-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4" aria-modal="true" role="dialog" aria-labelledby="modal-onboarding-title">
+  <div class="bg-[#121212] border border-[#262626] rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-6 relative animate-in fade-in zoom-in-95 duration-200">
+    
+    <!-- Modal Close Button -->
+    <button id="btn-close-onboarding" type="button" class="absolute top-4 right-4 text-[#888888] hover:text-white p-1 rounded-lg hover:bg-[#1a1a1a]" aria-label="Close modal">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
+    <!-- Header -->
+    <div class="text-center max-w-md mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] text-xs font-mono text-[#50e3c2] mb-3">
+        <span>QUICK START ASSISTANT</span>
+      </div>
+      <h3 class="text-2xl font-bold tracking-tight text-white" id="modal-onboarding-title">Let's Customize Your Document</h3>
+      <p class="text-xs text-[#a1a1a1] mt-1">Answer 3 simple questions to auto-fill your legal agreement in seconds.</p>
+    </div>
+
+    <!-- Step Progress Pills -->
+    <div class="flex items-center justify-center gap-2 border-b border-[#222222] pb-4">
+      <div id="ob-step-indicator-1" class="w-8 h-1.5 rounded-full bg-[#0070f3]"></div>
+      <div id="ob-step-indicator-2" class="w-8 h-1.5 rounded-full bg-[#222222]"></div>
+      <div id="ob-step-indicator-3" class="w-8 h-1.5 rounded-full bg-[#222222]"></div>
+    </div>
+
+    <form id="onboarding-form" onsubmit="event.preventDefault();" class="space-y-6">
+      
+      <!-- STEP 1: ROLE SELECTOR -->
+      <div id="ob-step-1" class="onboarding-step-panel space-y-4">
+        <h4 class="text-xs font-mono font-semibold uppercase text-white tracking-wider text-center">1. Who are you in this agreement?</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="role-cards-container">
+          
+          <div data-role="landlord" class="ob-role-card active border-2 border-[#0070f3] bg-[#161616] p-3.5 rounded-xl cursor-pointer hover:border-[#0070f3] transition-all flex items-start gap-3">
+            <div class="p-2 rounded-lg bg-[#0070f3]/10 text-[#0070f3] shrink-0">🏠</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Landlord / Owner</h5>
+              <p class="text-[11px] text-[#888888] mt-0.5">I own property & want to rent it out</p>
+            </div>
+          </div>
+
+          <div data-role="tenant" class="ob-role-card border border-[#262626] bg-[#161616] p-3.5 rounded-xl cursor-pointer hover:border-[#0070f3] transition-all flex items-start gap-3">
+            <div class="p-2 rounded-lg bg-[#7928ca]/10 text-[#7928ca] shrink-0">🔑</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Tenant / Lessee</h5>
+              <p class="text-[11px] text-[#888888] mt-0.5">I am taking a property on lease</p>
+            </div>
+          </div>
+
+          <div data-role="client" class="ob-role-card border border-[#262626] bg-[#161616] p-3.5 rounded-xl cursor-pointer hover:border-[#0070f3] transition-all flex items-start gap-3">
+            <div class="p-2 rounded-lg bg-[#50e3c2]/10 text-[#50e3c2] shrink-0">💼</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Hiring Client</h5>
+              <p class="text-[11px] text-[#888888] mt-0.5">I am hiring a contractor or freelancer</p>
+            </div>
+          </div>
+
+          <div data-role="contractor" class="ob-role-card border border-[#262626] bg-[#161616] p-3.5 rounded-xl cursor-pointer hover:border-[#0070f3] transition-all flex items-start gap-3">
+            <div class="p-2 rounded-lg bg-[#ff0080]/10 text-[#ff0080] shrink-0">🛠️</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Contractor / Freelancer</h5>
+              <p class="text-[11px] text-[#888888] mt-0.5">I am providing services or work</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STEP 2: CONTRACT TYPE -->
+      <div id="ob-step-2" class="onboarding-step-panel hidden space-y-4">
+        <h4 class="text-xs font-mono font-semibold uppercase text-white tracking-wider text-center">2. What type of contract do you need?</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="ob-category-container">
+          
+          <button type="button" data-ob-cat="residential" class="ob-cat-btn text-left p-3 rounded-xl border border-[#0070f3] bg-[#161616] text-white text-xs font-semibold hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Residential Rental Agreement</span>
+            <span class="text-[#0070f3]">✓</span>
+          </button>
+
+          <button type="button" data-ob-cat="commercial" class="ob-cat-btn text-left p-3 rounded-xl border border-[#262626] bg-[#161616] text-[#a1a1a1] hover:text-white text-xs font-medium hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Commercial Lease Deed</span>
+          </button>
+
+          <button type="button" data-ob-cat="freelancer" class="ob-cat-btn text-left p-3 rounded-xl border border-[#262626] bg-[#161616] text-[#a1a1a1] hover:text-white text-xs font-medium hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Freelancer & Service Contract</span>
+          </button>
+
+          <button type="button" data-ob-cat="civil" class="ob-cat-btn text-left p-3 rounded-xl border border-[#262626] bg-[#161616] text-[#a1a1a1] hover:text-white text-xs font-medium hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Civil Construction Contract</span>
+          </button>
+
+          <button type="button" data-ob-cat="interior" class="ob-cat-btn text-left p-3 rounded-xl border border-[#262626] bg-[#161616] text-[#a1a1a1] hover:text-white text-xs font-medium hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Interior & Fitout Contract</span>
+          </button>
+
+          <button type="button" data-ob-cat="roofing" class="ob-cat-btn text-left p-3 rounded-xl border border-[#262626] bg-[#161616] text-[#a1a1a1] hover:text-white text-xs font-medium hover:bg-[#1f1f1f] transition-all flex items-center justify-between">
+            <span>Roofing & Repair Contract</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- STEP 3: USER NAME & CITY / ZIP CODE -->
+      <div id="ob-step-3" class="onboarding-step-panel hidden space-y-4">
+        <h4 class="text-xs font-mono font-semibold uppercase text-white tracking-wider text-center">3. Enter Your Legal Name & Location</h4>
+        
+        <div>
+          <label for="ob_user_name" class="block text-xs text-[#a1a1a1] mb-1">Your Full Legal Name *</label>
+          <input type="text" id="ob_user_name" placeholder="e.g. Vikramaditya Roy" class="w-full bg-[#0a0a0a] text-xs text-white border border-[#262626] rounded-xl px-3.5 py-2.5 focus:border-[#0070f3] focus:outline-none" />
+        </div>
+
+        <div>
+          <label for="ob_user_zip" class="block text-xs text-[#a1a1a1] mb-1">City or ZIP / Postal Code *</label>
+          <input type="text" id="ob_user_zip" placeholder="e.g. 400001 (Mumbai), 90210 (California), London, Dubai" class="w-full bg-[#0a0a0a] text-xs text-white border border-[#262626] rounded-xl px-3.5 py-2.5 focus:border-[#0070f3] focus:outline-none" />
+        </div>
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div class="flex items-center justify-between pt-2 border-t border-[#222222]">
+        <button id="ob-btn-prev" type="button" class="text-xs font-medium text-[#888888] hover:text-white px-4 py-2 rounded-lg bg-[#181818] hidden">
+          ← Previous
+        </button>
+        <button id="ob-btn-next" type="button" class="ml-auto text-xs font-semibold text-black bg-white hover:bg-[#e0e0e0] px-6 py-2.5 rounded-lg shadow-md transition-all">
+          Next Question →
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

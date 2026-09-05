@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Free Civil Construction Contractor Agreement Generator"
+  description="Generate civil construction work contracts online. Covers building construction, structural work, raw material specs, stage payment schedule, and defect liability terms."
+>
+  <Header />
+
+  <main class="flex-grow">
+    <section class="py-12 md:py-16 bg-[#0a0a0a] border-b border-[#262626] relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] text-xs font-mono text-[#f5a623] mb-4">
+          <span>CATEGORY • CIVIL CONSTRUCTION CONTRACTOR</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 max-w-4xl mx-auto">
+          Civil Construction Work Contractor Agreement
+        </h1>
+        <p class="text-base sm:text-lg text-[#a1a1a1] max-w-3xl mx-auto leading-relaxed mb-8">
+          Legally binding construction contract deed for builders, site owners, and civil contractors with milestone payments and defect liability guarantee terms.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#builder-section" class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-[#e0e0e0] transition-colors shadow-lg flex items-center gap-2">
+            Create Civil Contract Now →
+          </a>
+          <a href="/calculator" class="px-6 py-3 rounded-xl bg-[#181818] text-white font-medium text-sm border border-[#262626] hover:bg-[#222222] transition-colors flex items-center gap-2">
+            Calculate Project Terms →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CategorySelector />
+
+    <div id="category-builder-wrapper" data-default-category="civil">
+      <AgreementBuilder />
+    </div>
+
+    <StampDutyCalculator />
+    <FAQ />
+  </main>
+
+  <Footer />
+  <script src="../scripts/app.js"></script>
+</Layout>

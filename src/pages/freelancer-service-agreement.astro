@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Free Freelancer & Service Agreement Generator | Independent Contractor Deed"
+  description="Create independent contractor & freelance service agreements online. Includes IP assignment, payment milestones, scope of work, and non-disclosure clauses."
+>
+  <Header />
+
+  <main class="flex-grow">
+    <section class="py-12 md:py-16 bg-[#0a0a0a] border-b border-[#262626] relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] text-xs font-mono text-[#50e3c2] mb-4">
+          <span>CATEGORY • FREELANCER & CONSULTANT</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 max-w-4xl mx-auto">
+          Freelance & Independent Contractor Service Agreement
+        </h1>
+        <p class="text-base sm:text-lg text-[#a1a1a1] max-w-3xl mx-auto leading-relaxed mb-8">
+          Legally protect your freelance work, software projects, design retainers, and consulting services with instant digital signatures and PDF contract export.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#builder-section" class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-[#e0e0e0] transition-colors shadow-lg flex items-center gap-2">
+            Create Freelance Contract Now →
+          </a>
+          <a href="/calculator" class="px-6 py-3 rounded-xl bg-[#181818] text-white font-medium text-sm border border-[#262626] hover:bg-[#222222] transition-colors flex items-center gap-2">
+            Calculate Contract Terms →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CategorySelector />
+
+    <div id="category-builder-wrapper" data-default-category="freelancer">
+      <AgreementBuilder />
+    </div>
+
+    <StampDutyCalculator />
+    <FAQ />
+  </main>
+
+  <Footer />
+  <script src="../scripts/app.js"></script>
+</Layout>

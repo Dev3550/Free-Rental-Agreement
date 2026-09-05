@@ -1,0 +1,88 @@
+---
+---
+
+<section id="faq-section" class="py-12 md:py-16 bg-white border-b border-[#e2e8f0] relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] border border-[#bfdbfe] text-xs font-mono text-[#1e40af] mb-3 font-semibold">
+        <span>LEGAL FAQ & COMPLIANCE</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a]">Frequently Asked Questions</h2>
+      <p class="text-sm text-[#475569] mt-2">
+        Everything you need to know about online rental agreements, legal validity, stamp duty, and tax exemptions.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion List -->
+    <div class="space-y-4" id="faq-accordion-container">
+      
+      <!-- FAQ Item 1 -->
+      <div class="bg-[#f8fafc] border border-[#e2e8f0] rounded-xl overflow-hidden shadow-sm">
+        <button type="button" class="faq-toggle-btn w-full p-4 sm:p-5 text-left flex items-center justify-between font-bold text-sm text-[#0f172a] hover:text-[#1e40af] transition-colors focus-visible:outline-none">
+          <span>Why are 11-month rental agreements standard in India?</span>
+          <svg class="w-4 h-4 transform transition-transform text-[#64748b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="faq-content-panel hidden p-4 sm:p-5 pt-0 text-xs text-[#475569] leading-relaxed border-t border-[#e2e8f0]">
+          Under Section 17 of the Registration Act, 1908, lease agreements for a period of less than 12 months (1 year) do not require mandatory registration with the Sub-Registrar’s office. An 11-month agreement saves parties significant registration fees while remaining legally valid when printed on appropriate non-judicial stamp paper.
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="bg-[#f8fafc] border border-[#e2e8f0] rounded-xl overflow-hidden shadow-sm">
+        <button type="button" class="faq-toggle-btn w-full p-4 sm:p-5 text-left flex items-center justify-between font-bold text-sm text-[#0f172a] hover:text-[#1e40af] transition-colors focus-visible:outline-none">
+          <span>Are online digital agreements legally valid in court?</span>
+          <svg class="w-4 h-4 transform transition-transform text-[#64748b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="faq-content-panel hidden p-4 sm:p-5 pt-0 text-xs text-[#475569] leading-relaxed border-t border-[#e2e8f0]">
+          Yes! Under Section 10A of the Information Technology Act, 2000, contracts executed electronically are legally valid and enforceable. When executed on proper stamp paper (or e-stamp) and signed by both parties, it holds full evidentiary weight in a court of law.
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="bg-[#f8fafc] border border-[#e2e8f0] rounded-xl overflow-hidden shadow-sm">
+        <button type="button" class="faq-toggle-btn w-full p-4 sm:p-5 text-left flex items-center justify-between font-bold text-sm text-[#0f172a] hover:text-[#1e40af] transition-colors focus-visible:outline-none">
+          <span>How can I claim HRA (House Rent Allowance) tax exemption using this document?</span>
+          <svg class="w-4 h-4 transform transition-transform text-[#64748b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="faq-content-panel hidden p-4 sm:p-5 pt-0 text-xs text-[#475569] leading-relaxed border-t border-[#e2e8f0]">
+          To claim HRA under Section 10(13A) of the Income Tax Act, submit a signed copy of your rental agreement along with rent receipts to your employer's HR/payroll portal. If your annual rent exceeds ₹1,00,000, providing the landlord’s PAN number is mandatory.
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="bg-[#f8fafc] border border-[#e2e8f0] rounded-xl overflow-hidden shadow-sm">
+        <button type="button" class="faq-toggle-btn w-full p-4 sm:p-5 text-left flex items-center justify-between font-bold text-sm text-[#0f172a] hover:text-[#1e40af] transition-colors focus-visible:outline-none">
+          <span>What are the US, UK, and UAE legal requirements?</span>
+          <svg class="w-4 h-4 transform transition-transform text-[#64748b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="faq-content-panel hidden p-4 sm:p-5 pt-0 text-xs text-[#475569] leading-relaxed border-t border-[#e2e8f0]">
+          - <strong>USA</strong>: State laws mandate specific lead-based paint disclosures for pre-1978 properties and security deposit caps (e.g. 2 months rent in California).<br />
+          - <strong>UK</strong>: Assured Shorthold Tenancy (AST) contracts must protect deposits under government-approved TDS schemes within 30 days and comply with the Tenant Fees Act 2019.<br />
+          - <strong>UAE</strong>: Tenancy contracts in Dubai must be registered on the Ejari portal for DEWA electricity/water activation.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.faq-toggle-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('svg');
+        const isHidden = content.classList.contains('hidden');
+
+        document.querySelectorAll('.faq-content-panel').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.faq-toggle-btn svg').forEach(svg => svg.classList.remove('rotate-180'));
+
+        if (isHidden) {
+          content.classList.remove('hidden');
+          icon.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>

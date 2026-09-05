@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Downloading Legal Document | FreeRentalAgreement.com";
+const pageDesc = "Your state-compliant legal contract PDF is being generated. Please wait 8 seconds for auto-download or click direct download.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <Header />
+
+  <main class="flex-grow bg-[#f8fafc] py-12 md:py-16 text-[#0f172a] min-h-[85vh]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Top AdSense Banner Slot (Leaderboard 728x90 / Responsive) -->
+      <div class="mb-8 p-4 rounded-2xl bg-white border border-[#e2e8f0] text-center min-h-[90px] flex flex-col justify-center items-center relative overflow-hidden shadow-sm">
+        <span class="text-[10px] font-mono text-[#64748b] tracking-wider uppercase mb-1">Sponsored Recommendation</span>
+        <div class="w-full py-4 bg-[#f8fafc] border border-dashed border-[#cbd5e1] rounded-xl flex items-center justify-center text-xs text-[#64748b]">
+          <span>[ AdSense / Sponsor Ad Placement Slot - 728x90 Responsive Banner ]</span>
+        </div>
+      </div>
+
+      <!-- Main Download Card -->
+      <div class="bg-white border border-[#e2e8f0] rounded-3xl p-6 sm:p-10 shadow-md relative overflow-hidden">
+        
+        <div class="text-center max-w-2xl mx-auto">
+          <!-- Animated Checkmark Icon -->
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#059669] mb-6 animate-bounce shadow-sm">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a] mb-3">
+            Thank You! Your Document is Ready
+          </h1>
+          <p class="text-base sm:text-lg text-[#475569] mb-8 leading-relaxed">
+            Your statutory legal agreement has been formatted according to state & jurisdictional guidelines.
+          </p>
+
+          <!-- 8-Second Countdown Timer Card -->
+          <div class="bg-[#f8fafc] border border-[#cbd5e1] rounded-2xl p-6 sm:p-8 mb-8 shadow-inner relative">
+            <div class="text-xs font-mono uppercase tracking-widest text-[#1e40af] mb-2 font-bold">
+              Automatic PDF Export
+            </div>
+            
+            <div class="flex items-center justify-center gap-3 mb-4">
+              <div class="text-5xl font-black font-mono text-[#0f172a] tracking-tight" id="countdown-num">8</div>
+              <div class="text-left">
+                <div class="text-sm font-bold text-[#0f172a]">Seconds Remaining</div>
+                <div class="text-xs text-[#64748b]" id="countdown-status">Preparing high-resolution PDF download stream...</div>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-3 bg-[#e2e8f0] rounded-full overflow-hidden mb-6">
+              <div id="countdown-progress" class="h-full bg-gradient-to-r from-[#1e40af] via-[#3b82f6] to-[#1e40af] transition-all duration-1000 ease-linear w-full"></div>
+            </div>
+
+            <!-- Direct Download / Manual Trigger Button -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button 
+                id="btn-force-download"
+                class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#1e40af] hover:bg-[#1d4ed8] text-white font-bold text-sm transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
+              >
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <span>Click Here to Download PDF Immediately</span>
+              </button>
+              
+              <button 
+                id="btn-force-print"
+                class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#0f172a] font-semibold text-sm border border-[#cbd5e1] hover:bg-[#f1f5f9] transition-colors flex items-center justify-center gap-2 shadow-sm"
+              >
+                <svg class="w-4 h-4 text-[#64748b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                <span>Print Document</span>
+              </button>
+            </div>
+            
+            <p class="text-[11px] text-[#64748b] mt-4">
+              If your browser blocks popup print windows, click the blue button above to trigger direct printing manually.
+            </p>
+          </div>
+
+          <!-- Document Verification Receipt -->
+          <div class="p-4 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] text-left text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[#64748b]">Document ID:</span> <span id="doc-id-val" class="text-[#1e40af] font-bold">FRA-2026-98421</span>
+              <span class="mx-2 text-[#cbd5e1]">|</span>
+              <span class="text-[#64748b]">Jurisdiction:</span> <span id="doc-juris-val" class="text-[#0f172a] font-bold">State Compliant Deed</span>
+            </div>
+            <div class="inline-flex items-center gap-1 text-[#059669]">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span class="font-bold">100% Free & Legally Valid</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Middle AdSense Content Slot (300x250 / Native Rectangle) -->
+        <div class="mt-10 pt-8 border-t border-[#e2e8f0]">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Ad Placement Box 1 -->
+            <div class="p-5 rounded-2xl bg-[#f8fafc] border border-[#e2e8f0] text-center flex flex-col items-center justify-center min-h-[220px]">
+              <span class="text-[10px] font-mono text-[#64748b] tracking-wider uppercase mb-2">Partner Announcement</span>
+              <div class="w-full py-8 bg-white border border-dashed border-[#cbd5e1] rounded-xl flex items-center justify-center text-xs text-[#64748b]">
+                <span>[ AdSense / Sponsored Native Display Ad - Box 1 ]</span>
+              </div>
+            </div>
+
+            <!-- Ad Placement Box 2 -->
+            <div class="p-5 rounded-2xl bg-[#f8fafc] border border-[#e2e8f0] text-center flex flex-col items-center justify-center min-h-[220px]">
+              <span class="text-[10px] font-mono text-[#64748b] tracking-wider uppercase mb-2">Recommended Services</span>
+              <div class="w-full py-8 bg-white border border-dashed border-[#cbd5e1] rounded-xl flex items-center justify-center text-xs text-[#64748b]">
+                <span>[ AdSense / Sponsored Native Display Ad - Box 2 ]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hidden Printable Container -->
+      <div id="download-print-area" class="hidden"></div>
+
+      <!-- Recommended Legal Forms Matrix for Extra Engagement & Pageviews -->
+      <div class="mt-12">
+        <h3 class="text-xl font-bold text-[#0f172a] mb-6">Need Other Free Legal Documents?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="/rental-application" class="p-4 rounded-xl bg-white border border-[#e2e8f0] hover:border-[#1e40af] transition-all group shadow-sm">
+            <div class="text-xs text-[#1e40af] font-mono mb-1 font-bold">TENANT SCREENING</div>
+            <div class="font-bold text-[#0f172a] text-sm group-hover:text-[#1e40af] transition-colors">Rental Application Form</div>
+            <div class="text-xs text-[#64748b] mt-1">FCRA background check consent included</div>
+          </a>
+          <a href="/commercial-lease-agreement" class="p-4 rounded-xl bg-white border border-[#e2e8f0] hover:border-[#1e40af] transition-all group shadow-sm">
+            <div class="text-xs text-[#059669] font-mono mb-1 font-bold">COMMERCIAL REAL ESTATE</div>
+            <div class="font-bold text-[#0f172a] text-sm group-hover:text-[#1e40af] transition-colors">Commercial Lease Deed</div>
+            <div class="text-xs text-[#64748b] mt-1">Office, shop, retail & warehouse terms</div>
+          </a>
+          <a href="/freelancer-service-agreement" class="p-4 rounded-xl bg-white border border-[#e2e8f0] hover:border-[#1e40af] transition-all group shadow-sm">
+            <div class="text-xs text-[#b45309] font-mono mb-1 font-bold">BUSINESS & SERVICES</div>
+            <div class="font-bold text-[#0f172a] text-sm group-hover:text-[#1e40af] transition-colors">Freelancer Contract</div>
+            <div class="text-xs text-[#64748b] mt-1">IP assignment & milestone payments</div>
+          </a>
+          <a href="/civil-contractor-agreement" class="p-4 rounded-xl bg-white border border-[#e2e8f0] hover:border-[#1e40af] transition-all group shadow-sm">
+            <div class="text-xs text-[#7e22ce] font-mono mb-1 font-bold">CONSTRUCTION TRADES</div>
+            <div class="font-bold text-[#0f172a] text-sm group-hover:text-[#1e40af] transition-colors">Civil Work Contractor</div>
+            <div class="text-xs text-[#64748b] mt-1">Building construction & defect liability</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+
+  <script src="../scripts/app.js"></script>
+</Layout>

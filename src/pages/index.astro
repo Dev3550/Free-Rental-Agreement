@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import OnboardingModal from '../components/OnboardingModal.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import SignatureModal from '../components/SignatureModal.astro';
+import CompetitorComparison from '../components/CompetitorComparison.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="Free Rental Agreement | Legally Binding Online Lease & Contract Generator"
+	description="Create legally binding rental agreements, commercial lease deeds, freelancer contracts, civil & interior contractor deeds online in 2 minutes. Free PDF export & digital signatures."
+>
+	<!-- Navigation Shell Header -->
+	<Header />
+
+	<main id="main-content" class="flex-grow">
+		<!-- Hero Section -->
+		<Hero />
+
+		<!-- Interactive Category Selector Cards with Visual Backgrounds -->
+		<CategorySelector />
+
+		<!-- Real-Time Split-Screen Agreement Builder Engine -->
+		<AgreementBuilder />
+
+		<!-- Jurisdiction Stamp Duty & Security Deposit Calculator -->
+		<StampDutyCalculator />
+
+		<!-- Platform Feature Comparison Matrix -->
+		<CompetitorComparison />
+
+		<!-- FAQ Accordion -->
+		<FAQ />
+	</main>
+
+	<!-- Digital Signature Modal Overlay -->
+	<SignatureModal />
+
+	<!-- Footer with Mandatory Legal Disclaimer -->
+	<Footer />
+
+	<!-- Master Application JavaScript Engine -->
+	<script src="../scripts/app.js"></script>
+</Layout>

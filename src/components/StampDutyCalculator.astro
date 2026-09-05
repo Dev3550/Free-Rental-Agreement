@@ -1,0 +1,110 @@
+---
+---
+
+<section id="calculator-section" class="py-12 md:py-16 bg-[#f8fafc] border-b border-[#e2e8f0] relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] border border-[#bfdbfe] text-xs font-mono text-[#1e40af] mb-3 font-semibold">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+        <span>SMART JURISDICTION & ZIP CALCULATOR</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a]">State Stamp Duty & Legal Fee Calculator</h2>
+      <p class="text-sm text-[#475569] mt-2">
+        Type any ZIP / Postal code or select state to auto-calculate non-judicial stamp duty, recording fees, e-stamping rules, and deposit caps across USA, India, UK, and UAE.
+      </p>
+    </div>
+
+    <!-- Calculator Widget Grid -->
+    <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-8 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Inputs (6 Cols) -->
+      <div class="lg:col-span-6 space-y-4">
+        <h3 class="text-base font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-3 flex items-center justify-between">
+          <span>Calculator Parameters</span>
+          <span class="text-xs font-mono text-[#1e40af]" id="calc-active-country-tag">🇮🇳 INDIA REGION</span>
+        </h3>
+
+        <!-- Smart Zipcode Lookup Input -->
+        <div class="bg-[#f8fafc] p-3.5 rounded-xl border border-[#cbd5e1]">
+          <label for="widget_zip_input" class="block text-xs font-bold text-[#1e40af] mb-1">
+            ZIP / Postal Code Lookup (Instant Detection)
+          </label>
+          <div class="flex gap-2">
+            <input 
+              type="text" 
+              id="widget_zip_input" 
+              placeholder="e.g. 400001 (Mumbai), 90210 (California), W1A (London)" 
+              class="w-full bg-white text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" 
+            />
+            <button type="button" id="btn-widget-zip-lookup" class="bg-[#1e40af] hover:bg-[#1d4ed8] text-white text-xs font-bold px-4 py-2 rounded-lg shrink-0 shadow-sm">
+              Calculate
+            </button>
+          </div>
+        </div>
+
+        <!-- State / Jurisdiction Selector -->
+        <div>
+          <label for="calc_state" class="block text-xs font-semibold text-[#0f172a] mb-1">Or Select State / Region *</label>
+          <select id="calc_state" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-xl px-3.5 py-2.5 focus:border-[#1e40af] focus:outline-none">
+            <option value="MH" selected>Maharashtra (0.25% Stamp Duty on Rent + Deposit)</option>
+            <option value="KA">Karnataka (₹200 / ₹500 Stamp Paper)</option>
+            <option value="DL">Delhi NCR (₹100 e-Stamp Paper)</option>
+            <option value="TN">Tamil Nadu (1% Stamp Duty + Registration)</option>
+            <option value="TS">Telangana / AP (0.5% Stamp Duty)</option>
+            <option value="UP">Uttar Pradesh (4% Stamp Duty on Annual Rent)</option>
+            <option value="US_CA">USA - California (Deposit Capped at 2x Monthly Rent AB 12)</option>
+            <option value="US_TX">USA - Texas (Property Code Ch. 92 Rules)</option>
+            <option value="US_NY">USA - New York (1 Month Deposit Cap Law)</option>
+            <option value="US_FL">USA - Florida (Florida Statutes Ch. 83 Deposit Rules)</option>
+            <option value="UK_LDN">UK - London (Tenant Fees Act 2019 5-Week Cap)</option>
+            <option value="UAE_DXB">UAE - Dubai (Ejari Fee ~220 AED + 5% Housing Fee)</option>
+          </select>
+        </div>
+
+        <!-- Financial Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="calc_rent" class="block text-xs text-[#64748b] mb-1">Monthly Rent</label>
+            <input type="number" id="calc_rent" value="25000" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" />
+          </div>
+          <div>
+            <label for="calc_deposit" class="block text-xs text-[#64748b] mb-1">Security Deposit</label>
+            <input type="number" id="calc_deposit" value="100000" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" />
+          </div>
+          <div>
+            <label for="calc_tenure" class="block text-xs text-[#64748b] mb-1">Duration (Months)</label>
+            <input type="number" id="calc_tenure" value="11" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Output Result Box (6 Cols) -->
+      <div class="lg:col-span-6 bg-[#f8fafc] border border-[#cbd5e1] rounded-xl p-5 space-y-4 shadow-inner">
+        <div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">
+          <span class="text-xs font-mono text-[#64748b] uppercase">Estimated Stamp Duty Payable</span>
+          <span class="text-[10px] font-mono text-[#059669] bg-[#ecfdf5] px-2 py-0.5 rounded border border-[#a7f3d0]" id="res-deposit-compliance">✓ Compliant</span>
+        </div>
+
+        <div class="text-3xl sm:text-4xl font-extrabold text-[#1e40af] font-mono tracking-tight" id="res-stamp-value">
+          ₹500
+        </div>
+
+        <div class="space-y-2 text-xs text-[#334155]">
+          <div class="flex justify-between border-b border-[#e2e8f0] pb-1">
+            <span class="text-[#64748b]">Registration Fee:</span>
+            <span class="font-mono text-[#0f172a] font-semibold" id="res-registration-fee">₹1,000 (Sub-Registrar)</span>
+          </div>
+          <div class="flex justify-between border-b border-[#e2e8f0] pb-1">
+            <span class="text-[#64748b]">Paper Type:</span>
+            <span class="font-mono text-[#0f172a] font-semibold">Non-Judicial / E-Stamp Deed</span>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-white border border-[#e2e8f0] text-[11px] text-[#475569] leading-relaxed" id="res-legal-advice">
+          In Maharashtra, Stamp Duty is calculated at 0.25% of total rent + deposit under the Maharashtra Stamp Act.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

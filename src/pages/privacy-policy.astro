@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Privacy Policy & AdSense Data Disclosures | FreeRentalAgreement.com";
+const pageDesc = "Read our comprehensive Privacy Policy including Google AdSense DART cookie usage, CCPA/GDPR data rights, and local browser processing security.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <Header />
+
+  <main class="flex-grow bg-[#f8fafc] text-[#0f172a] py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex text-xs text-[#64748b] mb-6 font-mono" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1e40af]">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-[#0f172a] font-semibold">Privacy Policy</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] text-xs font-mono font-semibold mb-4 border border-[#bfdbfe]">
+          LEGAL COMPLIANCE • LAST UPDATED: SEPTEMBER 2026
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a] mb-4">
+          Privacy Policy & Data Disclosures
+        </h1>
+        <p class="text-base text-[#475569] leading-relaxed">
+          FreeRentalAgreement.com ("we", "us", or "our") is committed to protecting your personal privacy. This Privacy Policy outlines how we collect, process, and safeguard information when you use our automated legal document generation platform.
+        </p>
+      </div>
+
+      <!-- Main Policy Content -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm space-y-8 text-sm text-[#334155] leading-relaxed">
+        
+        <!-- Section 1 -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            1. Information Collection & Client-Side Processing
+          </h2>
+          <p>
+            When you build a legal document (such as a residential lease, rental application, or contractor agreement) on FreeRentalAgreement.com, your personal information—including names, property addresses, payment terms, and e-signatures—is processed directly inside your web browser.
+          </p>
+          <p class="bg-[#f1f5f9] p-4 rounded-xl border border-[#cbd5e1] text-xs font-mono text-[#1e293b]">
+            🔒 <strong>Data Protection Guarantee:</strong> We do not store, sell, or monetize your unencrypted legal agreement data on our central servers. All draft document values are stored temporarily in your local browser storage (`localStorage`) for instant export and printing.
+          </p>
+        </section>
+
+        <!-- Section 2: Google AdSense & Cookies -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            2. Google AdSense & Third-Party Advertising Cookies
+          </h2>
+          <p>
+            FreeRentalAgreement.com uses Google AdSense and third-party advertising partners to serve relevant advertisements when you visit our website. These advertising companies may use cookies, web beacons, and similar tracking technologies to collect information about your visits to this and other websites.
+          </p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><strong>Google DART Cookies:</strong> Google, as a third-party vendor, uses DART cookies to serve ads based on your visit to FreeRentalAgreement.com and other sites on the Internet.</li>
+            <li><strong>Personalized Advertising:</strong> Ads shown to you may be tailored based on your geographic location, browser preferences, or non-personally identifiable browsing history.</li>
+            <li><strong>User Opt-Out Choice:</strong> You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" class="text-[#1e40af] underline font-semibold">Google Ad Settings</a> or visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener" class="text-[#1e40af] underline font-semibold">www.aboutads.info</a>.</li>
+          </ul>
+        </section>
+
+        <!-- Section 3: Log Files & Analytics -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            3. Log Files & GeoIP Detection
+          </h2>
+          <p>
+            Like most standard websites, we utilize web server log files and GeoIP lookup services (such as ipapi.co) to automatically detect your country of origin. This allows us to auto-select the appropriate state legal preamble (e.g., California AB 12, Texas Property Code, or Maharashtra Rent Control Act) for your legal agreement. Log information includes Internet Protocol (IP) addresses, browser type, Internet Service Provider (ISP), referring/exit pages, and timestamp data.
+          </p>
+        </section>
+
+        <!-- Section 4: CCPA & GDPR -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            4. CCPA Privacy Rights & GDPR Data Rights
+          </h2>
+          <p>
+            Under the California Consumer Privacy Act (CCPA) and General Data Protection Regulation (GDPR), users have specific rights regarding their personal data:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]">
+              <h3 class="font-bold text-[#0f172a] text-xs uppercase mb-1 font-mono">CCPA (California Residents)</h3>
+              <p class="text-xs text-[#64748b]">Right to know what personal data is collected, right to request deletion, and right to opt out of the sale of personal information. (We do NOT sell personal data).</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]">
+              <h3 class="font-bold text-[#0f172a] text-xs uppercase mb-1 font-mono">GDPR (EU / UK Residents)</h3>
+              <p class="text-xs text-[#64748b]">Right to access, rectify, or erase personal data, restrict processing, and data portability rights regarding stored browser parameters.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Children's Privacy -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            5. Children's Online Privacy Protection (COPPA)
+          </h2>
+          <p>
+            FreeRentalAgreement.com is intended exclusively for legal adults (18 years of age or older) capable of entering into legally binding contracts. We do not knowingly collect or solicit personal information from children under the age of 13.
+          </p>
+        </section>
+
+        <!-- Section 6: Contact Information -->
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            6. Contact Our Privacy Team
+          </h2>
+          <p>
+            If you have any questions or concerns regarding this Privacy Policy or data privacy practices, please contact us via our <a href="/contact" class="text-[#1e40af] font-semibold underline">Contact Support Form</a> or email <span class="font-mono text-[#0f172a] bg-[#f1f5f9] px-2 py-0.5 rounded border border-[#cbd5e1]">privacy@freerentalagreement.com</span>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

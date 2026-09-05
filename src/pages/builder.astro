@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import SignatureModal from '../components/SignatureModal.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="Online Interactive Agreement Builder | Real-Time Document Canvas"
+	description="Build residential, commercial, freelancer, civil, interior, and roofing legal agreements online with instant side-by-side live document preview."
+>
+	<Header />
+
+	<main id="main-content" class="flex-grow pt-4">
+		<CategorySelector />
+		<AgreementBuilder />
+	</main>
+
+	<SignatureModal />
+	<Footer />
+
+	<script src="../scripts/app.js"></script>
+</Layout>

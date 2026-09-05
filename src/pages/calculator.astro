@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="Global Stamp Duty & Security Deposit Calculator | Pincode & Zipcode Lookup"
+	description="Check state stamp duty rates, non-judicial stamp paper values, e-stamping guidelines, and deposit limits across India, USA, UK, and UAE."
+>
+	<Header />
+
+	<main id="main-content" class="flex-grow pt-8">
+		<StampDutyCalculator />
+	</main>
+
+	<Footer />
+
+	<script src="../scripts/app.js"></script>
+</Layout>

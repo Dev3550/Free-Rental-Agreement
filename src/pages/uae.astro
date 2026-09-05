@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import SignatureModal from '../components/SignatureModal.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="UAE Ejari Tenancy Contract Generator | Dubai Land Department (DLD) Ready"
+	description="Generate Dubai Land Department (DLD) Ejari-ready tenancy contracts for Dubai, Abu Dhabi, and UAE. Includes DEWA utility connection terms and cheque payment schedule."
+>
+	<Header />
+
+	<main id="main-content" class="flex-grow">
+		<!-- UAE Portal Hero Banner -->
+		<section class="py-12 bg-gradient-to-b from-[#0e0e0e] to-[#0a0a0a] border-b border-[#262626] text-center">
+			<div class="max-w-4xl mx-auto px-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161616] border border-[#262626] text-xs font-mono text-[#ff0080] mb-4">
+					<span>🇦🇪 UAE LEGAL PORTAL</span>
+				</div>
+				<h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-3">
+					Dubai Ejari & UAE Tenancy Contracts
+				</h1>
+				<p class="text-sm text-[#a1a1a1] max-w-2xl mx-auto">
+					RERA & Dubai Law No. 26 of 2007 compliant. Designed for instant Ejari registration with Dubai Land Department and DEWA electricity activation.
+				</p>
+			</div>
+		</section>
+
+		<CategorySelector />
+		<AgreementBuilder />
+		<StampDutyCalculator />
+		<FAQ />
+	</main>
+
+	<SignatureModal />
+	<Footer />
+
+	<script src="../scripts/app.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const select = document.getElementById('global-country-select') as HTMLSelectElement;
+			if (select) {
+				select.value = 'UAE';
+				select.dispatchEvent(new Event('change'));
+			}
+		});
+	</script>
+</Layout>

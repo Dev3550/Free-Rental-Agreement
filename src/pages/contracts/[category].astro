@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import CategorySelector from '../../components/CategorySelector.astro';
+import AgreementBuilder from '../../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../../components/StampDutyCalculator.astro';
+import FAQ from '../../components/FAQ.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  return [
+    { 
+      params: { category: 'residential-rental-agreement' },
+      props: {
+        categoryKey: 'residential',
+        title: 'Free Residential Rental Agreement Generator | Legally Binding Tenancy Deed',
+        description: 'Create legally binding residential rental agreements, lease deeds, PG & roommate contracts online in 5 minutes. State-compliant legal preambles & instant PDF download.',
+        badge: 'CATEGORY • RESIDENTIAL RENTAL AGREEMENT',
+        h1: 'Residential Tenancy & Rental Agreement Generator',
+        sub: 'Generate statutory lease agreements for apartments, independent houses, flats, and rooms. Compliant with US State Code, Indian Rent Control Acts, UK Housing Act, & Dubai RERA.'
+      }
+    },
+    { 
+      params: { category: 'commercial-lease-agreement' },
+      props: {
+        categoryKey: 'commercial',
+        title: 'Free Commercial Lease Agreement Generator | Office & Shop Lease Deed',
+        description: 'Generate legally valid commercial property lease deeds online. Ideal for retail shops, corporate offices, warehouses, and showrooms with custom GST & lock-in terms.',
+        badge: 'CATEGORY • COMMERCIAL LEASE DEED',
+        h1: 'Commercial Property Lease Deed Generator',
+        sub: 'Draft legally binding commercial leases for office space, retail stores, industrial units, and warehouses with maintenance, tax split, and escalation clauses.'
+      }
+    },
+    { 
+      params: { category: 'freelancer-service-agreement' },
+      props: {
+        categoryKey: 'freelancer',
+        title: 'Free Freelancer & Service Agreement Generator | Independent Contractor Deed',
+        description: 'Create independent contractor & freelance service agreements online. Includes IP assignment, payment milestones, scope of work, and non-disclosure clauses.',
+        badge: 'CATEGORY • FREELANCER & CONSULTANT',
+        h1: 'Freelance & Independent Contractor Service Agreement',
+        sub: 'Legally protect your freelance work, software projects, design retainers, and consulting services with instant digital signatures and PDF contract export.'
+      }
+    },
+    { 
+      params: { category: 'civil-contractor-agreement' },
+      props: {
+        categoryKey: 'civil',
+        title: 'Free Civil Construction Contractor Agreement Generator',
+        description: 'Generate civil construction work contracts online. Covers building construction, structural work, raw material specs, stage payment schedule, and defect liability terms.',
+        badge: 'CATEGORY • CIVIL CONSTRUCTION CONTRACTOR',
+        h1: 'Civil Construction Work Contractor Agreement',
+        sub: 'Legally binding construction contract deed for builders, site owners, and civil contractors with milestone payments and defect liability guarantee terms.'
+      }
+    },
+    { 
+      params: { category: 'interior-contractor-agreement' },
+      props: {
+        categoryKey: 'interior',
+        title: 'Free Interior Contractor & Fitout Agreement Generator',
+        description: 'Create interior design, woodwork, and renovation contractor deeds online. Includes material specifications, work schedule, payment installments, and warranty terms.',
+        badge: 'CATEGORY • INTERIOR CONTRACTOR & FITOUT',
+        h1: 'Interior Renovation & Fitout Contractor Deed',
+        sub: 'Comprehensive interior design service contract for home renovations, office fitouts, carpentry, and electrical works with clear milestone timelines.'
+      }
+    },
+    { 
+      params: { category: 'roofing-contractor-agreement' },
+      props: {
+        categoryKey: 'roofing',
+        title: 'Free Roofing & Repair Contractor Agreement Generator',
+        description: 'Draft roofing repair, slab waterproofing, and maintenance contractor contracts. Legally binding agreement for residential and commercial roofing services.',
+        badge: 'CATEGORY • ROOFING & REPAIR CONTRACTOR',
+        h1: 'Roofing & Waterproofing Contractor Agreement',
+        sub: 'Standard legal deed for roof replacement, leak repairs, tiles fitting, and waterproofing contractors with safety compliance and warranty terms.'
+      }
+    },
+    { 
+      params: { category: 'custom-legal-agreement' },
+      props: {
+        categoryKey: 'custom',
+        title: 'Free Custom Legal Agreement Generator | Create Any Contract Online',
+        description: 'Fully customizable general business & personal contract generator. Add custom clauses, party terms, consideration amounts, and digital e-signatures instantly.',
+        badge: 'CATEGORY • GENERAL / CUSTOM LEGAL CONTRACT',
+        h1: 'General Business & Custom Contract Generator',
+        sub: 'Flexible legal document builder for unique business deals, asset sales, equipment hire, and custom service arrangements with custom clause builder.'
+      }
+    }
+  ];
+}
+
+const { categoryKey, title, description, badge, h1, sub } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main class="flex-grow">
+    <!-- Category Hero Header Section -->
+    <section class="py-12 md:py-16 bg-[#0a0a0a] border-b border-[#262626] relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] text-xs font-mono text-[#0070f3] mb-4">
+          <span>{badge}</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 max-w-4xl mx-auto">
+          {h1}
+        </h1>
+        <p class="text-base sm:text-lg text-[#a1a1a1] max-w-3xl mx-auto leading-relaxed mb-8">
+          {sub}
+        </p>
+
+        <!-- Quick Action Buttons -->
+        <div class="flex flex-wrap justify-center gap-4">
+          <a 
+            href="#builder-section" 
+            class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-[#e0e0e0] transition-colors shadow-lg flex items-center gap-2"
+          >
+            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            Create {categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)} Document Now
+          </a>
+          <a 
+            href="/calculator" 
+            class="px-6 py-3 rounded-xl bg-[#181818] text-white font-medium text-sm border border-[#262626] hover:bg-[#222222] transition-colors flex items-center gap-2"
+          >
+            Calculate Stamp Duty & Deposit →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Selector Grid -->
+    <CategorySelector />
+
+    <!-- Document Builder Engine pre-set to category -->
+    <div id="category-builder-wrapper" data-default-category={categoryKey}>
+      <AgreementBuilder />
+    </div>
+
+    <!-- Stamp Duty Calculator -->
+    <StampDutyCalculator />
+
+    <!-- Statutory FAQ -->
+    <FAQ />
+  </main>
+
+  <Footer />
+
+  <script src="../../scripts/app.js"></script>
+</Layout>

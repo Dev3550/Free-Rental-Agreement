@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategorySelector from '../components/CategorySelector.astro';
+import AgreementBuilder from '../components/AgreementBuilder.astro';
+import StampDutyCalculator from '../components/StampDutyCalculator.astro';
+import SignatureModal from '../components/SignatureModal.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+	title="India Rental Agreement Deed Generator | 11-Month Tenancy & State Stamp Duty"
+	description="Create legally binding 11-month rental agreements and commercial lease deeds compliant with Indian Registration Act 1908 & State Rent Control Acts (Maharashtra, Karnataka, Delhi, TN, UP, Telangana). Free PDF export."
+>
+	<Header />
+
+	<main id="main-content" class="flex-grow">
+		<!-- India Portal Hero Banner -->
+		<section class="py-12 bg-gradient-to-b from-[#0e0e0e] to-[#0a0a0a] border-b border-[#262626] text-center">
+			<div class="max-w-4xl mx-auto px-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161616] border border-[#262626] text-xs font-mono text-[#50e3c2] mb-4">
+					<span>🇮🇳 INDIA LEGAL PORTAL</span>
+				</div>
+				<h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-3">
+					Indian Rental Agreements & State E-Stamping
+				</h1>
+				<p class="text-sm text-[#a1a1a1] max-w-2xl mx-auto">
+					Compliant with Section 17 of Registration Act 1908. Built-in Pincode auto-lookup for Maharashtra, Karnataka, Delhi NCR, Tamil Nadu, Telangana & UP state stamp paper values.
+				</p>
+			</div>
+		</section>
+
+		<CategorySelector />
+		<AgreementBuilder />
+		<StampDutyCalculator />
+		<FAQ />
+	</main>
+
+	<SignatureModal />
+	<Footer />
+
+	<script src="../scripts/app.js"></script>
+	<script>
+		// Preset country to IN on load
+		document.addEventListener('DOMContentLoaded', () => {
+			const select = document.getElementById('global-country-select') as HTMLSelectElement;
+			if (select) {
+				select.value = 'IN';
+				select.dispatchEvent(new Event('change'));
+			}
+		});
+	</script>
+</Layout>

@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Terms of Service & License Terms | FreeRentalAgreement.com";
+const pageDesc = "Terms of Service governing the use of FreeRentalAgreement.com automated document generator, software license, and legal user responsibilities.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <Header />
+
+  <main class="flex-grow bg-[#f8fafc] text-[#0f172a] py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex text-xs text-[#64748b] mb-6 font-mono" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1e40af]">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-[#0f172a] font-semibold">Terms of Service</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] text-xs font-mono font-semibold mb-4 border border-[#bfdbfe]">
+          TERMS & CONDITIONS • EFFECTIVE SEPTEMBER 2026
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f172a] mb-4">
+          Terms of Service & Usage Agreement
+        </h1>
+        <p class="text-base text-[#475569] leading-relaxed">
+          By accessing or using FreeRentalAgreement.com ("Platform"), you agree to be bound by these Terms of Service. Please read these terms carefully before generating any legal documents.
+        </p>
+      </div>
+
+      <!-- Main Terms Content -->
+      <div class="bg-white border border-[#e2e8f0] rounded-2xl p-6 sm:p-10 shadow-sm space-y-8 text-sm text-[#334155] leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            1. Acceptance of Terms & Automated Software License
+          </h2>
+          <p>
+            FreeRentalAgreement.com grants you a non-exclusive, non-transferable, revocable license to access our platform and utilize our automated question wizard to generate personalized residential leases, commercial contracts, and service deeds for your personal or business legal needs.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            2. User Responsibilities & Data Accuracy
+          </h2>
+          <p>
+            You are solely responsible for verifying the accuracy, completeness, and legal suitability of all names, dates, financial figures, property addresses, and legal terms inputted into the automated builder. You agree not to use the platform for fraudulent misrepresentation, unlawful housing discrimination, or prohibited activities under federal, state, or local laws.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            3. Intellectual Property & Form Protection
+          </h2>
+          <p>
+            All document templates, legal preambles, software code, UI designs, graphics, and text on FreeRentalAgreement.com are the exclusive intellectual property of FreeRentalAgreement.com. You may not sell, sub-license, scrape, or commercially redistribute our software templates without prior written authorization.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            4. Limitation of Liability & Hold Harmless
+          </h2>
+          <p>
+            IN NO EVENT SHALL FREERENTALAGREEMENT.COM, ITS OFFICERS, DIRECTORS, OR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF RENT, EVICTION DISPUTES, OR LEGAL FEES) ARISING FROM YOUR USE OF GENERATED DOCUMENTS. THE PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#0f172a] border-b border-[#e2e8f0] pb-2">
+            5. Modifications to Terms
+          </h2>
+          <p>
+            We reserve the right to modify or replace these Terms of Service at any time. Your continued use of the website following the posting of any changes constitutes acceptance of those changes.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
