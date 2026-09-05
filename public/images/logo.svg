@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 180" fill="none">
+  <defs>
+    <linearGradient id="logoShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e40af" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="logoGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Emblem Icon -->
+  <g transform="translate(10, 10) scale(0.31)">
+    <path d="M256 32C340 32 416 64 416 64V240C416 352 340 432 256 480C172 432 96 352 96 240V64S172 32 256 32Z" fill="url(#logoShieldGrad)" stroke="url(#logoGoldGrad)" stroke-width="14" />
+    <path d="M176 210L256 144L336 210" stroke="url(#logoGoldGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="192" y="210" width="128" height="170" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="8" />
+    <line x1="216" y1="244" x2="296" y2="244" stroke="#1e40af" stroke-width="10" stroke-linecap="round" />
+    <line x1="216" y1="274" x2="296" y2="274" stroke="#64748b" stroke-width="8" stroke-linecap="round" />
+    <line x1="216" y1="300" x2="272" y2="300" stroke="#64748b" stroke-width="8" stroke-linecap="round" />
+    <circle cx="280" cy="340" r="28" fill="url(#logoGoldGrad)" />
+    <path d="M266 340L276 350L294 330" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Brand Typography -->
+  <text x="180" y="88" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="44" fill="#0f172a" letter-spacing="-1">FreeRentalAgreement</text>
+  <text x="640" y="88" font-family="JetBrains Mono, monospace" font-weight="700" font-size="44" fill="#1e40af">.com</text>
+  
+  <!-- Subtitle Tagline -->
+  <text x="182" y="128" font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="16" fill="#64748b" letter-spacing="2">OFFICIAL LEGAL DOCUMENT GENERATOR</text>
+</svg>
