@@ -741,7 +741,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initDownloadPage();
   initCalculator();
 
-  updateCountryContext('IN');
+  // Smart Page-Aware Initial Country Auto-Detection
+  const path = window.location.pathname.toLowerCase();
+  const select = document.getElementById('global-country-select');
+
+  let initialCountry = 'IN';
+  if (path.includes('/uk')) initialCountry = 'UK';
+  else if (path.includes('/usa')) initialCountry = 'US';
+  else if (path.includes('/uae')) initialCountry = 'UAE';
+  else if (path.includes('/canada')) initialCountry = 'CA';
+  else if (path.includes('/australia')) initialCountry = 'AU';
+  else if (path.includes('/ireland')) initialCountry = 'IE';
+  else if (path.includes('/new-zealand')) initialCountry = 'NZ';
+  else if (path.includes('/es')) initialCountry = 'ES';
+  else if (path.includes('/india')) initialCountry = 'IN';
+  else if (select && select.value) initialCountry = select.value;
+
+  if (select) select.value = initialCountry;
+  updateCountryContext(initialCountry);
   updateCategoryContext('residential');
 });
 
@@ -950,6 +967,23 @@ function updateCountryContext(countryCode) {
   appState.country = countryCode;
   const config = countryConfigs[countryCode];
 
+  // Sync country select dropdown
+  const countrySelect = document.getElementById('global-country-select');
+  if (countrySelect && countrySelect.value !== countryCode) {
+    countrySelect.value = countryCode;
+  }
+
+  // Show Hindi document toggle ONLY for India (IN); Hide for all other countries
+  const docLangBox = document.getElementById('doc-lang-toggle-box');
+  if (docLangBox) {
+    if (countryCode === 'IN') {
+      docLangBox.classList.remove('hidden');
+    } else {
+      docLangBox.classList.add('hidden');
+      appState.docLang = 'EN'; // Reset to EN for non-India countries
+    }
+  }
+
   document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = config.currencySymbol);
 
   setText('hero-country-badge', config.badgeText);
@@ -979,6 +1013,25 @@ function updateCountryContext(countryCode) {
   setVal('monthly_rent', config.sampleRent);
   setVal('security_deposit', config.sampleDeposit);
   setText('doc-city-name', config.sampleCity);
+
+  // Sync calculator state selector to default for this country
+  const calcState = document.getElementById('calc_state');
+  if (calcState) {
+    const defaultStateByCountry = {
+      IN: 'MH',
+      US: 'US_CA',
+      UK: 'UK_LDN',
+      UAE: 'UAE_DXB',
+      CA: 'CA_ON',
+      AU: 'AU_NSW',
+      IE: 'ES_MAD',
+      NZ: 'CA_ON',
+      ES: 'ES_MAD'
+    };
+    if (defaultStateByCountry[countryCode]) {
+      calcState.value = defaultStateByCountry[countryCode];
+    }
+  }
 
   updateCategoryContext(appState.category);
   updateCalculatorOutput();
