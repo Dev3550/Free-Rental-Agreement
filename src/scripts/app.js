@@ -957,7 +957,26 @@ function initCountrySwitcher() {
   const select = document.getElementById('global-country-select');
   if (select) {
     select.addEventListener('change', (e) => {
-      updateCountryContext(e.target.value);
+      const selectedCountry = e.target.value;
+      const countryRoutes = {
+        IN: '/india',
+        US: '/usa',
+        UK: '/uk',
+        UAE: '/uae',
+        CA: '/canada',
+        AU: '/australia',
+        IE: '/ireland',
+        NZ: '/new-zealand',
+        ES: '/es'
+      };
+      const targetRoute = countryRoutes[selectedCountry];
+      const currentPath = window.location.pathname.toLowerCase();
+
+      if (targetRoute && !currentPath.includes(targetRoute)) {
+        window.location.href = targetRoute;
+      } else {
+        updateCountryContext(selectedCountry);
+      }
     });
   }
 }
