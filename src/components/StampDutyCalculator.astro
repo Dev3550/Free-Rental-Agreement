@@ -33,12 +33,16 @@
             <input 
               type="text" 
               id="widget_zip_input" 
-              placeholder="e.g. 400001 (Mumbai), 90210 (California), W1A (London)" 
+              placeholder="e.g. 400001 (Mumbai), 560001 (Bangalore), 90210 (California), W1A (London)" 
               class="w-full bg-white text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" 
             />
             <button type="button" id="btn-widget-zip-lookup" class="bg-[#1e40af] hover:bg-[#1d4ed8] text-white text-xs font-bold px-4 py-2 rounded-lg shrink-0 shadow-sm">
               Calculate
             </button>
+          </div>
+          <div id="widget-zip-detected-badge" class="mt-2 text-[11px] font-mono text-[#059669] bg-[#ecfdf5] border border-[#a7f3d0] px-2.5 py-1 rounded-lg hidden flex items-center justify-between">
+            <span>✓ Auto-Detected: <strong id="widget-zip-detected-text">Mumbai, Maharashtra</strong></span>
+            <span class="text-[10px] bg-[#059669] text-white px-1.5 py-0.5 rounded font-bold" id="widget-zip-country-code">IN</span>
           </div>
         </div>
 
@@ -46,29 +50,45 @@
         <div>
           <label for="calc_state" class="block text-xs font-semibold text-[#0f172a] mb-1">Or Select State / Region *</label>
           <select id="calc_state" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-xl px-3.5 py-2.5 focus:border-[#1e40af] focus:outline-none">
-            <option value="MH" selected>Maharashtra (0.25% Stamp Duty on Rent + Deposit)</option>
-            <option value="KA">Karnataka (₹200 / ₹500 Stamp Paper)</option>
-            <option value="DL">Delhi NCR (₹100 e-Stamp Paper)</option>
-            <option value="TN">Tamil Nadu (1% Stamp Duty + Registration)</option>
-            <option value="TS">Telangana / AP (0.5% Stamp Duty)</option>
-            <option value="UP">Uttar Pradesh (4% Stamp Duty on Annual Rent)</option>
-            <option value="US_CA">USA - California (Deposit Capped at 2x Monthly Rent AB 12)</option>
-            <option value="US_TX">USA - Texas (Property Code Ch. 92 Rules)</option>
-            <option value="US_NY">USA - New York (1 Month Deposit Cap Law)</option>
-            <option value="US_FL">USA - Florida (Florida Statutes Ch. 83 Deposit Rules)</option>
-            <option value="UK_LDN">UK - London (Tenant Fees Act 2019 5-Week Cap)</option>
-            <option value="UAE_DXB">UAE - Dubai (Ejari Fee ~220 AED + 5% Housing Fee)</option>
+            <optgroup label="🇮🇳 India States & UTs">
+              <option value="MH" selected>Maharashtra (0.25% Stamp Duty on Rent + Deposit)</option>
+              <option value="KA">Karnataka (₹200 / ₹500 Stamp Paper)</option>
+              <option value="DL">Delhi NCR (₹100 e-Stamp Paper)</option>
+              <option value="TN">Tamil Nadu (1% Stamp Duty + Registration Fee)</option>
+              <option value="TS">Telangana / AP (0.5% Stamp Duty)</option>
+              <option value="UP">Uttar Pradesh (4% Stamp Duty on Annual Rent)</option>
+              <option value="IN_GJ">Gujarat (₹300 Non-Judicial Stamp Paper)</option>
+              <option value="IN_RJ">Rajasthan (₹500 Non-Judicial Stamp Paper)</option>
+              <option value="IN_WB">West Bengal (₹100 e-Stamp Paper)</option>
+              <option value="IN_MP">Madhya Pradesh (₹500 e-Stamp Paper)</option>
+              <option value="IN_HR_PB">Haryana & Punjab (₹100 e-Stamp Paper)</option>
+              <option value="IN_KL">Kerala (₹200 Stamp Paper)</option>
+              <option value="IN_BR_JH">Bihar & Jharkhand (₹100 Stamp Paper)</option>
+            </optgroup>
+            <optgroup label="🇺🇸 United States">
+              <option value="US_CA">USA - California (Deposit Capped at 2x Rent AB 12)</option>
+              <option value="US_TX">USA - Texas (Property Code Ch. 92 Rules)</option>
+              <option value="US_NY">USA - New York (1 Month Deposit Cap Law RPL § 238-a)</option>
+              <option value="US_FL">USA - Florida (Florida Statutes Ch. 83 Deposit Rules)</option>
+            </optgroup>
+            <optgroup label="🌍 Global Jurisdictions">
+              <option value="UK_LDN">UK - London & UK (Tenant Fees Act 2019 5-Week Cap)</option>
+              <option value="UAE_DXB">UAE - Dubai (Ejari Fee ~220 AED + 5% Housing Fee)</option>
+              <option value="CA_ON">Canada - Ontario (RTA Standard Form Lease)</option>
+              <option value="AU_NSW">Australia - Sydney / NSW (4-Week Bond Cap)</option>
+              <option value="ES_MAD">Spain - Madrid / Barcelona (1-Month LAU Fianza Cap)</option>
+            </optgroup>
           </select>
         </div>
 
         <!-- Financial Inputs -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label for="calc_rent" class="block text-xs text-[#64748b] mb-1">Monthly Rent</label>
+            <label for="calc_rent" class="block text-xs text-[#64748b] mb-1">Monthly Rent (<span id="calc-rent-curr">₹</span>)</label>
             <input type="number" id="calc_rent" value="25000" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" />
           </div>
           <div>
-            <label for="calc_deposit" class="block text-xs text-[#64748b] mb-1">Security Deposit</label>
+            <label for="calc_deposit" class="block text-xs text-[#64748b] mb-1">Security Deposit (<span id="calc-dep-curr">₹</span>)</label>
             <input type="number" id="calc_deposit" value="100000" class="w-full bg-[#f8fafc] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-lg px-3 py-2 focus:border-[#1e40af] focus:outline-none" />
           </div>
           <div>
@@ -86,7 +106,7 @@
         </div>
 
         <div class="text-3xl sm:text-4xl font-extrabold text-[#1e40af] font-mono tracking-tight" id="res-stamp-value">
-          ₹500
+          ₹938
         </div>
 
         <div class="space-y-2 text-xs text-[#334155]">
@@ -96,7 +116,7 @@
           </div>
           <div class="flex justify-between border-b border-[#e2e8f0] pb-1">
             <span class="text-[#64748b]">Paper Type:</span>
-            <span class="font-mono text-[#0f172a] font-semibold">Non-Judicial / E-Stamp Deed</span>
+            <span class="font-mono text-[#0f172a] font-semibold" id="res-paper-type">Non-Judicial / E-Stamp Deed</span>
           </div>
         </div>
 

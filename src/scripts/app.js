@@ -570,117 +570,153 @@ function setPlaceholder(id, text) {
 
 // Comprehensive 36 Indian States/UTs, 50 US States, UK, UAE, Canada, Australia, Spain & Global Postal Code Engine
 function lookupGlobalZipDetails(zipRaw) {
-  const zip = String(zipRaw).trim().toUpperCase();
-  if (!zip) return null;
+  const rawStr = String(zipRaw || '').trim();
+  if (!rawStr) return null;
+
+  const zip = rawStr.toUpperCase();
+  const cleanStr = rawStr.toLowerCase();
 
   // Indian PIN codes (6 digits)
   if (/^\d{6}$/.test(zip)) {
     const prefix = zip.substring(0, 2);
 
     if (['40', '41', '42', '43', '44'].includes(prefix)) {
-      return { country: 'IN', city: 'Mumbai', state: 'Maharashtra', act: 'Maharashtra Rent Control Act 1999 Sec 55 & Sec 17 Registration Act', stamp: '0.25% Stamp Duty (Min ₹500)' };
+      return { stateCode: 'MH', country: 'IN', city: 'Mumbai', state: 'Maharashtra', act: 'Maharashtra Rent Control Act 1999 Sec 55 & Sec 17 Registration Act', stamp: '0.25% Stamp Duty (Min ₹500)' };
     }
     if (['56', '57', '58', '59'].includes(prefix)) {
-      return { country: 'IN', city: 'Bengaluru', state: 'Karnataka', act: 'Karnataka Rent Control Act 2001 & Indian Stamp Act 1899', stamp: '₹200 / ₹500 Non-Judicial Stamp Paper' };
+      return { stateCode: 'KA', country: 'IN', city: 'Bengaluru', state: 'Karnataka', act: 'Karnataka Rent Control Act 2001 & Indian Stamp Act 1899', stamp: '₹200 / ₹500 Non-Judicial Stamp Paper' };
     }
     if (['11'].includes(prefix)) {
-      return { country: 'IN', city: 'New Delhi', state: 'Delhi NCR', act: 'Delhi Rent Act 1995 & Transfer of Property Act 1882', stamp: '₹100 e-Stamp Paper' };
+      return { stateCode: 'DL', country: 'IN', city: 'New Delhi', state: 'Delhi NCR', act: 'Delhi Rent Act 1995 & Transfer of Property Act 1882', stamp: '₹100 e-Stamp Paper' };
     }
     if (['60', '61', '62', '63', '64'].includes(prefix)) {
-      return { country: 'IN', city: 'Chennai', state: 'Tamil Nadu', act: 'Tamil Nadu Regulation of Rights and Responsibilities of Landlords & Tenants Act 2017', stamp: '1% Stamp Duty' };
+      return { stateCode: 'TN', country: 'IN', city: 'Chennai', state: 'Tamil Nadu', act: 'Tamil Nadu Regulation of Rights and Responsibilities of Landlords & Tenants Act 2017', stamp: '1% Stamp Duty' };
     }
     if (['50', '51', '52', '53'].includes(prefix)) {
-      return { country: 'IN', city: 'Hyderabad', state: 'Telangana', act: 'Telangana Buildings (Lease, Rent and Eviction) Control Act', stamp: '0.5% Stamp Duty' };
+      return { stateCode: 'TS', country: 'IN', city: 'Hyderabad', state: 'Telangana', act: 'Telangana Buildings (Lease, Rent and Eviction) Control Act', stamp: '0.5% Stamp Duty' };
     }
     if (['20', '21', '22', '23', '24', '25', '26', '27', '28'].includes(prefix)) {
-      return { country: 'IN', city: 'Noida / Lucknow', state: 'Uttar Pradesh', act: 'Uttar Pradesh Regulation of Urban Premises Tenancy Act 2021', stamp: '4% Stamp Duty on Annual Rent' };
+      return { stateCode: 'UP', country: 'IN', city: 'Noida / Lucknow', state: 'Uttar Pradesh', act: 'Uttar Pradesh Regulation of Urban Premises Tenancy Act 2021', stamp: '4% Stamp Duty on Annual Rent' };
     }
     if (['70', '71', '72', '73', '74'].includes(prefix)) {
-      return { country: 'IN', city: 'Kolkata', state: 'West Bengal', act: 'West Bengal Premises Tenancy Act 1997', stamp: '₹100 Non-Judicial Stamp' };
+      return { stateCode: 'IN_WB', country: 'IN', city: 'Kolkata', state: 'West Bengal', act: 'West Bengal Premises Tenancy Act 1997', stamp: '₹100 Non-Judicial Stamp' };
     }
     if (['36', '37', '38', '39'].includes(prefix)) {
-      return { country: 'IN', city: 'Ahmedabad', state: 'Gujarat', act: 'Gujarat Rent Control Act 1979', stamp: '₹300 Non-Judicial Stamp Paper' };
+      return { stateCode: 'IN_GJ', country: 'IN', city: 'Ahmedabad', state: 'Gujarat', act: 'Gujarat Rent Control Act 1979', stamp: '₹300 Non-Judicial Stamp Paper' };
     }
     if (['30', '31', '32', '33', '34'].includes(prefix)) {
-      return { country: 'IN', city: 'Jaipur', state: 'Rajasthan', act: 'Rajasthan Rent Control Act 2001', stamp: '₹500 Non-Judicial Stamp Paper' };
+      return { stateCode: 'IN_RJ', country: 'IN', city: 'Jaipur', state: 'Rajasthan', act: 'Rajasthan Rent Control Act 2001', stamp: '₹500 Non-Judicial Stamp Paper' };
     }
     if (['14', '15', '16'].includes(prefix)) {
-      return { country: 'IN', city: 'Chandigarh / Ludhiana', state: 'Punjab & Chandigarh', act: 'East Punjab Urban Rent Restriction Act 1949', stamp: '₹100 Non-Judicial Stamp' };
+      return { stateCode: 'IN_HR_PB', country: 'IN', city: 'Chandigarh / Ludhiana', state: 'Punjab & Chandigarh', act: 'East Punjab Urban Rent Restriction Act 1949', stamp: '₹100 Non-Judicial Stamp' };
     }
     if (['12', '13'].includes(prefix)) {
-      return { country: 'IN', city: 'Gurugram / Faridabad', state: 'Haryana', act: 'Haryana Urban (Control of Rent and Eviction) Act 1973', stamp: '₹100 e-Stamp Paper' };
+      return { stateCode: 'IN_HR_PB', country: 'IN', city: 'Gurugram / Faridabad', state: 'Haryana', act: 'Haryana Urban (Control of Rent and Eviction) Act 1973', stamp: '₹100 e-Stamp Paper' };
     }
     if (['67', '68', '69'].includes(prefix)) {
-      return { country: 'IN', city: 'Kochi / Thiruvananthapuram', state: 'Kerala', act: 'Kerala Buildings (Lease and Rent Control) Act 1965', stamp: '₹200 Non-Judicial Stamp' };
+      return { stateCode: 'IN_KL', country: 'IN', city: 'Kochi / Thiruvananthapuram', state: 'Kerala', act: 'Kerala Buildings (Lease and Rent Control) Act 1965', stamp: '₹200 Non-Judicial Stamp' };
     }
     if (['45', '46', '47', '48'].includes(prefix)) {
-      return { country: 'IN', city: 'Bhopal / Indore', state: 'Madhya Pradesh', act: 'MP Parisar Kirayadari Adhiniyam 2010', stamp: '₹500 e-Stamp Paper' };
+      return { stateCode: 'IN_MP', country: 'IN', city: 'Bhopal / Indore', state: 'Madhya Pradesh', act: 'MP Parisar Kirayadari Adhiniyam 2010', stamp: '₹500 e-Stamp Paper' };
     }
     if (['80', '81', '82', '83', '84', '85'].includes(prefix)) {
-      return { country: 'IN', city: 'Patna / Ranchi', state: 'Bihar & Jharkhand', act: 'Bihar Buildings (Lease, Rent & Eviction) Control Act 1982', stamp: '₹100 Non-Judicial Stamp' };
+      return { stateCode: 'IN_BR_JH', country: 'IN', city: 'Patna / Ranchi', state: 'Bihar & Jharkhand', act: 'Bihar Buildings (Lease, Rent & Eviction) Control Act 1982', stamp: '₹100 Non-Judicial Stamp' };
     }
     if (['78', '79'].includes(prefix)) {
-      return { country: 'IN', city: 'Guwahati', state: 'Assam & North East', act: 'Assam Urban Areas Rent Control Act 1972', stamp: '₹100 Non-Judicial Stamp' };
+      return { stateCode: 'IN_WB', country: 'IN', city: 'Guwahati', state: 'Assam & North East', act: 'Assam Urban Areas Rent Control Act 1972', stamp: '₹100 Non-Judicial Stamp' };
     }
     if (['75', '76', '77'].includes(prefix)) {
-      return { country: 'IN', city: 'Bhubaneswar', state: 'Odisha', act: 'Odisha House Rent Control Act 1967', stamp: '₹100 Stamp Paper' };
+      return { stateCode: 'IN_WB', country: 'IN', city: 'Bhubaneswar', state: 'Odisha', act: 'Odisha House Rent Control Act 1967', stamp: '₹100 Stamp Paper' };
     }
 
-    return { country: 'IN', city: 'Mumbai', state: 'Maharashtra', act: 'Indian Registration Act 1908 Sec 17 & State Rent Control Act', stamp: '₹500 Stamp Paper' };
+    return { stateCode: 'MH', country: 'IN', city: 'Mumbai', state: 'Maharashtra', act: 'Indian Registration Act 1908 Sec 17 & State Rent Control Act', stamp: '0.25% Stamp Duty' };
   }
 
   // USA ZIP Codes (5 digits)
   if (/^\d{5}$/.test(zip)) {
     const num = parseInt(zip, 10);
     if (num >= 90001 && num <= 96162) {
-      return { country: 'US', city: 'Los Angeles / San Francisco', state: 'California (US)', act: 'California Civil Code § 1940 et seq. & AB 12 Tenant Protection Act', stamp: 'State Recorded Lease (Notary & AB 12 Disclosure)' };
+      return { stateCode: 'US_CA', country: 'US', city: 'Los Angeles / San Francisco', state: 'California (US)', act: 'California Civil Code § 1940 et seq. & AB 12 Tenant Protection Act', stamp: 'State Recorded Lease (Notary & AB 12 Disclosure)' };
     } else if (num >= 75001 && num <= 79999) {
-      return { country: 'US', city: 'Dallas / Houston', state: 'Texas (US)', act: 'Texas Property Code Title 8 Chapter 92 (Landlord & Tenant)', stamp: 'Texas Recorded Lease Agreement' };
+      return { stateCode: 'US_TX', country: 'US', city: 'Dallas / Houston', state: 'Texas (US)', act: 'Texas Property Code Title 8 Chapter 92 (Landlord & Tenant)', stamp: 'Texas Recorded Lease Agreement' };
     } else if (num >= 10001 && num <= 14999) {
-      return { country: 'US', city: 'New York City', state: 'New York (US)', act: 'NY Real Property Law Article 7 & Housing Stability Act (RPL § 238-a)', stamp: 'New York State Recorded Lease' };
+      return { stateCode: 'US_NY', country: 'US', city: 'New York City', state: 'New York (US)', act: 'NY Real Property Law Article 7 & Housing Stability Act (RPL § 238-a)', stamp: 'New York State Recorded Lease' };
     } else if (num >= 32001 && num <= 34999) {
-      return { country: 'US', city: 'Miami / Orlando', state: 'Florida (US)', act: 'Florida Statutes Chapter 83 Part II (Residential Tenancies)', stamp: 'Florida Statutory Lease Deed' };
-    } else if (num >= 60001 && num <= 62999) {
-      return { country: 'US', city: 'Chicago', state: 'Illinois (US)', act: 'Illinois Landlord and Tenant Act (765 ILCS 705/)', stamp: 'Illinois Residential Lease Contract' };
-    } else if (num >= 98001 && num <= 99403) {
-      return { country: 'US', city: 'Seattle', state: 'Washington (US)', act: 'Washington Revised Code RCW 59.18 Residential Landlord-Tenant Act', stamp: 'Washington State Lease Deed' };
+      return { stateCode: 'US_FL', country: 'US', city: 'Miami / Orlando', state: 'Florida (US)', act: 'Florida Statutes Chapter 83 Part II (Residential Tenancies)', stamp: 'Florida Statutory Lease Deed' };
     }
-    return { country: 'US', city: 'Los Angeles', state: 'California (US)', act: 'US Uniform Residential Landlord and Tenant Act', stamp: 'State Recorded Lease Contract' };
+    return { stateCode: 'US_CA', country: 'US', city: 'Los Angeles', state: 'California (US)', act: 'US Uniform Residential Landlord and Tenant Act', stamp: 'State Recorded Lease Contract' };
   }
 
   // UK Postcodes
   if (/^[A-Z]{1,2}\d[A-Z0-9]?/i.test(zip) || zip.startsWith('W1') || zip.startsWith('SW1') || zip.startsWith('M1') || zip.startsWith('EH1')) {
-    if (zip.startsWith('EH') || zip.startsWith('G1') || zip.startsWith('AB')) {
-      return { country: 'UK', city: 'Edinburgh / Glasgow', state: 'Scotland (UK)', act: 'Private Housing (Tenancies) (Scotland) Act 2016', stamp: 'Scottish PRT Tenancy Agreement' };
-    }
-    return { country: 'UK', city: 'London', state: 'London (UK)', act: 'UK Housing Act 1988 & Tenant Fees Act 2019', stamp: 'TDS Deposit Scheme Certified AST Contract' };
+    return { stateCode: 'UK_LDN', country: 'UK', city: 'London', state: 'London (UK)', act: 'UK Housing Act 1988 & Tenant Fees Act 2019', stamp: 'TDS Deposit Scheme Certified AST Contract' };
   }
 
   // UAE PO Boxes
   if (zip.includes('UAE') || zip === '00000' || zip.includes('DUBAI') || zip.includes('ABU DHABI') || zip.includes('SHARJAH')) {
-    if (zip.includes('ABU DHABI')) {
-      return { country: 'UAE', city: 'Abu Dhabi', state: 'Abu Dhabi (UAE)', act: 'Abu Dhabi Executive Council Law No. 20 of 2006', stamp: 'Tawtheeq Registration Deed' };
-    }
-    return { country: 'UAE', city: 'Dubai', state: 'Dubai (UAE)', act: 'Dubai Real Estate Regulatory Agency (RERA) Law No. 26 of 2007', stamp: '220 AED Ejari Registration Deed' };
+    return { stateCode: 'UAE_DXB', country: 'UAE', city: 'Dubai', state: 'Dubai (UAE)', act: 'Dubai Real Estate Regulatory Agency (RERA) Law No. 26 of 2007', stamp: '220 AED Ejari Registration Deed' };
   }
 
   // Canada Postcodes
   if (/^[A-Z]\d[A-Z]/i.test(zip) || zip.startsWith('M5V') || zip.startsWith('K1P')) {
-    return { country: 'CA', city: 'Toronto', state: 'Ontario (Canada)', act: 'Ontario Residential Tenancies Act, 2006 Standard Form of Lease', stamp: 'Ontario RTA Standard Lease Deed' };
+    return { stateCode: 'CA_ON', country: 'CA', city: 'Toronto', state: 'Ontario (Canada)', act: 'Ontario Residential Tenancies Act, 2006 Standard Form of Lease', stamp: 'Ontario RTA Standard Lease Deed' };
   }
 
   // Australia Postcodes
   if (/^\d{4}$/.test(zip)) {
-    const pNum = parseInt(zip, 10);
-    if (pNum >= 4000 && pNum <= 4999) return { country: 'AU', city: 'Brisbane', state: 'Queensland (Australia)', act: 'Residential Tenancies and Rooming Accommodation Act 2008 Form 18a', stamp: 'RTA Bond Lodgement Receipt Deed' };
-    if (pNum >= 2000 && pNum <= 2999) return { country: 'AU', city: 'Sydney', state: 'New South Wales (Australia)', act: 'NSW Residential Tenancies Act 2010', stamp: 'NSW Fair Trading Tenancy Agreement' };
-    if (pNum >= 3000 && pNum <= 3999) return { country: 'AU', city: 'Melbourne', state: 'Victoria (Australia)', act: 'Victoria Residential Tenancies Act 1997', stamp: 'Consumer Affairs Victoria Tenancy Deed' };
-    return { country: 'AU', city: 'Brisbane', state: 'Queensland (Australia)', act: 'Residential Tenancies Act Australia', stamp: 'Standard Tenancy Agreement' };
+    return { stateCode: 'AU_NSW', country: 'AU', city: 'Sydney', state: 'New South Wales (Australia)', act: 'NSW Residential Tenancies Act 2010', stamp: 'NSW Fair Trading Tenancy Agreement' };
   }
 
   // Spain Postcodes
   if (/^\d{5}$/.test(zip) && (zip.startsWith('28') || zip.startsWith('08') || zip.startsWith('41'))) {
-    return { country: 'ES', city: 'Madrid / Barcelona', state: 'España / EE.UU. (Español)', act: 'Ley de Arrendamientos Urbanos (LAU)', stamp: 'Contrato Oficial de Alquiler Residencial' };
+    return { stateCode: 'ES_MAD', country: 'ES', city: 'Madrid / Barcelona', state: 'España (Español)', act: 'Ley de Arrendamientos Urbanos (LAU)', stamp: 'Contrato Oficial de Alquiler Residencial' };
+  }
+
+  // Text Name Detection Fallbacks
+  if (cleanStr.includes('mumbai') || cleanStr.includes('pune') || cleanStr.includes('maharashtra') || cleanStr.includes('nagpur') || cleanStr.includes('nashik') || cleanStr.includes('thane')) {
+    return { stateCode: 'MH', country: 'IN', city: 'Mumbai', state: 'Maharashtra', act: 'Maharashtra Rent Control Act 1999 Sec 55 & Sec 17 Registration Act', stamp: '0.25% Stamp Duty (Min ₹500)' };
+  }
+  if (cleanStr.includes('bangalore') || cleanStr.includes('bengaluru') || cleanStr.includes('karnataka') || cleanStr.includes('mysore')) {
+    return { stateCode: 'KA', country: 'IN', city: 'Bengaluru', state: 'Karnataka', act: 'Karnataka Rent Control Act 2001 & Indian Stamp Act 1899', stamp: '₹200 / ₹500 Non-Judicial Stamp Paper' };
+  }
+  if (cleanStr.includes('delhi') || cleanStr.includes('noida') || cleanStr.includes('gurgaon') || cleanStr.includes('gurugram')) {
+    return { stateCode: 'DL', country: 'IN', city: 'New Delhi', state: 'Delhi NCR', act: 'Delhi Rent Act 1995 & Transfer of Property Act 1882', stamp: '₹100 e-Stamp Paper' };
+  }
+  if (cleanStr.includes('chennai') || cleanStr.includes('tamil nadu')) {
+    return { stateCode: 'TN', country: 'IN', city: 'Chennai', state: 'Tamil Nadu', act: 'Tamil Nadu Regulation of Rights and Responsibilities Act 2017', stamp: '1% Stamp Duty' };
+  }
+  if (cleanStr.includes('hyderabad') || cleanStr.includes('telangana') || cleanStr.includes('andhra')) {
+    return { stateCode: 'TS', country: 'IN', city: 'Hyderabad', state: 'Telangana', act: 'Telangana Buildings Control Act', stamp: '0.5% Stamp Duty' };
+  }
+  if (cleanStr.includes('lucknow') || cleanStr.includes('kanpur') || cleanStr.includes('uttar pradesh')) {
+    return { stateCode: 'UP', country: 'IN', city: 'Lucknow', state: 'Uttar Pradesh', act: 'UP Urban Premises Tenancy Act 2021', stamp: '4% Stamp Duty on Annual Rent' };
+  }
+  if (cleanStr.includes('ahmedabad') || cleanStr.includes('gujarat')) {
+    return { stateCode: 'IN_GJ', country: 'IN', city: 'Ahmedabad', state: 'Gujarat', act: 'Gujarat Rent Control Act 1979', stamp: '₹300 Non-Judicial Stamp Paper' };
+  }
+  if (cleanStr.includes('jaipur') || cleanStr.includes('rajasthan')) {
+    return { stateCode: 'IN_RJ', country: 'IN', city: 'Jaipur', state: 'Rajasthan', act: 'Rajasthan Rent Control Act 2001', stamp: '₹500 Non-Judicial Stamp Paper' };
+  }
+  if (cleanStr.includes('kolkata') || cleanStr.includes('west bengal')) {
+    return { stateCode: 'IN_WB', country: 'IN', city: 'Kolkata', state: 'West Bengal', act: 'West Bengal Premises Tenancy Act 1997', stamp: '₹100 e-Stamp Paper' };
+  }
+  if (cleanStr.includes('california') || cleanStr.includes('los angeles') || cleanStr.includes('san francisco')) {
+    return { stateCode: 'US_CA', country: 'US', city: 'Los Angeles', state: 'California (US)', act: 'California Civil Code & AB 12 Act', stamp: 'State Recorded Lease' };
+  }
+  if (cleanStr.includes('texas') || cleanStr.includes('houston') || cleanStr.includes('dallas')) {
+    return { stateCode: 'US_TX', country: 'US', city: 'Dallas', state: 'Texas (US)', act: 'Texas Property Code Ch. 92', stamp: 'Texas Recorded Lease' };
+  }
+  if (cleanStr.includes('new york') || cleanStr.includes('nyc')) {
+    return { stateCode: 'US_NY', country: 'US', city: 'New York City', state: 'New York (US)', act: 'NY RPL § 238-a Act', stamp: 'NY State Recorded Lease' };
+  }
+  if (cleanStr.includes('florida') || cleanStr.includes('miami')) {
+    return { stateCode: 'US_FL', country: 'US', city: 'Miami', state: 'Florida (US)', act: 'Florida Statutes Ch. 83', stamp: 'FL Statutory Lease' };
+  }
+  if (cleanStr.includes('london') || cleanStr.includes('uk') || cleanStr.includes('england')) {
+    return { stateCode: 'UK_LDN', country: 'UK', city: 'London', state: 'London (UK)', act: 'UK Housing Act 1988 & Tenant Fees Act 2019', stamp: 'TDS Deposit Scheme AST' };
+  }
+  if (cleanStr.includes('dubai') || cleanStr.includes('uae') || cleanStr.includes('abu dhabi')) {
+    return { stateCode: 'UAE_DXB', country: 'UAE', city: 'Dubai', state: 'Dubai (UAE)', act: 'Dubai RERA Law No. 26 of 2007', stamp: '220 AED Ejari Registration' };
   }
 
   return null;
@@ -956,20 +992,32 @@ function initZipLookup() {
 
   if (btnLookup && zipInput) {
     btnLookup.addEventListener('click', () => performZipLookup(zipInput.value));
+    zipInput.addEventListener('input', () => performZipLookup(zipInput.value));
+    zipInput.addEventListener('keyup', () => performZipLookup(zipInput.value));
     zipInput.addEventListener('change', () => performZipLookup(zipInput.value));
   }
 
   if (widgetBtnLookup && widgetZipInput) {
     widgetBtnLookup.addEventListener('click', () => performZipLookup(widgetZipInput.value));
+    widgetZipInput.addEventListener('input', () => performZipLookup(widgetZipInput.value));
+    widgetZipInput.addEventListener('keyup', () => performZipLookup(widgetZipInput.value));
     widgetZipInput.addEventListener('change', () => performZipLookup(widgetZipInput.value));
   }
 }
 
 function performZipLookup(rawZip) {
   const res = lookupGlobalZipDetails(rawZip);
-  if (!res) return;
+  
+  const widgetBadge = document.getElementById('widget-zip-detected-badge');
+  const widgetText = document.getElementById('widget-zip-detected-text');
+  const widgetCountryCode = document.getElementById('widget-zip-country-code');
 
-  if (res.country !== appState.country) {
+  if (!res) {
+    if (widgetBadge) widgetBadge.classList.add('hidden');
+    return;
+  }
+
+  if (res.country && res.country !== appState.country) {
     const countrySelect = document.getElementById('global-country-select');
     if (countrySelect) countrySelect.value = res.country;
     updateCountryContext(res.country);
@@ -981,30 +1029,33 @@ function performZipLookup(rawZip) {
 
   if (res.state) {
     setVal('state_jurisdiction', res.state);
+  }
+
+  if (res.stateCode) {
     const calcState = document.getElementById('calc_state');
     if (calcState) {
-      if (res.state.includes('Maharashtra')) calcState.value = 'MH';
-      else if (res.state.includes('Karnataka')) calcState.value = 'KA';
-      else if (res.state.includes('Delhi')) calcState.value = 'DL';
-      else if (res.state.includes('California')) calcState.value = 'US_CA';
-      else if (res.state.includes('Texas')) calcState.value = 'US_TX';
-      else if (res.state.includes('London')) calcState.value = 'UK_LDN';
-      else if (res.state.includes('Dubai')) calcState.value = 'UAE_DXB';
+      calcState.value = res.stateCode;
     }
-
-    const badge = document.getElementById('zip-lookup-badge');
-    const stateSpan = document.getElementById('zip-detected-state');
-    if (badge && stateSpan) {
-      stateSpan.textContent = `City: ${res.city || 'Detected Region'}, State: ${res.state} (${res.country}) • ${res.act}`;
-      badge.classList.remove('hidden');
-    }
-
-    // Update document preamble subtitle with statutory Rent Act
-    setText('canvas-doc-subtitle', `Executed under the Laws & Regulations of ${res.city || ''} ${res.state} (${res.act})`);
-
-    syncFormToCanvas();
-    updateCalculatorOutput();
   }
+
+  if (widgetBadge && widgetText) {
+    widgetText.textContent = `${res.city || ''}, ${res.state}`;
+    if (widgetCountryCode) widgetCountryCode.textContent = res.country;
+    widgetBadge.classList.remove('hidden');
+  }
+
+  const badge = document.getElementById('zip-lookup-badge');
+  const stateSpan = document.getElementById('zip-detected-state');
+  if (badge && stateSpan) {
+    stateSpan.textContent = `City: ${res.city || 'Detected Region'}, State: ${res.state} (${res.country}) • ${res.act}`;
+    badge.classList.remove('hidden');
+  }
+
+  // Update document preamble subtitle with statutory Rent Act
+  setText('canvas-doc-subtitle', `Executed under the Laws & Regulations of ${res.city || ''} ${res.state} (${res.act})`);
+
+  syncFormToCanvas();
+  updateCalculatorOutput();
 }
 
 // 5. Custom Extra Clauses Manager
@@ -1273,68 +1324,296 @@ function initCalculator() {
 
 function updateCalculatorOutput() {
   const stateVal = document.getElementById('calc_state')?.value || 'MH';
-  const rent = parseInt(document.getElementById('calc_rent')?.value || 25000, 10);
-  const deposit = parseInt(document.getElementById('calc_deposit')?.value || 100000, 10);
-  const tenure = parseInt(document.getElementById('calc_tenure')?.value || 11, 10);
+  const rentInput = document.getElementById('calc_rent');
+  const depositInput = document.getElementById('calc_deposit');
+  const tenureInput = document.getElementById('calc_tenure');
 
-  const sym = countryConfigs[appState.country]?.currencySymbol || '₹';
+  const rent = Math.max(0, parseInt(rentInput?.value || 25000, 10));
+  const deposit = Math.max(0, parseInt(depositInput?.value || 100000, 10));
+  const tenure = Math.max(1, parseInt(tenureInput?.value || 11, 10));
+
+  // Map state to country for accurate currency symbol and flag
+  const countryByState = {
+    MH: 'IN', KA: 'IN', DL: 'IN', TN: 'IN', TS: 'IN', UP: 'IN', IN_GJ: 'IN', IN_RJ: 'IN', IN_WB: 'IN', IN_MP: 'IN', IN_HR_PB: 'IN', IN_KL: 'IN', IN_BR_JH: 'IN',
+    US_CA: 'US', US_TX: 'US', US_NY: 'US', US_FL: 'US',
+    UK_LDN: 'UK',
+    UAE_DXB: 'UAE',
+    CA_ON: 'CA',
+    AU_NSW: 'AU',
+    ES_MAD: 'ES'
+  };
+
+  const detectedCountry = countryByState[stateVal] || appState.country || 'IN';
+  const sym = countryConfigs[detectedCountry]?.currencySymbol || '₹';
+
+  // Update country tag & currency indicators on inputs
+  const countryTag = document.getElementById('calc-active-country-tag');
+  if (countryTag) {
+    const flags = { IN: '🇮🇳 INDIA', US: '🇺🇸 USA', UK: '🇬🇧 UK', UAE: '🇦🇪 UAE', CA: '🇨🇦 CANADA', AU: '🇦🇺 AUSTRALIA', ES: '🇪🇸 SPAIN' };
+    countryTag.textContent = `${flags[detectedCountry] || '🇮🇳 INDIA'} REGION`;
+  }
+  setText('calc-rent-curr', sym);
+  setText('calc-dep-curr', sym);
 
   let stampValue = `${sym}500`;
-  let regFee = `${sym}1,000 (Optional for <12m)`;
+  let regFee = `${sym}1,000 (Sub-Registrar fee)`;
+  let paperType = 'Non-Judicial / E-Stamp Deed';
   let compliance = '✓ Compliant with state guidelines';
   let advice = '';
 
   switch (stateVal) {
-    case 'MH':
+    case 'MH': {
       const totalCostMH = (rent * tenure) + deposit;
       const dutyMH = Math.max(500, Math.round(totalCostMH * 0.0025));
-      stampValue = `${sym}${dutyMH}`;
+      stampValue = `${sym}${dutyMH.toLocaleString('en-IN')}`;
       regFee = `${sym}1,000 (Sub-Registrar fee)`;
-      advice = 'In Maharashtra, Stamp Duty is calculated at 0.25% of total rent + deposit under the Maharashtra Stamp Act.';
+      paperType = 'E-Stamping Certificate / Non-Judicial Deed';
+      compliance = '✓ Compliant with Maharashtra Stamp Act';
+      advice = `In Maharashtra, Stamp Duty is calculated at 0.25% of total rent + deposit (0.25% of ${sym}${totalCostMH.toLocaleString('en-IN')} = ${sym}${dutyMH.toLocaleString('en-IN')}) under Maharashtra Stamp Act Sec 55.`;
       break;
+    }
 
-    case 'KA':
-      stampValue = `${sym}200 for 11m (${sym}500 if deposit > ${sym}5 Lakhs)`;
+    case 'KA': {
+      let dutyKA = 200;
+      if (tenure > 11) {
+        dutyKA = Math.max(500, Math.round(((rent * tenure) + deposit) * 0.01));
+      } else if (deposit > 500000) {
+        dutyKA = 500;
+      }
+      stampValue = `${sym}${dutyKA.toLocaleString('en-IN')}`;
       regFee = `${sym}1,000`;
-      advice = 'In Karnataka, non-judicial stamp paper of ₹200 is standard for 11-month residential agreements.';
+      paperType = 'Non-Judicial Stamp Paper (Karnataka)';
+      compliance = '✓ Compliant with Karnataka Stamp Act';
+      advice = `In Karnataka, ₹${dutyKA} e-Stamp paper is mandatory for ${tenure}-month agreements (1% duty applies for agreements >11 months).`;
       break;
+    }
 
-    case 'DL':
-      stampValue = `${sym}100`;
-      regFee = '₹1,100';
-      advice = 'In Delhi NCR, ₹100 e-Stamp paper is used for 11-month lease deeds under Delhi Stamp Act.';
+    case 'DL': {
+      const dutyDL = tenure >= 12 ? Math.max(500, Math.round((rent * 12) * 0.02)) : 100;
+      stampValue = `${sym}${dutyDL.toLocaleString('en-IN')}`;
+      regFee = `${sym}1,100 (Sub-Registrar registration)`;
+      paperType = 'Delhi e-Stamp Paper';
+      compliance = '✓ Compliant with Delhi Stamp Act';
+      advice = `In Delhi NCR, ₹${dutyDL} e-Stamp paper is required for residential tenancy deeds under Delhi Stamp Act.`;
       break;
+    }
 
-    case 'US_CA':
-      stampValue = 'NOTARIZED LEASE ($0 STATE DUTY)';
-      regFee = '$0 State Duty';
-      const maxDepCA = rent * 2;
-      compliance = deposit <= maxDepCA ? '✓ Compliant (Under AB 12 2x Rent Limit)' : '⚠️ Exceeds California 2x Rent Limit';
-      advice = 'California AB 12 caps security deposits at a maximum of 2 months rent for unfurnished residential units.';
+    case 'TN': {
+      const totalCostTN = (rent * tenure) + deposit;
+      const dutyTN = Math.max(100, Math.round(totalCostTN * 0.01));
+      const regTN = Math.min(2000, Math.max(100, Math.round(totalCostTN * 0.01)));
+      stampValue = `${sym}${dutyTN.toLocaleString('en-IN')}`;
+      regFee = `${sym}${regTN.toLocaleString('en-IN')} (Registration Fee)`;
+      paperType = 'TN Non-Judicial Stamp Paper';
+      compliance = '✓ Compliant with TN Tenancy Act 2017';
+      advice = `In Tamil Nadu, Stamp Duty is calculated at 1% of total contract value (${sym}${totalCostTN.toLocaleString('en-IN')}).`;
       break;
+    }
 
-    case 'UK_LDN':
-      stampValue = 'TDS CERTIFIED AGREEMENT';
-      regFee = '£0 Duty';
-      const maxDepUK = (rent * 12 / 52) * 5;
-      compliance = deposit <= maxDepUK ? '✓ Compliant (Under Tenant Fees Act 5-Week Cap)' : '⚠️ Exceeds UK 5-Week Deposit Cap';
-      advice = 'Under the UK Tenant Fees Act 2019, security deposits are strictly capped at 5 weeks rent for annual rents under £50,000.';
+    case 'TS': {
+      const totalCostTS = (rent * tenure) + deposit;
+      const dutyTS = Math.max(100, Math.round(totalCostTS * 0.005));
+      stampValue = `${sym}${dutyTS.toLocaleString('en-IN')}`;
+      regFee = `${sym}${Math.round(totalCostTS * 0.005).toLocaleString('en-IN')}`;
+      paperType = 'Telangana e-Stamp Paper';
+      compliance = '✓ Compliant with Telangana Rent Act';
+      advice = `In Telangana & AP, Stamp Duty is 0.5% of total lease consideration (${sym}${totalCostTS.toLocaleString('en-IN')}).`;
       break;
+    }
 
-    case 'UAE_DXB':
-      stampValue = '220 AED EJARI REGISTRATION FEE';
-      regFee = '5% Annual Rent Housing Fee';
-      advice = 'Ejari registration with Dubai Land Department (DLD) costs approximately 220 AED and is mandatory for DEWA connection.';
+    case 'UP': {
+      const annualRentUP = rent * 12;
+      const dutyUP = Math.max(500, Math.round(annualRentUP * 0.04));
+      stampValue = `${sym}${dutyUP.toLocaleString('en-IN')}`;
+      regFee = `${sym}${Math.round(annualRentUP * 0.02).toLocaleString('en-IN')} (Sub-Registrar)`;
+      paperType = 'UP Non-Judicial e-Stamp';
+      compliance = '✓ Compliant with UP Tenancy Act 2021';
+      advice = `In Uttar Pradesh, Stamp Duty is calculated at 4% of total annual rent (${sym}${annualRentUP.toLocaleString('en-IN')}).`;
       break;
+    }
 
-    default:
+    case 'IN_GJ': {
+      const dutyGJ = tenure > 11 ? Math.max(300, Math.round(((rent * tenure) + deposit) * 0.01)) : 300;
+      stampValue = `${sym}${dutyGJ.toLocaleString('en-IN')}`;
+      regFee = `${sym}1,000`;
+      paperType = 'Gujarat Non-Judicial Stamp';
+      compliance = '✓ Compliant with Gujarat Stamp Act';
+      advice = `In Gujarat, ₹${dutyGJ} non-judicial stamp paper is standard for residential lease contracts.`;
+      break;
+    }
+
+    case 'IN_RJ': {
+      const dutyRJ = tenure > 11 ? Math.max(500, Math.round((rent * 12) * 0.05)) : 500;
+      stampValue = `${sym}${dutyRJ.toLocaleString('en-IN')}`;
+      regFee = `${sym}500`;
+      paperType = 'Rajasthan Stamp Paper';
+      compliance = '✓ Compliant with Rajasthan Rent Act 2001';
+      advice = `In Rajasthan, ₹${dutyRJ} non-judicial stamp paper is standard for residential agreements.`;
+      break;
+    }
+
+    case 'IN_WB': {
+      const dutyWB = tenure >= 12 ? Math.max(500, Math.round((rent * 12) * 0.04)) : 100;
+      stampValue = `${sym}${dutyWB.toLocaleString('en-IN')}`;
+      regFee = `${sym}1,000`;
+      paperType = 'West Bengal e-Stamp Paper';
+      compliance = '✓ Compliant with WB Premises Tenancy Act 1997';
+      advice = `In West Bengal, ₹${dutyWB} e-stamp paper is required under the West Bengal Stamp Rules.`;
+      break;
+    }
+
+    case 'IN_MP': {
       stampValue = `${sym}500`;
+      regFee = `${sym}1,000`;
+      paperType = 'MP e-Stamp Certificate';
+      compliance = '✓ Compliant with MP Kirayadari Adhiniyam 2010';
+      advice = 'In Madhya Pradesh, ₹500 e-Stamp paper is required under MP Kirayadari Adhiniyam 2010.';
+      break;
+    }
+
+    case 'IN_HR_PB': {
+      stampValue = `${sym}100`;
+      regFee = `${sym}1,000`;
+      paperType = 'Haryana / Punjab e-Stamp Paper';
+      compliance = '✓ Compliant with Urban Rent Act';
+      advice = 'In Haryana & Punjab, ₹100 e-stamp paper is standard for 11-month tenancy agreements.';
+      break;
+    }
+
+    case 'IN_KL': {
+      const dutyKL = tenure > 11 ? Math.max(200, Math.round(((rent * tenure) + deposit) * 0.01)) : 200;
+      stampValue = `${sym}${dutyKL.toLocaleString('en-IN')}`;
+      regFee = `${sym}500`;
+      paperType = 'Kerala Stamp Paper';
+      compliance = '✓ Compliant with Kerala Rent Control Act';
+      advice = `In Kerala, ₹${dutyKL} stamp paper is mandatory under Kerala Lease & Rent Control Act.`;
+      break;
+    }
+
+    case 'US_CA': {
+      stampValue = '$0 (NOTARIZED LEASE)';
+      regFee = '$0 State Duty';
+      paperType = 'State Recorded Notarized Lease Deed';
+      const maxDepCA = rent * 2;
+      if (deposit <= maxDepCA) {
+        compliance = `✓ Compliant ($${deposit.toLocaleString()} ≤ Max $${maxDepCA.toLocaleString()})`;
+      } else {
+        compliance = `⚠️ Exceeds CA 2x Rent Limit ($${maxDepCA.toLocaleString()} Max Allowed)`;
+      }
+      advice = `California AB 12 caps security deposits at a maximum of 2 months rent ($${maxDepCA.toLocaleString()}) for unfurnished residential units.`;
+      break;
+    }
+
+    case 'US_NY': {
+      stampValue = '$0 (NOTARIZED LEASE)';
+      regFee = '$0 State Duty';
+      paperType = 'NY Recorded Lease Agreement';
+      const maxDepNY = rent * 1;
+      if (deposit <= maxDepNY) {
+        compliance = `✓ Compliant ($${deposit.toLocaleString()} ≤ Max $${maxDepNY.toLocaleString()})`;
+      } else {
+        compliance = `⚠️ Exceeds NY 1-Month Cap ($${maxDepNY.toLocaleString()} Max Allowed)`;
+      }
+      advice = `Under NY Real Property Law § 238-a, residential security deposits are strictly capped at 1 month rent ($${maxDepNY.toLocaleString()}).`;
+      break;
+    }
+
+    case 'US_TX': {
+      stampValue = '$0 (RECORDED CONTRACT)';
+      regFee = '$0 State Duty';
+      paperType = 'Texas Statutory Lease Contract';
+      compliance = '✓ Compliant with Texas Property Code Ch. 92';
+      advice = 'Texas Property Code Ch. 92 governs residential leases; security deposit accounting must be provided within 30 days.';
+      break;
+    }
+
+    case 'US_FL': {
+      stampValue = '$0 (FLORIDA STATUTORY LEASE)';
+      regFee = '$0 State Duty';
+      paperType = 'Florida Statutory Lease Agreement';
+      compliance = '✓ Compliant with Florida Statutes Ch. 83';
+      advice = 'Florida Statutes Chapter 83 Part II requires security deposits to be held in a Florida bank account.';
+      break;
+    }
+
+    case 'UK_LDN': {
+      stampValue = 'TDS CERTIFIED AST';
+      regFee = '£0 State Duty';
+      paperType = 'Assured Shorthold Tenancy (AST) Agreement';
+      const maxDepUK = Math.round((rent * 12 / 52) * 5);
+      if (deposit <= maxDepUK) {
+        compliance = `✓ Compliant (£${deposit.toLocaleString()} ≤ Max £${maxDepUK.toLocaleString()})`;
+      } else {
+        compliance = `⚠️ Exceeds UK 5-Week Cap (£${maxDepUK.toLocaleString()} Max Allowed)`;
+      }
+      advice = `Under UK Tenant Fees Act 2019, security deposits are strictly capped at 5 weeks rent (£${maxDepUK.toLocaleString()}).`;
+      break;
+    }
+
+    case 'UAE_DXB': {
+      const housingFee = Math.round((rent * 12) * 0.05);
+      stampValue = `220 AED EJARI + ${housingFee.toLocaleString()} AED HOUSING FEE`;
+      regFee = `5% Housing Fee (${housingFee.toLocaleString()} AED/yr)`;
+      paperType = 'RERA Official Ejari Contract Deed';
+      compliance = '✓ Compliant with Dubai RERA Law 26';
+      advice = `Ejari registration fee is ~220 AED. Dubai Municipality collects a 5% annual rent housing fee (${housingFee.toLocaleString()} AED) via monthly DEWA utility bills.`;
+      break;
+    }
+
+    case 'CA_ON': {
+      stampValue = 'C$0 (ONTARIO RTA STANDARD LEASE)';
+      regFee = 'C$0 State Duty';
+      paperType = 'Ontario Standard Form of Lease';
+      const maxDepON = rent;
+      if (deposit <= maxDepON) {
+        compliance = `✓ Compliant (C$${deposit.toLocaleString()} ≤ Max C$${maxDepON.toLocaleString()})`;
+      } else {
+        compliance = `⚠️ Exceeds Ontario RTA Limit (C$${maxDepON.toLocaleString()} Max Allowed)`;
+      }
+      advice = 'Under Ontario Residential Tenancies Act 2006, landlords may only collect a rent deposit equal to 1 month rent.';
+      break;
+    }
+
+    case 'AU_NSW': {
+      stampValue = 'A$0 (FAIR TRADING LODGEMENT)';
+      regFee = 'A$0 State Duty';
+      paperType = 'NSW Fair Trading Standard Tenancy Agreement';
+      const maxDepAU = Math.round((rent * 12 / 52) * 4);
+      if (deposit <= maxDepAU) {
+        compliance = `✓ Compliant (A$${deposit.toLocaleString()} ≤ Max A$${maxDepAU.toLocaleString()})`;
+      } else {
+        compliance = `⚠️ Exceeds RTA 4-Week Bond Cap (A$${maxDepAU.toLocaleString()} Max Allowed)`;
+      }
+      advice = `In Australia, security bonds are capped at 4 weeks rent (A$${maxDepAU.toLocaleString()}) and must be lodged with Rental Bonds Online.`;
+      break;
+    }
+
+    case 'ES_MAD': {
+      stampValue = '0€ (CONTRATO REGISTRADO LAU)';
+      regFee = '0€ Impuesto Estatal';
+      paperType = 'Contrato Oficial LAU de Arrendamiento';
+      if (deposit <= rent) {
+        compliance = `✓ Conforme a la LAU (Fianza ≤ ${rent.toLocaleString()}€)`;
+      } else {
+        compliance = `⚠️ Supera el Límite de 1 Mes de Fianza (${rent.toLocaleString()}€ Máximo según Art. 36 LAU)`;
+      }
+      advice = `En España, el artículo 36 de la Ley de Arrendamientos Urbanos (LAU) fija la fianza obligatoria en 1 mes de renta (${rent.toLocaleString()}€).`;
+      break;
+    }
+
+    default: {
+      stampValue = `${sym}500`;
+      regFee = `${sym}1,000`;
+      paperType = 'Non-Judicial / E-Stamp Deed';
+      compliance = '✓ Compliant with local laws';
       advice = 'Standard non-judicial stamp paper deed compliant with local jurisdiction rules.';
       break;
+    }
   }
 
   setText('res-stamp-value', stampValue);
   setText('res-registration-fee', regFee);
+  setText('res-paper-type', paperType);
   setText('res-deposit-compliance', compliance);
   setText('res-legal-advice', advice);
 }
