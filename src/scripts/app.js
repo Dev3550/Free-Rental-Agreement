@@ -1535,40 +1535,74 @@ function saveAndRedirectToDownload() {
   window.location.href = '/download';
 }
 
-function downloadPDFViaHtml2Pdf() {
-  let docHtml = localStorage.getItem('generatedDocumentHtml');
-  if (!docHtml || docHtml.trim().length === 0) {
-    const docElement = document.getElementById('printable-legal-document');
-    if (docElement) {
-      docHtml = docElement.innerHTML;
-    }
-  }
-
-  if (!docHtml || docHtml.trim().length === 0) {
-    const printArea = document.getElementById('download-print-area');
-    if (printArea && printArea.innerHTML.trim().length > 0) {
-      docHtml = printArea.innerHTML;
-    }
-  }
-
-  if (!docHtml || docHtml.trim().length === 0) {
-    docHtml = `
-      <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000; padding: 20px;">
-        <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
-        <p style="margin-bottom: 15px;">This Tenancy Agreement Deed is executed between the Party of the First Part (Landlord / Lessor) and the Party of the Second Part (Tenant / Lessee).</p>
-        <h3 style="font-weight: bold; margin-top: 15px;">TERMS AND CONDITIONS:</h3>
-        <ol style="margin-left: 20px;">
-          <li><strong>PREMISES:</strong> The Lessor grants on lease the residential premises to the Lessee for lawful accommodation.</li>
-          <li><strong>TERM:</strong> The tenure of this lease shall be 11 months starting from execution date.</li>
-          <li><strong>RENT & DEPOSIT:</strong> The Lessee agrees to pay the monthly rent and security deposit as agreed.</li>
-          <li><strong>MAINTENANCE:</strong> Lessee agrees to keep the premises in good condition and pay utility bills.</li>
-        </ol>
-        <div style="margin-top: 50px; display: flex; justify-content: space-between;">
-          <div>_______________________<br><strong>LESSOR / LANDLORD SIGNATURE</strong></div>
-          <div>_______________________<br><strong>LESSEE / TENANT SIGNATURE</strong></div>
-        </div>
+function getFallbackAgreementHtml() {
+  return `
+    <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000000; padding: 20px; background-color: #ffffff;">
+      <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px; color: #000000;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
+      <p style="margin-bottom: 15px; color: #000000;">This Tenancy Agreement Deed is executed between the Party of the First Part (Landlord / Lessor) and the Party of the Second Part (Tenant / Lessee).</p>
+      <h3 style="font-weight: bold; margin-top: 15px; color: #000000;">TERMS AND CONDITIONS:</h3>
+      <ol style="margin-left: 20px; color: #000000;">
+        <li style="margin-bottom: 8px;"><strong>PREMISES:</strong> The Lessor grants on lease the residential premises to the Lessee for lawful accommodation.</li>
+        <li style="margin-bottom: 8px;"><strong>TERM:</strong> The tenure of this lease shall be 11 months starting from execution date.</li>
+        <li style="margin-bottom: 8px;"><strong>RENT & DEPOSIT:</strong> The Lessee agrees to pay the monthly rent and security deposit as agreed.</li>
+        <li style="margin-bottom: 8px;"><strong>MAINTENANCE:</strong> Lessee agrees to keep the premises in good condition and pay utility bills.</li>
+      </ol>
+      <div style="margin-top: 50px; display: flex; justify-content: space-between; color: #000000;">
+        <div>_______________________<br><strong>LESSOR / LANDLORD SIGNATURE</strong></div>
+        <div>_______________________<br><strong>LESSEE / TENANT SIGNATURE</strong></div>
       </div>
-    `;
+    </div>
+  `;
+}
+
+// Master Print Trigger using Top-Level Print Portal (Guarantees zero blank pages)
+function triggerPrint() {
+  if (typeof syncFormToCanvas === 'function') {
+    syncFormToCanvas();
+  }
+
+  let docElement = document.getElementById('printable-legal-document') || document.getElementById('download-print-area');
+  let docHtml = docElement ? docElement.innerHTML : localStorage.getItem('generatedDocumentHtml');
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    docHtml = getFallbackAgreementHtml();
+  }
+
+  const existingRoot = document.getElementById('print-mount-root');
+  if (existingRoot) existingRoot.remove();
+
+  const printRoot = document.createElement('div');
+  printRoot.id = 'print-mount-root';
+  printRoot.innerHTML = docHtml;
+
+  printRoot.querySelectorAll('*').forEach(el => {
+    el.style.color = '#000000';
+    if (el.tagName === 'TABLE' || el.tagName === 'DIV' || el.tagName === 'SECTION') {
+      el.style.borderColor = '#000000';
+    }
+  });
+
+  document.body.appendChild(printRoot);
+
+  window.print();
+
+  setTimeout(() => {
+    if (document.body.contains(printRoot)) {
+      document.body.removeChild(printRoot);
+    }
+  }, 1000);
+}
+
+function downloadPDFViaHtml2Pdf() {
+  if (typeof syncFormToCanvas === 'function') {
+    syncFormToCanvas();
+  }
+
+  let docElement = document.getElementById('printable-legal-document') || document.getElementById('download-print-area');
+  let docHtml = docElement ? docElement.innerHTML : localStorage.getItem('generatedDocumentHtml');
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    docHtml = getFallbackAgreementHtml();
   }
 
   // Create temporary offscreen container for html2canvas rendering
@@ -1581,8 +1615,8 @@ function downloadPDFViaHtml2Pdf() {
   tempContainer.style.backgroundColor = '#ffffff';
   tempContainer.style.color = '#000000';
   tempContainer.style.fontFamily = "'Times New Roman', Times, serif";
-  tempContainer.style.fontSize = '12pt';
-  tempContainer.style.lineHeight = '1.6';
+  tempContainer.style.fontSize = '11pt';
+  tempContainer.style.lineHeight = '1.5';
   tempContainer.style.padding = '25px';
   tempContainer.style.boxSizing = 'border-box';
   tempContainer.style.zIndex = '-9999';
@@ -1623,17 +1657,17 @@ function downloadPDFViaHtml2Pdf() {
         document.body.removeChild(tempContainer);
       }
     }).catch(err => {
-      console.warn('html2pdf fallback to print dialog:', err);
+      console.warn('html2pdf fallback to triggerPrint:', err);
       if (document.body.contains(tempContainer)) {
         document.body.removeChild(tempContainer);
       }
-      window.print();
+      triggerPrint();
     });
   } else {
     if (document.body.contains(tempContainer)) {
       document.body.removeChild(tempContainer);
     }
-    window.print();
+    triggerPrint();
   }
 }
 
@@ -1701,7 +1735,6 @@ function initDownloadPage() {
   const btnForcePrint = document.getElementById('btn-force-print');
   const printArea = document.getElementById('download-print-area');
 
-  // Load stored document HTML from local storage
   let storedHtml = localStorage.getItem('generatedDocumentHtml');
   const storedJuris = localStorage.getItem('generatedDocumentJurisdiction');
 
@@ -1712,28 +1745,12 @@ function initDownloadPage() {
     }
   }
 
+  if (!storedHtml || storedHtml.trim().length === 0) {
+    storedHtml = getFallbackAgreementHtml();
+  }
+
   if (printArea) {
-    if (storedHtml && storedHtml.trim().length > 0) {
-      printArea.innerHTML = storedHtml;
-    } else {
-      printArea.innerHTML = `
-        <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000; padding: 20px;">
-          <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
-          <p style="margin-bottom: 15px;">This Tenancy Agreement Deed is executed between the Party of the First Part (Landlord / Lessor) and the Party of the Second Part (Tenant / Lessee).</p>
-          <h3 style="font-weight: bold; margin-top: 15px;">TERMS AND CONDITIONS:</h3>
-          <ol style="margin-left: 20px;">
-            <li><strong>PREMISES:</strong> The Lessor grants on lease the residential premises to the Lessee for lawful accommodation.</li>
-            <li><strong>TERM:</strong> The tenure of this lease shall be 11 months starting from execution date.</li>
-            <li><strong>RENT & DEPOSIT:</strong> The Lessee agrees to pay the monthly rent and security deposit as agreed.</li>
-            <li><strong>MAINTENANCE:</strong> Lessee agrees to keep the premises in good condition and pay utility bills.</li>
-          </ol>
-          <div style="margin-top: 50px; display: flex; justify-content: space-between;">
-            <div>_______________________<br><strong>LESSOR / LANDLORD SIGNATURE</strong></div>
-            <div>_______________________<br><strong>LESSEE / TENANT SIGNATURE</strong></div>
-          </div>
-        </div>
-      `;
-    }
+    printArea.innerHTML = storedHtml;
   }
 
   if (storedJuris) {
@@ -1790,7 +1807,7 @@ function initDownloadPage() {
       setTimeout(() => { isActionActive = false; }, 1000);
 
       clearInterval(timer);
-      window.print();
+      triggerPrint();
     });
   }
 }
