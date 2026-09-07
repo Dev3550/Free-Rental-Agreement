@@ -1733,7 +1733,6 @@ function initDownloadPage() {
   const countdownStatus = document.getElementById('countdown-status');
   const btnForceDownload = document.getElementById('btn-force-download');
   const btnForcePrint = document.getElementById('btn-force-print');
-  const printArea = document.getElementById('download-print-area');
 
   let storedHtml = localStorage.getItem('generatedDocumentHtml');
   const storedJuris = localStorage.getItem('generatedDocumentJurisdiction');
@@ -1749,9 +1748,23 @@ function initDownloadPage() {
     storedHtml = getFallbackAgreementHtml();
   }
 
-  if (printArea) {
-    printArea.innerHTML = storedHtml;
+  // Immediately populate top-level print containers at root body level
+  let printArea = document.getElementById('download-print-area');
+  if (!printArea) {
+    printArea = document.createElement('div');
+    printArea.id = 'download-print-area';
+    printArea.className = 'print-only-container';
+    document.body.appendChild(printArea);
   }
+  printArea.innerHTML = storedHtml;
+
+  let printRoot = document.getElementById('print-mount-root');
+  if (!printRoot) {
+    printRoot = document.createElement('div');
+    printRoot.id = 'print-mount-root';
+    document.body.appendChild(printRoot);
+  }
+  printRoot.innerHTML = storedHtml;
 
   if (storedJuris) {
     const jurisVal = document.getElementById('doc-juris-val');

@@ -41,12 +41,13 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Screen Mode Hide for Print Area */
+/* Screen Mode Hide for Print Containers */
+.print-only-container,
 #download-print-area {
   display: none;
 }
 
-/* Print Styles for Legal Document Export - Zero Blank Pages Print Portal */
+/* Print Styles for Legal Document Export - Zero Blank Pages */
 @media print {
   @page {
     size: A4 portrait;
@@ -63,13 +64,15 @@
     color: #000000 !important;
   }
 
-  /* 1. Hide all top-level children of body EXCEPT #print-mount-root */
-  body > *:not(#print-mount-root) {
+  /* 1. Hide all top-level children of body EXCEPT printable containers */
+  body > *:not(#download-print-area):not(#print-mount-root):not(#printable-legal-document) {
     display: none !important;
   }
 
-  /* 2. Top-Level Print Portal Container */
-  #print-mount-root {
+  /* 2. Top-Level Print Containers */
+  #download-print-area,
+  #print-mount-root,
+  #printable-legal-document {
     display: block !important;
     visibility: visible !important;
     position: static !important;
@@ -90,7 +93,9 @@
     height: auto !important;
   }
 
-  #print-mount-root * {
+  #download-print-area *,
+  #print-mount-root *,
+  #printable-legal-document * {
     visibility: visible !important;
     color: #000000 !important;
     background: transparent !important;
@@ -98,16 +103,10 @@
     min-height: auto !important;
   }
 
-  #print-mount-root div, #print-mount-root p, #print-mount-root span, #print-mount-root li {
+  #download-print-area div, #download-print-area p, #download-print-area span, #download-print-area li,
+  #print-mount-root div, #print-mount-root p, #print-mount-root span, #print-mount-root li,
+  #printable-legal-document div, #printable-legal-document p, #printable-legal-document span, #printable-legal-document li {
     border-color: #000000 !important;
-  }
-
-  /* Fallback selectors for legacy print triggers */
-  #printable-legal-document, #download-print-area {
-    display: block !important;
-    visibility: visible !important;
-    color: #000000 !important;
-    background: #ffffff !important;
   }
 
   /* 3. Prevent trailing extra pages & orphan headings */

@@ -91,9 +91,6 @@ const pageDesc = "Your state-compliant legal contract PDF is being generated. Pl
 
       </div>
 
-      <!-- Hidden Printable Container -->
-      <div id="download-print-area"></div>
-
       <!-- Recommended Legal Forms Matrix for Extra Engagement & Pageviews -->
       <div class="mt-12">
         <h3 class="text-xl font-bold text-[#0f172a] mb-6">Need Other Free Legal Documents?</h3>
@@ -125,6 +122,9 @@ const pageDesc = "Your state-compliant legal contract PDF is being generated. Pl
   </main>
 
   <Footer />
+
+  <!-- TOP-LEVEL PRINT CONTAINER (Direct child of body, never hidden by main) -->
+  <div id="download-print-area" class="print-only-container"></div>
 
   <script src="../scripts/app.js"></script>
 </Layout>
