@@ -27,6 +27,7 @@ const appState = {
   activeStep: 1,
   activeSigner: 'landlord',
   sigMode: 'draw',
+  docLang: 'EN',
   customClauses: [],
   signatures: { landlord: null, tenant: null }
 };
@@ -738,6 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobilePreviewModal();
   initPrintAndCopy();
   initDownloadPage();
+  initCalculator();
 
   updateCountryContext('IN');
   updateCategoryContext('residential');
@@ -1105,6 +1107,7 @@ function initFormBinding() {
 
 function syncFormToCanvas() {
   const config = countryConfigs[appState.country] || countryConfigs['IN'];
+  const schemaObj = categorySchemas[appState.category] || categorySchemas['residential'];
 
   const landlordName = document.getElementById('landlord_name')?.value || config.sampleLandlord;
   const landlordId = document.getElementById('landlord_id')?.value || config.defaultLandlordId;
@@ -1137,7 +1140,7 @@ function syncFormToCanvas() {
 
   const isHindi = appState.docLang === 'HI';
 
-  const titleText = isHindi ? 'किरायानामा (आवासीय किराया विलेख)' : (schema.title || 'RESIDENTIAL TENANCY AGREEMENT DEED');
+  const titleText = isHindi ? 'किरायानामा (आवासीय किराया विलेख)' : (schemaObj.docTitle || 'RESIDENTIAL TENANCY AGREEMENT DEED');
   const subText = isHindi ? `भारत सरकार एवं ${stateJur} राज्य नियमों के अधीन निष्पादित` : `Executed under the Laws & Regulations of ${stateJur}`;
   const party1Title = isHindi ? 'प्रथम पक्ष (मकान मालिक / LESSOR / LANDLORD):' : 'PARTY OF THE FIRST PART (LESSOR / LANDLORD):';
   const party2Title = isHindi ? 'द्वितीय पक्ष (किराएदार / LESSEE / TENANT):' : 'PARTY OF THE SECOND PART (LESSEE / TENANT):';
@@ -1175,7 +1178,6 @@ function syncFormToCanvas() {
   setText('doc-notice-period', noticeDays);
   setText('doc-maintenance-clause', mainSplit);
 
-  const schemaObj = categorySchemas[appState.category] || categorySchemas['residential'];
   const workType = document.getElementById('work_type_input')?.value || schemaObj.defaultWorkType || 'Residential Tenancy / Lease Agreement';
   const workScope = document.getElementById('work_scope_description')?.value || schemaObj.defaultWorkScope || 'Leasing of residential premises for personal family accommodation along with fixture & fittings as per agreed terms.';
 
@@ -1785,6 +1787,30 @@ function updateLanguageTexts(lang) {
   const btnPrint = document.getElementById('btn-print-agreement');
   if (btnPrint && dict.printBtnText) {
     btnPrint.querySelector('span:last-child').textContent = dict.printBtnText;
+  }
+}
+
+// Document Paper Deed Language Switcher (English / Hindi)
+function initDocLanguageSwitcher() {
+  const btnEn = document.getElementById('btn-doc-lang-en');
+  const btnHi = document.getElementById('btn-doc-lang-hi');
+
+  if (btnEn) {
+    btnEn.addEventListener('click', () => {
+      appState.docLang = 'EN';
+      btnEn.className = 'px-2.5 py-1 text-[11px] font-bold rounded bg-white text-black transition-all';
+      if (btnHi) btnHi.className = 'px-2.5 py-1 text-[11px] font-medium rounded text-[#888888] hover:text-white transition-all';
+      syncFormToCanvas();
+    });
+  }
+
+  if (btnHi) {
+    btnHi.addEventListener('click', () => {
+      appState.docLang = 'HI';
+      btnHi.className = 'px-2.5 py-1 text-[11px] font-bold rounded bg-[#0070f3] text-white transition-all';
+      if (btnEn) btnEn.className = 'px-2.5 py-1 text-[11px] font-medium rounded text-[#888888] hover:text-white transition-all';
+      syncFormToCanvas();
+    });
   }
 }
 
