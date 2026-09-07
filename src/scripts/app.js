@@ -692,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategorySwitcher();
   initCountrySwitcher();
   initLanguageSwitcher();
+  initDocLanguageSwitcher();
   initFormBinding();
   initWizardTabs();
   initSampleData();
@@ -1083,6 +1084,20 @@ function syncFormToCanvas() {
   const paintingChecked = document.getElementById('clause_painting')?.checked;
   const sublettingChecked = document.getElementById('clause_subletting')?.checked;
 
+  const isHindi = appState.docLang === 'HI';
+
+  const titleText = isHindi ? 'किरायानामा (आवासीय किराया विलेख)' : (schema.title || 'RESIDENTIAL TENANCY AGREEMENT DEED');
+  const subText = isHindi ? `भारत सरकार एवं ${stateJur} राज्य नियमों के अधीन निष्पादित` : `Executed under the Laws & Regulations of ${stateJur}`;
+  const party1Title = isHindi ? 'प्रथम पक्ष (मकान मालिक / LESSOR / LANDLORD):' : 'PARTY OF THE FIRST PART (LESSOR / LANDLORD):';
+  const party2Title = isHindi ? 'द्वितीय पक्ष (किराएदार / LESSEE / TENANT):' : 'PARTY OF THE SECOND PART (LESSEE / TENANT):';
+  const scheduleTitle = isHindi ? 'पट्टे पर दी गई संपत्ति का विवरण (SCHEDULE PROPERTY PREMISES):' : 'SCHEDULE PROPERTY PREMISES / WORK SITE LOCATION:';
+
+  setText('canvas-doc-title', titleText);
+  setText('canvas-doc-subtitle', subText);
+  setText('canvas-party-1-title', party1Title);
+  setText('canvas-party-2-title', party2Title);
+  setText('canvas-schedule-header', scheduleTitle);
+
   setText('doc-landlord-name', landlordName);
   setText('doc-landlord-id', landlordId);
   setText('doc-landlord-address', landlordAddress);
@@ -1109,9 +1124,9 @@ function syncFormToCanvas() {
   setText('doc-notice-period', noticeDays);
   setText('doc-maintenance-clause', mainSplit);
 
-  const schema = categorySchemas[appState.category] || categorySchemas['residential'];
-  const workType = document.getElementById('work_type_input')?.value || schema.defaultWorkType || 'Residential Tenancy / Lease Agreement';
-  const workScope = document.getElementById('work_scope_description')?.value || schema.defaultWorkScope || 'Leasing of residential premises for personal family accommodation along with fixture & fittings as per agreed terms.';
+  const schemaObj = categorySchemas[appState.category] || categorySchemas['residential'];
+  const workType = document.getElementById('work_type_input')?.value || schemaObj.defaultWorkType || 'Residential Tenancy / Lease Agreement';
+  const workScope = document.getElementById('work_scope_description')?.value || schemaObj.defaultWorkScope || 'Leasing of residential premises for personal family accommodation along with fixture & fittings as per agreed terms.';
 
   setText('doc-work-type-title', workType);
   setText('doc-work-scope-detail', workScope);
@@ -1593,6 +1608,24 @@ function triggerPrint() {
   }, 1000);
 }
 
+function forceDirectFileDownload(blob, filename) {
+  const blobUrl = URL.createObjectURL(blob);
+  const tempLink = document.createElement('a');
+  tempLink.style.display = 'none';
+  tempLink.href = blobUrl;
+  tempLink.download = filename;
+
+  document.body.appendChild(tempLink);
+  tempLink.click();
+
+  setTimeout(() => {
+    if (document.body.contains(tempLink)) {
+      document.body.removeChild(tempLink);
+    }
+    URL.revokeObjectURL(blobUrl);
+  }, 1000);
+}
+
 function downloadPDFViaHtml2Pdf() {
   if (typeof syncFormToCanvas === 'function') {
     syncFormToCanvas();
@@ -1615,8 +1648,8 @@ function downloadPDFViaHtml2Pdf() {
   tempContainer.style.backgroundColor = '#ffffff';
   tempContainer.style.color = '#000000';
   tempContainer.style.fontFamily = "'Times New Roman', Times, serif";
-  tempContainer.style.fontSize = '11pt';
-  tempContainer.style.lineHeight = '1.5';
+  tempContainer.style.fontSize = '12pt';
+  tempContainer.style.lineHeight = '1.6';
   tempContainer.style.padding = '25px';
   tempContainer.style.boxSizing = 'border-box';
   tempContainer.style.zIndex = '-9999';
@@ -1652,12 +1685,13 @@ function downloadPDFViaHtml2Pdf() {
   };
 
   if (window.html2pdf) {
-    window.html2pdf().set(opt).from(tempContainer).save().then(() => {
+    window.html2pdf().set(opt).from(tempContainer).output('blob').then(blob => {
       if (document.body.contains(tempContainer)) {
         document.body.removeChild(tempContainer);
       }
+      forceDirectFileDownload(blob, cleanFilename);
     }).catch(err => {
-      console.warn('html2pdf fallback to triggerPrint:', err);
+      console.warn('html2pdf blob error, falling back to triggerPrint:', err);
       if (document.body.contains(tempContainer)) {
         document.body.removeChild(tempContainer);
       }

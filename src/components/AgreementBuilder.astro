@@ -382,15 +382,34 @@
 
       <!-- RIGHT PANEL: LIVE LEGAL DOCUMENT CANVAS (7 Cols on LG, Hidden on Mobile) -->
       <div class="hidden md:flex lg:col-span-7 flex-col gap-4">
-        
-        <!-- Live Action Bar -->
-        <div class="bg-[#121212] border border-[#262626] rounded-xl p-3 flex items-center justify-between gap-2 no-print">
+        <!-- Live Action Bar with Language Switcher & Export -->
+        <div class="bg-[#121212] border border-[#262626] rounded-xl p-3 flex flex-wrap items-center justify-between gap-2 no-print">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[#50e3c2] animate-ping"></span>
             <span class="text-xs font-mono text-[#ededed]">LIVE LEGAL CANVAS</span>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <!-- India Document Language Selector Toggle -->
+            <div class="flex items-center gap-1 bg-[#1a1a1a] p-1 rounded-lg border border-[#262626]" id="doc-lang-toggle-box">
+              <button 
+                type="button" 
+                id="btn-doc-lang-en" 
+                class="px-2.5 py-1 text-[11px] font-bold rounded bg-white text-black transition-all"
+                title="Switch document text to English"
+              >
+                🇬🇧 English
+              </button>
+              <button 
+                type="button" 
+                id="btn-doc-lang-hi" 
+                class="px-2.5 py-1 text-[11px] font-medium rounded text-[#888888] hover:text-white transition-all"
+                title="Switch document text to Hindi (हिंदी किरायानामा)"
+              >
+                🇮🇳 हिंदी (Hindi)
+              </button>
+            </div>
+
             <button 
               id="btn-copy-agreement" 
               type="button" 
@@ -412,27 +431,20 @@
         </div>
 
         <!-- Document Paper Canvas with Large Diagonal DRAFT Watermark -->
-        <div class="bg-white text-black p-8 sm:p-14 rounded-xl shadow-2xl border border-gray-300 font-serif text-sm leading-relaxed relative min-h-[900px] overflow-hidden" id="printable-legal-document">
+        <div class="bg-white text-black p-8 sm:p-14 rounded-xl shadow-2xl border border-gray-300 font-serif text-base sm:text-lg leading-relaxed relative min-h-[900px] overflow-hidden" id="printable-legal-document">
           
           <!-- ELEGANT LARGE DIAGONAL DRAFT WATERMARK -->
-          <div class="pointer-events-none select-none absolute inset-0 flex items-center justify-center z-0 opacity-[0.06] text-gray-900 font-bold font-mono tracking-widest text-8xl sm:text-9xl rotate-[-35deg] uppercase">
+          <div class="pointer-events-none select-none absolute inset-0 flex items-center justify-center z-0 opacity-[0.05] text-gray-900 font-bold font-mono tracking-widest text-8xl sm:text-9xl rotate-[-35deg] uppercase">
             DRAFT
           </div>
 
           <div class="relative z-10">
-            <!-- Stamp Paper Header Placeholder -->
-            <div class="border-2 border-dashed border-gray-400 p-4 text-center rounded mb-8 bg-gray-50 no-print" id="stamp-paper-box">
-              <div class="font-mono text-xs text-gray-500 uppercase tracking-widest" id="canvas-stamp-top-tag">[ NON-JUDICIAL STAMP PAPER PLACEHOLDER ]</div>
-              <div class="font-semibold text-sm text-gray-800 mt-1" id="canvas-stamp-header-text">RECOMMENDED STAMP VALUE: ₹500 / E-STAMPING DEED</div>
-              <div class="text-[11px] text-gray-500 mt-0.5" id="canvas-stamp-sub-text">Attach Non-Judicial Stamp Paper or E-Stamp Certificate Here</div>
-            </div>
-
-            <!-- Document Title -->
+            <!-- Document Title (No Stamp Paper Placeholder Box) -->
             <div class="text-center mb-8">
-              <h1 class="font-bold text-xl uppercase tracking-wider text-black underline underline-offset-4" id="canvas-doc-title">
+              <h1 class="font-bold text-2xl sm:text-3xl uppercase tracking-wider text-black underline underline-offset-4" id="canvas-doc-title">
                 RESIDENTIAL TENANCY AGREEMENT DEED
               </h1>
-              <p class="text-xs italic text-gray-600 mt-1" id="canvas-doc-subtitle">
+              <p class="text-sm italic text-gray-700 mt-1.5" id="canvas-doc-subtitle">
                 Executed under the Laws & Regulations of <span id="canvas-jurisdiction-name" class="font-semibold">Maharashtra</span>
               </p>
             </div>
