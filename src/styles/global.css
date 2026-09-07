@@ -48,6 +48,16 @@
 
 /* Print Styles for Legal Document Export */
 @media print {
+  html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
   /* Hide all website UI, headers, footers, and ad slots during print */
   body * {
     visibility: hidden !important;
@@ -57,24 +67,44 @@
   #printable-legal-document, #printable-legal-document *,
   #download-print-area, #download-print-area * {
     visibility: visible !important;
+    min-height: auto !important;
+    height: auto !important;
   }
 
   #printable-legal-document, #download-print-area {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+    position: static !important;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 15mm 20mm !important;
+    padding: 0 !important;
     background: #ffffff !important;
     color: #000000 !important;
     font-family: 'Times New Roman', Times, serif !important;
-    font-size: 11pt !important;
-    line-height: 1.6 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.5 !important;
     box-shadow: none !important;
     border: none !important;
     display: block !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Prevent trailing extra pages & orphan headings */
+  #printable-legal-document h1, #printable-legal-document h2, #printable-legal-document h3,
+  #download-print-area h1, #download-print-area h2, #download-print-area h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  #printable-legal-document p, #printable-legal-document li,
+  #download-print-area p, #download-print-area li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .signature-section-print, #stamp-paper-box, #canvas-work-scope-box {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   .no-print {
@@ -82,8 +112,8 @@
   }
 
   @page {
-    size: A4;
-    margin: 15mm;
+    size: A4 portrait;
+    margin: 10mm 15mm;
   }
 }
 

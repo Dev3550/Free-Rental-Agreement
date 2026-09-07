@@ -698,6 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initZipLookup();
   initCustomClauseManager();
   initSignatureModal();
+  initMobilePreviewModal();
   initPrintAndCopy();
   initDownloadPage();
 
@@ -1182,8 +1183,8 @@ function initWizardTabs() {
     if (prevBtn) prevBtn.classList.toggle('hidden', stepNum === 1);
     if (nextBtn) {
       if (stepNum === 4) {
-        nextBtn.textContent = 'Review & Sign Document ✓';
-        nextBtn.className = 'ml-auto text-xs font-semibold text-white bg-[#0070f3] hover:bg-[#0060d0] px-4 py-2 rounded-lg transition-all';
+        nextBtn.textContent = 'Preview Agreement & Download 👁️';
+        nextBtn.className = 'ml-auto text-xs font-bold text-white bg-[#0070f3] hover:bg-[#0060d0] px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-1.5 active:scale-95';
       } else {
         nextBtn.textContent = 'Next Step →';
         nextBtn.className = 'ml-auto text-xs font-semibold text-black bg-white hover:bg-[#e0e0e0] px-4 py-2 rounded-lg transition-all';
@@ -1203,7 +1204,7 @@ function initWizardTabs() {
       if (appState.activeStep < 4) {
         goToStep(appState.activeStep + 1);
       } else {
-        document.getElementById('printable-legal-document')?.scrollIntoView({ behavior: 'smooth' });
+        openPreviewModal();
       }
     });
   }
@@ -1493,35 +1494,74 @@ function updateLanguageTexts(lang) {
   }
 }
 
+// Helper Functions for Document Preview Modal & Save/Redirect
+function openPreviewModal() {
+  if (typeof syncFormToCanvas === 'function') {
+    syncFormToCanvas();
+  }
+  const sourceDoc = document.getElementById('printable-legal-document');
+  const targetPaper = document.getElementById('modal-preview-doc-paper');
+  const modal = document.getElementById('mobile-preview-modal');
+
+  if (sourceDoc && targetPaper) {
+    targetPaper.innerHTML = sourceDoc.innerHTML;
+  }
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closePreviewModal() {
+  const modal = document.getElementById('mobile-preview-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+}
+
+function saveAndRedirectToDownload() {
+  if (typeof syncFormToCanvas === 'function') {
+    syncFormToCanvas();
+  }
+
+  const docElement = document.getElementById('printable-legal-document');
+  if (docElement) {
+    localStorage.setItem('generatedDocumentHtml', docElement.innerHTML);
+    localStorage.setItem('generatedDocumentTitle', document.getElementById('canvas-doc-title')?.innerText || 'RESIDENTIAL LEASE AGREEMENT DEED');
+    localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('canvas-jurisdiction-name')?.innerText || 'State Jurisdiction');
+  }
+  
+  window.location.href = '/download';
+}
+
+function initMobilePreviewModal() {
+  const btnClose = document.getElementById('btn-close-preview-modal');
+  const btnBack = document.getElementById('btn-back-to-edit');
+  const btnConfirm = document.getElementById('btn-confirm-download-pdf');
+
+  if (btnClose) btnClose.addEventListener('click', closePreviewModal);
+  if (btnBack) btnBack.addEventListener('click', closePreviewModal);
+  if (btnConfirm) {
+    btnConfirm.addEventListener('click', () => {
+      closePreviewModal();
+      saveAndRedirectToDownload();
+    });
+  }
+}
+
 // 12. Print & Copy Text Engine (Redirects to /download)
 function initPrintAndCopy() {
   const btnPrint = document.getElementById('btn-print-agreement');
   const btnCopy = document.getElementById('btn-copy-agreement');
   const btnMobileDownload = document.getElementById('btn-mobile-download-pdf');
 
-  function saveAndRedirectToDownload() {
-    // 1. Force sync all form input values into the document DOM tree first
-    if (typeof syncFormToCanvas === 'function') {
-      syncFormToCanvas();
-    }
-
-    const docElement = document.getElementById('printable-legal-document');
-    if (docElement) {
-      localStorage.setItem('generatedDocumentHtml', docElement.innerHTML);
-      localStorage.setItem('generatedDocumentTitle', document.getElementById('canvas-doc-title')?.innerText || 'RESIDENTIAL LEASE AGREEMENT DEED');
-      localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('canvas-jurisdiction-name')?.innerText || 'State Jurisdiction');
-    }
-    
-    // Redirect to dedicated Download Page for AdSense monetization & auto-download stream
-    window.location.href = '/download';
-  }
-
   if (btnPrint) {
-    btnPrint.addEventListener('click', saveAndRedirectToDownload);
+    btnPrint.addEventListener('click', openPreviewModal);
   }
 
   if (btnMobileDownload) {
-    btnMobileDownload.addEventListener('click', saveAndRedirectToDownload);
+    btnMobileDownload.addEventListener('click', openPreviewModal);
   }
 
   if (btnCopy) {
