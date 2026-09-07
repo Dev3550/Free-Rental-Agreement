@@ -1497,23 +1497,38 @@ function updateLanguageTexts(lang) {
 function initPrintAndCopy() {
   const btnPrint = document.getElementById('btn-print-agreement');
   const btnCopy = document.getElementById('btn-copy-agreement');
+  const btnMobileDownload = document.getElementById('btn-mobile-download-pdf');
+
+  function saveAndRedirectToDownload() {
+    // 1. Force sync all form input values into the document DOM tree first
+    if (typeof syncFormToCanvas === 'function') {
+      syncFormToCanvas();
+    }
+
+    const docElement = document.getElementById('printable-legal-document');
+    if (docElement) {
+      localStorage.setItem('generatedDocumentHtml', docElement.innerHTML);
+      localStorage.setItem('generatedDocumentTitle', document.getElementById('canvas-doc-title')?.innerText || 'RESIDENTIAL LEASE AGREEMENT DEED');
+      localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('canvas-jurisdiction-name')?.innerText || 'State Jurisdiction');
+    }
+    
+    // Redirect to dedicated Download Page for AdSense monetization & auto-download stream
+    window.location.href = '/download';
+  }
 
   if (btnPrint) {
-    btnPrint.addEventListener('click', () => {
-      const docElement = document.getElementById('printable-legal-document');
-      if (docElement) {
-        localStorage.setItem('generatedDocumentHtml', docElement.innerHTML);
-        localStorage.setItem('generatedDocumentTitle', document.getElementById('doc-title-header')?.innerText || 'RESIDENTIAL LEASE AGREEMENT');
-        localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('doc-jurisdiction-name')?.innerText || 'State Jurisdiction');
-      }
-      
-      // Redirect to dedicated Download Page for AdSense monetization & auto-download stream
-      window.location.href = '/download';
-    });
+    btnPrint.addEventListener('click', saveAndRedirectToDownload);
+  }
+
+  if (btnMobileDownload) {
+    btnMobileDownload.addEventListener('click', saveAndRedirectToDownload);
   }
 
   if (btnCopy) {
     btnCopy.addEventListener('click', () => {
+      if (typeof syncFormToCanvas === 'function') {
+        syncFormToCanvas();
+      }
       const docElement = document.getElementById('printable-legal-document');
       if (docElement) {
         navigator.clipboard.writeText(docElement.innerText).then(() => {
@@ -1544,13 +1559,43 @@ function initDownloadPage() {
   const btnForcePrint = document.getElementById('btn-force-print');
   const printArea = document.getElementById('download-print-area');
 
-  // Load stored document HTML
-  const storedHtml = localStorage.getItem('generatedDocumentHtml');
+  // Load stored document HTML from local storage
+  let storedHtml = localStorage.getItem('generatedDocumentHtml');
   const storedJuris = localStorage.getItem('generatedDocumentJurisdiction');
 
-  if (storedHtml && printArea) {
-    printArea.innerHTML = storedHtml;
+  // FALLBACK: If storedHtml is empty, check if DOM has printable-legal-document or construct clean fallback deed
+  if (!storedHtml || storedHtml.trim().length === 0) {
+    const docElement = document.getElementById('printable-legal-document');
+    if (docElement) {
+      storedHtml = docElement.innerHTML;
+    }
   }
+
+  if (printArea) {
+    if (storedHtml && storedHtml.trim().length > 0) {
+      printArea.innerHTML = storedHtml;
+    } else {
+      // Complete legal agreement fallback so it NEVER EVER prints blank
+      printArea.innerHTML = `
+        <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000; padding: 20px;">
+          <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
+          <p style="margin-bottom: 15px;">This Tenancy Agreement Deed is executed between the Party of the First Part (Landlord / Lessor) and the Party of the Second Part (Tenant / Lessee).</p>
+          <h3 style="font-weight: bold; margin-top: 15px;">TERMS AND CONDITIONS:</h3>
+          <ol style="margin-left: 20px;">
+            <li><strong>PREMISES:</strong> The Lessor grants on lease the residential premises to the Lessee for lawful accommodation.</li>
+            <li><strong>TERM:</strong> The tenure of this lease shall be 11 months starting from execution date.</li>
+            <li><strong>RENT & DEPOSIT:</strong> The Lessee agrees to pay the monthly rent and security deposit as agreed.</li>
+            <li><strong>MAINTENANCE:</strong> Lessee agrees to keep the premises in good condition and pay utility bills.</li>
+          </ol>
+          <div style="margin-top: 50px; display: flex; justify-content: space-between;">
+            <div>_______________________<br><strong>LESSOR / LANDLORD SIGNATURE</strong></div>
+            <div>_______________________<br><strong>LESSEE / TENANT SIGNATURE</strong></div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
   if (storedJuris) {
     const jurisVal = document.getElementById('doc-juris-val');
     if (jurisVal) jurisVal.textContent = storedJuris;
@@ -1567,11 +1612,8 @@ function initDownloadPage() {
       countdownStatus.textContent = '✓ Download initiated! Printing / Saving document PDF...';
     }
 
-    if (printArea && printArea.innerHTML.trim().length > 0) {
-      window.print();
-    } else {
-      window.print();
-    }
+    // Trigger Print Dialog
+    window.print();
   }
 
   const timer = setInterval(() => {
@@ -1597,7 +1639,7 @@ function initDownloadPage() {
   if (btnForcePrint) {
     btnForcePrint.addEventListener('click', () => {
       clearInterval(timer);
-      window.print();
+      triggerDownloadAction();
     });
   }
 }

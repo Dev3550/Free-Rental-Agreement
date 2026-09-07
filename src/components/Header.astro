@@ -60,27 +60,27 @@
     </nav>
 
     <!-- Right Controls: Country, Language & Mobile Hamburger -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
       
       <!-- Language Selector -->
-      <div class="relative" id="lang-switcher-wrapper">
+      <div class="relative shrink-0" id="lang-switcher-wrapper">
         <label for="global-lang-select" class="sr-only">Select Language</label>
         <select 
           id="global-lang-select" 
-          class="appearance-none bg-[#f1f5f9] hover:bg-[#e2e8f0] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-full px-2.5 py-1.5 pr-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1e40af] transition-colors shadow-sm font-semibold"
+          class="appearance-none bg-[#f1f5f9] hover:bg-[#e2e8f0] text-xs font-mono text-[#0f172a] border border-[#cbd5e1] rounded-full px-2 py-1.5 pr-5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1e40af] transition-colors shadow-sm font-semibold"
           aria-label="Select Language"
         >
           <option value="EN" selected>🌐 EN</option>
           <option value="ES">🇪🇸 ES</option>
           <option value="HI">🇮🇳 HI</option>
         </select>
-        <div class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[#64748b]">
+        <div class="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-[#64748b]">
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </div>
       </div>
 
       <!-- Country Selector -->
-      <div class="relative hidden sm:block" id="country-switcher-wrapper">
+      <div class="relative hidden sm:block shrink-0" id="country-switcher-wrapper">
         <label for="global-country-select" class="sr-only">Select Country</label>
         <select 
           id="global-country-select" 
@@ -105,7 +105,7 @@
       <!-- Primary Build CTA Button -->
       <a 
         href="/builder" 
-        class="inline-flex items-center gap-1.5 text-xs font-bold bg-[#1e40af] text-white hover:bg-[#1d4ed8] px-3.5 py-1.5 rounded-full transition-all duration-150 shadow-md active:scale-95 focus-visible:outline-none"
+        class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold bg-[#1e40af] text-white hover:bg-[#1d4ed8] px-3.5 py-1.5 rounded-full transition-all duration-150 shadow-md active:scale-95 focus-visible:outline-none shrink-0"
         id="header-create-agreement-btn"
       >
         <span>Build Draft</span>
@@ -116,7 +116,7 @@
       <button 
         type="button" 
         id="mobile-menu-toggle"
-        class="lg:hidden p-2 rounded-lg text-[#334155] hover:bg-[#f1f5f9] focus:outline-none"
+        class="lg:hidden p-2 rounded-lg text-[#0f172a] hover:bg-[#f1f5f9] border border-[#cbd5e1] sm:border-transparent focus:outline-none shrink-0"
         aria-label="Toggle Navigation Menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
