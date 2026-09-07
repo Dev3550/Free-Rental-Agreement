@@ -46,8 +46,13 @@
   display: none;
 }
 
-/* Print Styles for Legal Document Export */
+/* Print Styles for Legal Document Export - Zero Extra Blank Pages */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 15mm;
+  }
+
   html, body {
     height: auto !important;
     min-height: 0 !important;
@@ -58,21 +63,49 @@
     color: #000000 !important;
   }
 
-  /* Hide all website UI, headers, footers, and ad slots during print */
-  body * {
-    visibility: hidden !important;
-  }
-  
-  /* Make printable document containers & children 100% visible */
-  #printable-legal-document, #printable-legal-document *,
-  #download-print-area, #download-print-area * {
-    visibility: visible !important;
-    min-height: auto !important;
-    height: auto !important;
+  /* 1. Completely unmount non-printable layout structure from DOM layout flow */
+  header, footer, nav, aside, iframe, .no-print,
+  #onboarding-modal, #signature-modal, #mobile-preview-modal {
+    display: none !important;
   }
 
+  /* 2. Hide all non-printable main children on /download page */
+  main > *:not(#download-print-area):not(#builder-section) {
+    display: none !important;
+  }
+
+  /* 3. Hide left form builder panel on main builder pages */
+  #builder-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    min-height: 0 !important;
+    height: auto !important;
+    border: none !important;
+  }
+
+  #builder-section .grid > div:not(.lg\:col-span-7) {
+    display: none !important;
+  }
+
+  #builder-section .lg\:col-span-7 > *:not(#printable-legal-document) {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    background: #ffffff !important;
+  }
+
+  /* 4. Force printable legal document containers to be 100% visible & static layout flow */
   #printable-legal-document, #download-print-area {
+    display: block !important;
+    visibility: visible !important;
     position: static !important;
+    float: none !important;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
@@ -84,36 +117,33 @@
     line-height: 1.5 !important;
     box-shadow: none !important;
     border: none !important;
-    display: block !important;
+    border-radius: 0 !important;
     min-height: auto !important;
     height: auto !important;
   }
 
-  /* Prevent trailing extra pages & orphan headings */
+  #printable-legal-document *, #download-print-area * {
+    visibility: visible !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+  }
+
+  /* 5. Prevent trailing extra pages & orphan headings */
   #printable-legal-document h1, #printable-legal-document h2, #printable-legal-document h3,
   #download-print-area h1, #download-print-area h2, #download-print-area h3 {
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 
   #printable-legal-document p, #printable-legal-document li,
   #download-print-area p, #download-print-area li {
-    orphans: 3;
-    widows: 3;
+    orphans: 2;
+    widows: 2;
   }
 
   .signature-section-print, #stamp-paper-box, #canvas-work-scope-box {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  .no-print {
-    display: none !important;
-  }
-
-  @page {
-    size: A4 portrait;
-    margin: 10mm 15mm;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 }
 

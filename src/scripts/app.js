@@ -1535,6 +1535,43 @@ function saveAndRedirectToDownload() {
   window.location.href = '/download';
 }
 
+function downloadPDFViaHtml2Pdf() {
+  const printArea = document.getElementById('download-print-area') || document.getElementById('printable-legal-document');
+  if (!printArea) {
+    window.print();
+    return;
+  }
+
+  const docTitle = localStorage.getItem('generatedDocumentTitle') || 'Legal_Agreement_Deed';
+  const cleanFilename = docTitle.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
+
+  const prevDisplay = printArea.style.display;
+  printArea.style.display = 'block';
+  printArea.style.background = '#ffffff';
+
+  const opt = {
+    margin: [10, 15, 10, 15],
+    filename: cleanFilename,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+
+  if (window.html2pdf) {
+    window.html2pdf().set(opt).from(printArea).save().then(() => {
+      printArea.style.display = prevDisplay;
+    }).catch(err => {
+      console.warn('html2pdf fallback to print dialog:', err);
+      printArea.style.display = prevDisplay;
+      window.print();
+    });
+  } else {
+    printArea.style.display = prevDisplay;
+    window.print();
+  }
+}
+
 function initMobilePreviewModal() {
   const btnClose = document.getElementById('btn-close-preview-modal');
   const btnBack = document.getElementById('btn-back-to-edit');
@@ -1649,11 +1686,10 @@ function initDownloadPage() {
     downloadTriggered = true;
 
     if (countdownStatus) {
-      countdownStatus.textContent = '✓ Download initiated! Printing / Saving document PDF...';
+      countdownStatus.textContent = '✓ Download initiated! Saving PDF document to your device...';
     }
 
-    // Trigger Print Dialog
-    window.print();
+    downloadPDFViaHtml2Pdf();
   }
 
   const timer = setInterval(() => {
@@ -1672,14 +1708,14 @@ function initDownloadPage() {
       clearInterval(timer);
       if (countdownNum) countdownNum.textContent = '0';
       if (countdownProgress) countdownProgress.style.width = '0%';
-      triggerDownloadAction();
+      downloadPDFViaHtml2Pdf();
     });
   }
 
   if (btnForcePrint) {
     btnForcePrint.addEventListener('click', () => {
       clearInterval(timer);
-      triggerDownloadAction();
+      window.print();
     });
   }
 }
