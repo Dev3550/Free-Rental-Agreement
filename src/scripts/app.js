@@ -1536,38 +1536,103 @@ function saveAndRedirectToDownload() {
 }
 
 function downloadPDFViaHtml2Pdf() {
-  const printArea = document.getElementById('download-print-area') || document.getElementById('printable-legal-document');
-  if (!printArea) {
-    window.print();
-    return;
+  let docHtml = localStorage.getItem('generatedDocumentHtml');
+  if (!docHtml || docHtml.trim().length === 0) {
+    const docElement = document.getElementById('printable-legal-document');
+    if (docElement) {
+      docHtml = docElement.innerHTML;
+    }
   }
 
-  const docTitle = localStorage.getItem('generatedDocumentTitle') || 'Legal_Agreement_Deed';
-  const cleanFilename = docTitle.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
+  if (!docHtml || docHtml.trim().length === 0) {
+    const printArea = document.getElementById('download-print-area');
+    if (printArea && printArea.innerHTML.trim().length > 0) {
+      docHtml = printArea.innerHTML;
+    }
+  }
 
-  const prevDisplay = printArea.style.display;
-  printArea.style.display = 'block';
-  printArea.style.background = '#ffffff';
+  if (!docHtml || docHtml.trim().length === 0) {
+    docHtml = `
+      <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000; padding: 20px;">
+        <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
+        <p style="margin-bottom: 15px;">This Tenancy Agreement Deed is executed between the Party of the First Part (Landlord / Lessor) and the Party of the Second Part (Tenant / Lessee).</p>
+        <h3 style="font-weight: bold; margin-top: 15px;">TERMS AND CONDITIONS:</h3>
+        <ol style="margin-left: 20px;">
+          <li><strong>PREMISES:</strong> The Lessor grants on lease the residential premises to the Lessee for lawful accommodation.</li>
+          <li><strong>TERM:</strong> The tenure of this lease shall be 11 months starting from execution date.</li>
+          <li><strong>RENT & DEPOSIT:</strong> The Lessee agrees to pay the monthly rent and security deposit as agreed.</li>
+          <li><strong>MAINTENANCE:</strong> Lessee agrees to keep the premises in good condition and pay utility bills.</li>
+        </ol>
+        <div style="margin-top: 50px; display: flex; justify-content: space-between;">
+          <div>_______________________<br><strong>LESSOR / LANDLORD SIGNATURE</strong></div>
+          <div>_______________________<br><strong>LESSEE / TENANT SIGNATURE</strong></div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Create temporary offscreen container for html2canvas rendering
+  const tempContainer = document.createElement('div');
+  tempContainer.id = 'pdf-export-temp-container';
+  tempContainer.style.position = 'absolute';
+  tempContainer.style.left = '-9999px';
+  tempContainer.style.top = '0';
+  tempContainer.style.width = '800px';
+  tempContainer.style.backgroundColor = '#ffffff';
+  tempContainer.style.color = '#000000';
+  tempContainer.style.fontFamily = "'Times New Roman', Times, serif";
+  tempContainer.style.fontSize = '12pt';
+  tempContainer.style.lineHeight = '1.6';
+  tempContainer.style.padding = '25px';
+  tempContainer.style.boxSizing = 'border-box';
+  tempContainer.style.zIndex = '-9999';
+
+  tempContainer.innerHTML = docHtml;
+
+  // Force pure black text (#000000) on all child elements for canvas capture
+  tempContainer.querySelectorAll('*').forEach(el => {
+    el.style.color = '#000000';
+    if (el.tagName === 'TABLE' || el.tagName === 'DIV' || el.tagName === 'SECTION') {
+      el.style.borderColor = '#000000';
+    }
+  });
+
+  document.body.appendChild(tempContainer);
+
+  const docTitle = localStorage.getItem('generatedDocumentTitle') || 'Residential_Lease_Agreement_Deed';
+  const cleanFilename = docTitle.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
 
   const opt = {
     margin: [10, 15, 10, 15],
     filename: cleanFilename,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#ffffff' },
+    html2canvas: { 
+      scale: 2, 
+      useCORS: true, 
+      letterRendering: true, 
+      backgroundColor: '#ffffff',
+      windowWidth: 800
+    },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
 
   if (window.html2pdf) {
-    window.html2pdf().set(opt).from(printArea).save().then(() => {
-      printArea.style.display = prevDisplay;
+    window.html2pdf().set(opt).from(tempContainer).save().then(() => {
+      if (document.body.contains(tempContainer)) {
+        document.body.removeChild(tempContainer);
+      }
     }).catch(err => {
       console.warn('html2pdf fallback to print dialog:', err);
-      printArea.style.display = prevDisplay;
+      if (document.body.contains(tempContainer)) {
+        document.body.removeChild(tempContainer);
+      }
       window.print();
     });
   } else {
-    printArea.style.display = prevDisplay;
+    if (document.body.contains(tempContainer)) {
+      document.body.removeChild(tempContainer);
+    }
     window.print();
   }
 }
@@ -1640,7 +1705,6 @@ function initDownloadPage() {
   let storedHtml = localStorage.getItem('generatedDocumentHtml');
   const storedJuris = localStorage.getItem('generatedDocumentJurisdiction');
 
-  // FALLBACK: If storedHtml is empty, check if DOM has printable-legal-document or construct clean fallback deed
   if (!storedHtml || storedHtml.trim().length === 0) {
     const docElement = document.getElementById('printable-legal-document');
     if (docElement) {
@@ -1652,7 +1716,6 @@ function initDownloadPage() {
     if (storedHtml && storedHtml.trim().length > 0) {
       printArea.innerHTML = storedHtml;
     } else {
-      // Complete legal agreement fallback so it NEVER EVER prints blank
       printArea.innerHTML = `
         <div style="font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #000; padding: 20px;">
           <h1 style="text-align: center; font-size: 16pt; font-weight: bold; text-decoration: underline; margin-bottom: 20px;">RESIDENTIAL TENANCY AGREEMENT DEED</h1>
@@ -1703,8 +1766,15 @@ function initDownloadPage() {
     }
   }, 1000);
 
+  let isActionActive = false;
+
   if (btnForceDownload) {
-    btnForceDownload.addEventListener('click', () => {
+    btnForceDownload.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isActionActive) return;
+      isActionActive = true;
+      setTimeout(() => { isActionActive = false; }, 1000);
+
       clearInterval(timer);
       if (countdownNum) countdownNum.textContent = '0';
       if (countdownProgress) countdownProgress.style.width = '0%';
@@ -1713,7 +1783,12 @@ function initDownloadPage() {
   }
 
   if (btnForcePrint) {
-    btnForcePrint.addEventListener('click', () => {
+    btnForcePrint.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isActionActive) return;
+      isActionActive = true;
+      setTimeout(() => { isActionActive = false; }, 1000);
+
       clearInterval(timer);
       window.print();
     });
