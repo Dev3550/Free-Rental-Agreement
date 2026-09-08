@@ -64,15 +64,13 @@
     color: #000000 !important;
   }
 
-  /* 1. Hide all top-level children of body EXCEPT printable containers */
-  body > *:not(#download-print-area):not(#print-mount-root):not(#printable-legal-document) {
+  /* 1. Hide all top-level children of body EXCEPT single print mount root */
+  body > *:not(#print-mount-root) {
     display: none !important;
   }
 
-  /* 2. Top-Level Print Containers */
-  #download-print-area,
-  #print-mount-root,
-  #printable-legal-document {
+  /* 2. Single Top-Level Print Container - Prevents Duplicate Double Printing */
+  #print-mount-root {
     display: block !important;
     visibility: visible !important;
     position: static !important;
@@ -93,9 +91,7 @@
     height: auto !important;
   }
 
-  #download-print-area *,
-  #print-mount-root *,
-  #printable-legal-document * {
+  #print-mount-root * {
     visibility: visible !important;
     color: #000000 !important;
     background: transparent !important;
@@ -103,9 +99,7 @@
     min-height: auto !important;
   }
 
-  #download-print-area div, #download-print-area p, #download-print-area span, #download-print-area li,
-  #print-mount-root div, #print-mount-root p, #print-mount-root span, #print-mount-root li,
-  #printable-legal-document div, #printable-legal-document p, #printable-legal-document span, #printable-legal-document li {
+  #print-mount-root div, #print-mount-root p, #print-mount-root span, #print-mount-root li {
     border-color: #000000 !important;
   }
 

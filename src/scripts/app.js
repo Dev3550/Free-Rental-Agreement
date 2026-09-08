@@ -2300,16 +2300,7 @@ function initDownloadPage() {
     storedHtml = getFallbackAgreementHtml();
   }
 
-  // Immediately populate top-level print containers at root body level
-  let printArea = document.getElementById('download-print-area');
-  if (!printArea) {
-    printArea = document.createElement('div');
-    printArea.id = 'download-print-area';
-    printArea.className = 'print-only-container';
-    document.body.appendChild(printArea);
-  }
-  printArea.innerHTML = storedHtml;
-
+  // Populate single top-level print container at root body level
   let printRoot = document.getElementById('print-mount-root');
   if (!printRoot) {
     printRoot = document.createElement('div');
