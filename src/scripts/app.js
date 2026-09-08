@@ -981,6 +981,87 @@ function initCountrySwitcher() {
   }
 }
 
+// 100% Pure Country States & Regions Mapping
+const countryStatesMap = {
+  IN: [
+    { value: 'Maharashtra', label: 'Maharashtra (0.25% Stamp Duty)' },
+    { value: 'Karnataka', label: 'Karnataka (0.5% Stamp Duty)' },
+    { value: 'Delhi NCR', label: 'Delhi NCR (₹50 Stamp Paper)' },
+    { value: 'Tamil Nadu', label: 'Tamil Nadu (1% Stamp Duty)' },
+    { value: 'Telangana', label: 'Telangana (0.5% Stamp Duty)' },
+    { value: 'Uttar Pradesh', label: 'Uttar Pradesh (₹100 Stamp Paper)' },
+    { value: 'West Bengal', label: 'West Bengal (₹100 e-Stamp Paper)' },
+    { value: 'Gujarat', label: 'Gujarat (₹300 Stamp Duty)' },
+    { value: 'Rajasthan', label: 'Rajasthan (5% Stamp Duty)' },
+    { value: 'Haryana', label: 'Haryana (₹100 Stamp Duty)' },
+    { value: 'Punjab', label: 'Punjab (₹50 Stamp Duty)' },
+    { value: 'Kerala', label: 'Kerala (8% Stamp Duty)' }
+  ],
+  US: [
+    { value: 'California (US)', label: 'California (AB 12 Tenant Protection)' },
+    { value: 'Texas (US)', label: 'Texas (Property Code Ch. 92)' },
+    { value: 'New York (US)', label: 'New York (NY RPL § 238-a Cap)' },
+    { value: 'Florida (US)', label: 'Florida (Statutes Ch. 83)' },
+    { value: 'Illinois (US)', label: 'Illinois (RLTO Ordinance)' },
+    { value: 'Washington (US)', label: 'Washington (RCW 59.18 Act)' },
+    { value: 'Massachusetts (US)', label: 'Massachusetts (MGL c. 186)' },
+    { value: 'Pennsylvania (US)', label: 'Pennsylvania (Landlord-Tenant Act)' },
+    { value: 'Georgia (US)', label: 'Georgia (Title 44 Code)' },
+    { value: 'North Carolina (US)', label: 'North Carolina (NCGS Ch. 42)' }
+  ],
+  UK: [
+    { value: 'London (UK)', label: 'Greater London (AST 5-Week Deposit Cap)' },
+    { value: 'West Midlands (UK)', label: 'West Midlands (Birmingham AST)' },
+    { value: 'Greater Manchester (UK)', label: 'Greater Manchester (AST)' },
+    { value: 'West Yorkshire (UK)', label: 'West Yorkshire (Leeds AST)' },
+    { value: 'Scotland (UK)', label: 'Scotland (Private Residential Tenancy PRT)' },
+    { value: 'Wales (UK)', label: 'Wales (Renting Homes Wales Act 2016)' },
+    { value: 'Northern Ireland (UK)', label: 'Northern Ireland (Private Tenancies Order)' }
+  ],
+  UAE: [
+    { value: 'Dubai (UAE)', label: 'Dubai (RERA Ejari Law 26)' },
+    { value: 'Abu Dhabi (UAE)', label: 'Abu Dhabi (Tawtheeq Registration)' },
+    { value: 'Sharjah (UAE)', label: 'Sharjah (Municipality Lease Contract)' },
+    { value: 'Ajman (UAE)', label: 'Ajman (Tasdeeq Registration)' },
+    { value: 'Ras Al Khaimah (UAE)', label: 'Ras Al Khaimah (RAK Municipality)' }
+  ],
+  CA: [
+    { value: 'Ontario (Canada)', label: 'Ontario (Standard Lease Form RTA 2006)' },
+    { value: 'British Columbia (Canada)', label: 'British Columbia (RTB-1 Standard Lease)' },
+    { value: 'Alberta (Canada)', label: 'Alberta (Residential Tenancies Act RTA)' },
+    { value: 'Quebec (Canada)', label: 'Quebec (TAL Lease Tribunal Administratif)' },
+    { value: 'Nova Scotia (Canada)', label: 'Nova Scotia (Residential Tenancies Program)' }
+  ],
+  AU: [
+    { value: 'Queensland (Australia)', label: 'Queensland (RTA Form 18a General Tenancy)' },
+    { value: 'New South Wales (Australia)', label: 'New South Wales (NSW Fair Trading AST)' },
+    { value: 'Victoria (Australia)', label: 'Victoria (Consumer Affairs Vic Form 1)' },
+    { value: 'Western Australia (Australia)', label: 'Western Australia (Form 1AA Tenancy)' },
+    { value: 'South Australia (Australia)', label: 'South Australia (CBS SA Tenancy Agreement)' }
+  ],
+  IE: [
+    { value: 'Dublin (Ireland)', label: 'Dublin (RPZ Rent Pressure Zone RTB)' },
+    { value: 'Cork (Ireland)', label: 'Cork (RTB Registered Tenancy)' },
+    { value: 'Galway (Ireland)', label: 'Galway (RPZ Housing Act 2004)' },
+    { value: 'Limerick (Ireland)', label: 'Limerick (RTB Residential Agreement)' },
+    { value: 'Kildare (Ireland)', label: 'Kildare (RTB Tenancy)' }
+  ],
+  NZ: [
+    { value: 'Auckland (New Zealand)', label: 'Auckland (Tenancy Services NZ Healthy Homes)' },
+    { value: 'Wellington (New Zealand)', label: 'Wellington (Tenancy Services Bond Centre)' },
+    { value: 'Canterbury (New Zealand)', label: 'Christchurch / Canterbury (RTA 1986)' },
+    { value: 'Waikato (New Zealand)', label: 'Hamilton / Waikato (Tenancy Services)' },
+    { value: 'Otago (New Zealand)', label: 'Dunedin / Otago (Tenancy Services)' }
+  ],
+  ES: [
+    { value: 'Madrid (España)', label: 'Comunidad de Madrid (Fianza Depósito de Alquiler)' },
+    { value: 'Cataluña (España)', label: 'Cataluña / Barcelona (INCASÒL Fianza Ley Vivienda)' },
+    { value: 'Andalucía (España)', label: 'Andalucía / Sevilla (AVRA Depósito de Fianza)' },
+    { value: 'Comunidad Valenciana (España)', label: 'Comunidad Valenciana (LAU Arrendamiento)' },
+    { value: 'País Vasco (España)', label: 'País Vasco (Bizkaia / Gipuzkoa Arrendamiento)' }
+  ]
+};
+
 function updateCountryContext(countryCode) {
   if (!countryConfigs[countryCode]) return;
   appState.country = countryCode;
@@ -1003,6 +1084,14 @@ function updateCountryContext(countryCode) {
     }
   }
 
+  // Populate state_jurisdiction dropdown with ONLY active country states/regions
+  const stateSelect = document.getElementById('state_jurisdiction');
+  if (stateSelect && countryStatesMap[countryCode]) {
+    const states = countryStatesMap[countryCode];
+    stateSelect.innerHTML = states.map(s => `<option value="${s.value}">${s.label}</option>`).join('');
+    stateSelect.value = config.jurisdictionName || states[0].value;
+  }
+
   document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = config.currencySymbol);
 
   setText('hero-country-badge', config.badgeText);
@@ -1022,13 +1111,14 @@ function updateCountryContext(countryCode) {
   setVal('landlord_name', config.sampleLandlord);
   setVal('landlord_id', config.defaultLandlordId);
   setVal('landlord_address', config.sampleLandlordAddress);
+  setVal('landlord_phone', config.samplePhoneLandlord || '+1 (555) 019-2834');
 
   setVal('tenant_name', config.sampleTenant);
   setVal('tenant_id', config.defaultTenantId);
   setVal('tenant_permanent_address', config.sampleTenantAddress);
+  setVal('tenant_phone', config.samplePhoneTenant || '+1 (555) 019-5821');
 
   setVal('property_address', config.sampleProperty);
-  setVal('state_jurisdiction', config.jurisdictionName);
   setVal('monthly_rent', config.sampleRent);
   setVal('security_deposit', config.sampleDeposit);
   setText('doc-city-name', config.sampleCity);
@@ -1053,6 +1143,7 @@ function updateCountryContext(countryCode) {
   }
 
   updateCategoryContext(appState.category);
+  syncFormToCanvas();
   updateCalculatorOutput();
 }
 
@@ -1174,7 +1265,23 @@ function initFormBinding() {
   inputs.forEach(inp => {
     inp.addEventListener('input', syncFormToCanvas);
     inp.addEventListener('change', syncFormToCanvas);
+    inp.addEventListener('keyup', syncFormToCanvas);
   });
+}
+
+function formatOrdinalDate(d) {
+  if (!d || isNaN(d.getTime())) d = new Date();
+  const day = d.getDate();
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const month = monthNames[d.getMonth()];
+  const year = d.getFullYear();
+  
+  let suffix = "th";
+  if (day % 10 === 1 && day !== 11) suffix = "st";
+  else if (day % 10 === 2 && day !== 12) suffix = "nd";
+  else if (day % 10 === 3 && day !== 13) suffix = "rd";
+
+  return `${day}${suffix} day of ${month} ${year}`;
 }
 
 function syncFormToCanvas() {
@@ -1183,10 +1290,12 @@ function syncFormToCanvas() {
 
   const landlordName = document.getElementById('landlord_name')?.value || config.sampleLandlord;
   const landlordId = document.getElementById('landlord_id')?.value || config.defaultLandlordId;
+  const landlordPhone = document.getElementById('landlord_phone')?.value || '+1 (555) 019-2834';
   const landlordAddress = document.getElementById('landlord_address')?.value || config.sampleLandlordAddress;
 
   const tenantName = document.getElementById('tenant_name')?.value || config.sampleTenant;
   const tenantId = document.getElementById('tenant_id')?.value || config.defaultTenantId;
+  const tenantPhone = document.getElementById('tenant_phone')?.value || '+1 (555) 019-5821';
   const tenantAddress = document.getElementById('tenant_permanent_address')?.value || config.sampleTenantAddress;
 
   const propAddress = document.getElementById('property_address')?.value || config.sampleProperty;
@@ -1210,13 +1319,13 @@ function syncFormToCanvas() {
   const paintingChecked = document.getElementById('clause_painting')?.checked;
   const sublettingChecked = document.getElementById('clause_subletting')?.checked;
 
-  const isHindi = appState.docLang === 'HI';
+  const isHindi = appState.docLang === 'HI' && appState.country === 'IN';
 
-  const titleText = isHindi ? 'किरायानामा (आवासीय किराया विलेख)' : (schemaObj.docTitle || 'RESIDENTIAL TENANCY AGREEMENT DEED');
-  const subText = isHindi ? `भारत सरकार एवं ${stateJur} राज्य नियमों के अधीन निष्पादित` : `Executed under the Laws & Regulations of ${stateJur}`;
-  const party1Title = isHindi ? 'प्रथम पक्ष (मकान मालिक / LESSOR / LANDLORD):' : 'PARTY OF THE FIRST PART (LESSOR / LANDLORD):';
-  const party2Title = isHindi ? 'द्वितीय पक्ष (किराएदार / LESSEE / TENANT):' : 'PARTY OF THE SECOND PART (LESSEE / TENANT):';
-  const scheduleTitle = isHindi ? 'पट्टे पर दी गई संपत्ति का विवरण (SCHEDULE PROPERTY PREMISES):' : 'SCHEDULE PROPERTY PREMISES / WORK SITE LOCATION:';
+  const titleText = isHindi ? 'किरायानामा (आवासीय किराया विलेख)' : config.docTitle;
+  const subText = isHindi ? `भारत सरकार एवं ${stateJur} राज्य नियमों के अधीन निष्पादित` : `${config.docSubtitle} (${stateJur})`;
+  const party1Title = isHindi ? 'प्रथम पक्ष (मकान मालिक / LESSOR / LANDLORD):' : (schemaObj.party1Header || 'PARTY OF THE FIRST PART (LESSOR / LANDLORD):');
+  const party2Title = isHindi ? 'द्वितीय पक्ष (किराएदार / LESSEE / TENANT):' : (schemaObj.party2Header || 'PARTY OF THE SECOND PART (LESSEE / TENANT):');
+  const scheduleTitle = isHindi ? 'पट्टे पर दी गई संपत्ति का विवरण (SCHEDULE PROPERTY PREMISES):' : (schemaObj.scheduleHeader || 'SCHEDULE PROPERTY PREMISES / WORK SITE LOCATION:');
 
   setText('canvas-doc-title', titleText);
   setText('canvas-doc-subtitle', subText);
@@ -1224,13 +1333,18 @@ function syncFormToCanvas() {
   setText('canvas-party-2-title', party2Title);
   setText('canvas-schedule-header', scheduleTitle);
 
+  setText('doc-execution-date', formatOrdinalDate(startDateObj));
+  setText('doc-city-name', stateJur);
+
   setText('doc-landlord-name', landlordName);
   setText('doc-landlord-id', landlordId);
+  setText('doc-landlord-phone', landlordPhone);
   setText('doc-landlord-address', landlordAddress);
   setText('doc-sig-landlord-name', landlordName);
 
   setText('doc-tenant-name', tenantName);
   setText('doc-tenant-id', tenantId);
+  setText('doc-tenant-phone', tenantPhone);
   setText('doc-tenant-address', tenantAddress);
   setText('doc-sig-tenant-name', tenantName);
 
@@ -1239,6 +1353,8 @@ function syncFormToCanvas() {
   setText('doc-tenure-months', tenureMonths.toString());
   setText('doc-start-date', formatDate(startDateObj));
   setText('doc-end-date', formatDate(endDateObj));
+
+  document.querySelectorAll('.currency-symbol').forEach(el => el.textContent = config.currencySymbol);
 
   setText('doc-monthly-rent', rentVal.toLocaleString());
   setText('doc-rent-words', numberToWords(rentVal, config.currencyUnitName));
