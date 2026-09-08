@@ -755,10 +755,15 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (path.includes('/new-zealand')) initialCountry = 'NZ';
   else if (path.includes('/es')) initialCountry = 'ES';
   else if (path.includes('/india')) initialCountry = 'IN';
+  else if (path.includes('/download')) initialCountry = localStorage.getItem('generatedDocumentCountry') || 'IN';
   else if (select && select.value) initialCountry = select.value;
 
   if (select) select.value = initialCountry;
-  updateCountryContext(initialCountry);
+  if (!path.includes('/download')) {
+    updateCountryContext(initialCountry);
+  } else {
+    appState.country = initialCountry;
+  }
   updateCategoryContext('residential');
 });
 
@@ -2038,6 +2043,7 @@ function saveAndRedirectToDownload() {
     localStorage.setItem('generatedDocumentHtml', docElement.innerHTML);
     localStorage.setItem('generatedDocumentTitle', document.getElementById('canvas-doc-title')?.innerText || 'RESIDENTIAL LEASE AGREEMENT DEED');
     localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('canvas-jurisdiction-name')?.innerText || 'State Jurisdiction');
+    localStorage.setItem('generatedDocumentCountry', appState.country || 'IN');
   }
   
   window.location.href = '/download';
@@ -2065,12 +2071,25 @@ function getFallbackAgreementHtml() {
 
 // Master Print Trigger using Top-Level Print Portal (Guarantees zero blank pages)
 function triggerPrint() {
-  if (typeof syncFormToCanvas === 'function') {
+  const hasForm = !!document.getElementById('agreement-form');
+  if (hasForm && typeof syncFormToCanvas === 'function') {
     syncFormToCanvas();
   }
 
-  let docElement = document.getElementById('printable-legal-document') || document.getElementById('download-print-area');
-  let docHtml = docElement ? docElement.innerHTML : localStorage.getItem('generatedDocumentHtml');
+  let docHtml = '';
+  if (hasForm) {
+    const docElement = document.getElementById('printable-legal-document');
+    if (docElement) docHtml = docElement.innerHTML;
+  }
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    docHtml = localStorage.getItem('generatedDocumentHtml') || '';
+  }
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    const printArea = document.getElementById('download-print-area');
+    if (printArea) docHtml = printArea.innerHTML;
+  }
 
   if (!docHtml || docHtml.trim().length === 0) {
     docHtml = getFallbackAgreementHtml();
@@ -2120,12 +2139,25 @@ function forceDirectFileDownload(blob, filename) {
 }
 
 function downloadPDFViaHtml2Pdf() {
-  if (typeof syncFormToCanvas === 'function') {
+  const hasForm = !!document.getElementById('agreement-form');
+  if (hasForm && typeof syncFormToCanvas === 'function') {
     syncFormToCanvas();
   }
 
-  let docElement = document.getElementById('printable-legal-document') || document.getElementById('download-print-area');
-  let docHtml = docElement ? docElement.innerHTML : localStorage.getItem('generatedDocumentHtml');
+  let docHtml = '';
+  if (hasForm) {
+    const docElement = document.getElementById('printable-legal-document');
+    if (docElement) docHtml = docElement.innerHTML;
+  }
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    docHtml = localStorage.getItem('generatedDocumentHtml') || '';
+  }
+
+  if (!docHtml || docHtml.trim().length === 0) {
+    const printArea = document.getElementById('download-print-area');
+    if (printArea) docHtml = printArea.innerHTML;
+  }
 
   if (!docHtml || docHtml.trim().length === 0) {
     docHtml = getFallbackAgreementHtml();
@@ -2263,13 +2295,6 @@ function initDownloadPage() {
 
   let storedHtml = localStorage.getItem('generatedDocumentHtml');
   const storedJuris = localStorage.getItem('generatedDocumentJurisdiction');
-
-  if (!storedHtml || storedHtml.trim().length === 0) {
-    const docElement = document.getElementById('printable-legal-document');
-    if (docElement) {
-      storedHtml = docElement.innerHTML;
-    }
-  }
 
   if (!storedHtml || storedHtml.trim().length === 0) {
     storedHtml = getFallbackAgreementHtml();
