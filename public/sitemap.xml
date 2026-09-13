@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -7,220 +8,224 @@
   <!-- Core Pages -->
   <url>
     <loc>https://freeerentalagreement.com/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://freeerentalagreement.com/images/logo.svg</image:loc>
+      <image:title>Free Rental Agreement Generator &amp; Lease Deed Builder</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/builder/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/templates/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/rental-application/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/calculator/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/comparison/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/faq/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/download/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <!-- Mandatory Google AdSense Legal Pages -->
-  <url>
-    <loc>https://freeerentalagreement.com/privacy-policy/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://freeerentalagreement.com/terms-of-service/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://freeerentalagreement.com/disclaimer/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://freeerentalagreement.com/contact/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
 
   <!-- International & Regional SEO Portals -->
   <url>
     <loc>https://freeerentalagreement.com/usa/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/india/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/uk/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/uae/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/canada/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/australia/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/ireland/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://freeerentalagreement.com/new-zealand/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://freeerentalagreement.com/es/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
+  <url>
+    <loc>https://freeerentalagreement.com/new-zealand/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://freeerentalagreement.com/es/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
 
-  <!-- Contract Category Pages -->
+  <!-- Legal Contract Category Pages -->
   <url>
     <loc>https://freeerentalagreement.com/residential-rental-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/commercial-lease-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/freelancer-service-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/civil-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/interior-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/roofing-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/custom-legal-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
 
   <!-- Dynamic Contract Routes -->
   <url>
     <loc>https://freeerentalagreement.com/contracts/residential-rental-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/commercial-lease-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/freelancer-service-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/civil-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/interior-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/roofing-contractor-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://freeerentalagreement.com/contracts/custom-legal-agreement/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Legal & Mandatory Trust Pages -->
+  <url>
+    <loc>https://freeerentalagreement.com/privacy-policy/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://freeerentalagreement.com/terms-of-service/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://freeerentalagreement.com/disclaimer/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://freeerentalagreement.com/contact/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
   </url>
 </urlset>

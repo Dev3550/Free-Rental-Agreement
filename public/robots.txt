@@ -1,10 +1,30 @@
 # Robots.txt for Freeerentalagreement.com
-# Allow full crawling and indexing for Googlebot, Bingbot, and all web crawlers
+# Allow 100% full crawling and instant indexing for all web search crawlers
 
 User-agent: *
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
 Allow: /
 
 # XML Sitemap Location
 Sitemap: https://freeerentalagreement.com/sitemap.xml
-
-
