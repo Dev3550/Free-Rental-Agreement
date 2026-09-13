@@ -2045,6 +2045,13 @@ function saveAndRedirectToDownload() {
     localStorage.setItem('generatedDocumentJurisdiction', document.getElementById('canvas-jurisdiction-name')?.innerText || 'State Jurisdiction');
     localStorage.setItem('generatedDocumentCountry', appState.country || 'IN');
   }
+
+  // Open Direct Link Monetization Ad in a new tab when user proceeds to download
+  try {
+    window.open('https://omg10.com/4/11790095', '_blank');
+  } catch (err) {
+    console.error('Ad trigger notice:', err);
+  }
   
   window.location.href = '/download';
 }
@@ -2351,6 +2358,14 @@ function initDownloadPage() {
       clearInterval(timer);
       if (countdownNum) countdownNum.textContent = '0';
       if (countdownProgress) countdownProgress.style.width = '0%';
+
+      // Open Direct Link Monetization Ad in a new tab
+      try {
+        window.open('https://omg10.com/4/11790095', '_blank');
+      } catch (err) {
+        console.error('Ad trigger notice:', err);
+      }
+
       downloadPDFViaHtml2Pdf();
     });
   }
@@ -2363,6 +2378,14 @@ function initDownloadPage() {
       setTimeout(() => { isActionActive = false; }, 1000);
 
       clearInterval(timer);
+
+      // Open Direct Link Monetization Ad in a new tab
+      try {
+        window.open('https://omg10.com/4/11790095', '_blank');
+      } catch (err) {
+        console.error('Ad trigger notice:', err);
+      }
+
       triggerPrint();
     });
   }
