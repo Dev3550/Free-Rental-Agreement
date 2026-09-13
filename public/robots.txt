@@ -6,3 +6,5 @@ Allow: /
 
 # XML Sitemap Location
 Sitemap: https://freeerentalagreement.com/sitemap.xml
+
+
